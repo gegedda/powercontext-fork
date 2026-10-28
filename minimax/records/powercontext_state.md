@@ -1,7 +1,7 @@
 # PowerContext state reuse
 
-- scope before restart: `scp_54hq3qcbmc5m1jzv3cj86xepdh`
-- scope after restart: `scp_54hq3qcbmc5m1jzv3cj86xepdh`
+- scope before restart: `scp_45mdmzyvg2mnsf5h0gxn9g2qsw`
+- scope after restart: `scp_45mdmzyvg2mnsf5h0gxn9g2qsw`
 - status loaded after restart: `verified`
 - context uses loaded state: `True`
 

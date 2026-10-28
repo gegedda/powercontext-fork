@@ -10,7 +10,8 @@
     "SPEC-102.2",
     "SPEC-103.1",
     "SPEC-103.2",
-    "SPEC-103.3"
+    "SPEC-103.3",
+    "SPEC-103.4"
   ],
   "updated_specs": [
     "SPEC-101.1",
@@ -21,7 +22,8 @@
     "SPEC-102.9",
     "SPEC-103.1",
     "SPEC-103.2",
-    "SPEC-103.3"
+    "SPEC-103.3",
+    "SPEC-103.4"
   ],
   "passed": true
 }

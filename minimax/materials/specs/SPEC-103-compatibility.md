@@ -19,3 +19,10 @@ fields, rename fields, or change the meaning of `total`.
 ## SPEC-103.3 Single-issue endpoint
 
 `GET /issues/{id}` and its 404 behaviour for unknown ids are unaffected.
+
+## SPEC-103.4 Service construction
+
+`IssueService()` without arguments must keep using `DEFAULT_ISSUES`. The test
+fixture and existing callers construct the service this way; the optional
+`issues` argument remains available for injection in unit tests. A change that
+makes `issues` required is a regression.

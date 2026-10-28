@@ -18,7 +18,7 @@ The change must be verified with the target tests for the new filters and the
 regression tests for existing behaviour.
 
 **Backend:** sqlite  
-**Scope:** `scp_54hq3qcbmc5m1jzv3cj86xepdh`
+**Scope:** `scp_45mdmzyvg2mnsf5h0gxn9g2qsw`
 
 ## Applicable specifications
 
@@ -99,80 +99,29 @@ Status: active · score 44.5
 ## SPEC-103.3 Single-issue endpoint
 `GET /issues/{id}` and its 404 behaviour for unknown ids are unaffected.
 
+### SPEC-103.4 — SPEC-103.4 Service construction
+Source: `minimax/materials/specs/SPEC-103-compatibility.md` lines 23–27  
+Status: active · score 37.0
+
+## SPEC-103.4 Service construction
+`IssueService()` without arguments must keep using `DEFAULT_ISSUES`. The test
+fixture and existing callers construct the service this way; the optional
+`issues` argument remains available for injection in unit tests. A change that
+makes `issues` required is a regression.
+
 ## Code to change
 
 ### `IssueService.list_issues` — `minimax/demo_project/issuehub/service.py`
-Lines 22–45 · score 41.9
+Lines 18–24 · score 28.4
 
 ```python
-def list_issues(
-        self,
-        *,
-        status: str | None = None,
-        priority: str | None = None,
-        assignee: str | None = None,
-    ) -> list[Issue]:
-        """Return issues matching the supplied filters.
-
-        Filters are combined with AND. The result is always ordered by id so
-        that callers can rely on a stable response.
-        """
-
-        if priority is not None and priority not in ("low", "medium", "high"):
-            raise InvalidPriority(priority)
+def list_issues(self, *, status: str | None = None) -> list[Issue]:
+        """Return issues matching the status filter, ordered by id."""
 
         selected = self._issues
         if status is not None:
             selected = tuple(issue for issue in selected if issue.status == status)
-        if priority is not None:
-            selected = tuple(issue for issue in selected if issue.priority == priority)
-        if assignee is not None:
-            selected = tuple(issue for issue in selected if issue.assignee == assignee)
         return sorted(selected, key=lambda issue: issue.id)
-```
-
-### `make_handler` — `minimax/demo_project/issuehub/api.py`
-Lines 22–59 · score 30.7
-
-```python
-def make_handler(service: IssueService) -> type[BaseHTTPRequestHandler]:
-    class Handler(BaseHTTPRequestHandler):
-        def do_GET(self) -> None:  # noqa: N802 - stdlib callback name
-            parsed = urlparse(self.path)
-            if parsed.path == "/issues":
-                self._list_issues(parsed.query)
-                return
-            if parsed.path.startswith("/issues/"):
-                suffix = parsed.path.removeprefix("/issues/")
-                if suffix.isdigit():
-                    issue = service.get_issue(int(suffix))
-                    if issue is None:
-                        _json_response(self, 404, {"error": "not_found"})
-                    else:
-                        _json_response(self, 200, issue.as_dict())
-                    return
-            _json_response(self, 404, {"error": "not_found"})
-
-        def _list_issues(self, raw_query: str) -> None:
-            query = parse_qs(raw_query, keep_blank_values=False)
-            status = _first(query, "status")
-            priority = _first(query, "priority")
-            assignee = _first(query, "assignee")
-            try:
-                issues = service.list_issues(status=status, priority=priority, assignee=assignee)
-            except InvalidPriority:
-                _json_response(
-                    self,
-                    400,
-                    {"error": "invalid_priority", "allowed": ["low", "medium", "high"]},
-                )
-                return
-            _json_response(self, 200, {"items": [issue.as_dict() for issue in issues], "total": len(issues)})
-
-        def log_message(self, format: str, *args: object) -> None:  # noqa: A002
-            return
-
-    return Handler
 ```
 
 ### `Issue` — `minimax/demo_project/issuehub/models.py`
@@ -197,11 +146,45 @@ class Issue:
 ```
 
 ### `InvalidPriority` — `minimax/demo_project/issuehub/service.py`
-Lines 14–15 · score 18.4
+Lines 10–11 · score 18.4
 
 ```python
 class InvalidPriority(ValueError):
-    """Raised when a caller asks for a priority outside the supported set."""
+    """Reserved for the TASK-001 validation path; unused in this baseline."""
+```
+
+### `make_handler` — `minimax/demo_project/issuehub/api.py`
+Lines 22–49 · score 17.2
+
+```python
+def make_handler(service: IssueService) -> type[BaseHTTPRequestHandler]:
+    class Handler(BaseHTTPRequestHandler):
+        def do_GET(self) -> None:  # noqa: N802 - stdlib callback name
+            parsed = urlparse(self.path)
+            if parsed.path == "/issues":
+                self._list_issues(parsed.query)
+                return
+            if parsed.path.startswith("/issues/"):
+                suffix = parsed.path.removeprefix("/issues/")
+                if suffix.isdigit():
+                    issue = service.get_issue(int(suffix))
+                    if issue is None:
+                        _json_response(self, 404, {"error": "not_found"})
+                    else:
+                        _json_response(self, 200, issue.as_dict())
+                    return
+            _json_response(self, 404, {"error": "not_found"})
+
+        def _list_issues(self, raw_query: str) -> None:
+            query = parse_qs(raw_query, keep_blank_values=False)
+            status = _first(query, "status")
+            issues = service.list_issues(status=status)
+            _json_response(self, 200, {"items": [issue.as_dict() for issue in issues], "total": len(issues)})
+
+        def log_message(self, format: str, *args: object) -> None:  # noqa: A002
+            return
+
+    return Handler
 ```
 
 ## Verification tests
@@ -224,21 +207,22 @@ Verification: `target: 4 failed before / 4 passed after; regression: 4 passed be
 
 ## Source citations
 
-- `SPEC-101.1` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_5eb379de3d1f49849d28deb933f7847c`, version `mem_ver_37f3126841394dedb0f4265a3b79dbda`)
-- `SPEC-101.2` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_54bb54a2107e4ab7950a9b63166ad953`, version `mem_ver_2dfeda44cc074ae5bed36c484f8f1fb7`)
-- `SPEC-101.3` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_9a364b9d880046ee90c289209b39715b`, version `mem_ver_3d01172b5dd448ca957d7f71006e4f86`)
-- `SPEC-102.1` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `mem_ent_3d9097d85ee14a34b1b9e6c138615230`, version `mem_ver_c006a8f517914789ac00e20242570133`)
-- `SPEC-102.2` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `mem_ent_078146baed314adfb0c4cf76f65320a8`, version `mem_ver_004f4399782e4d6abca96f5f8bc3abdc`)
-- `SPEC-103.1` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_281338c3fd3d4496b2f144dd81226bdc`, version `mem_ver_b173205802fb44ac93c587b2d099e804`)
-- `SPEC-103.2` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_02a97eafded4483899593c64e7066e29`, version `mem_ver_a53d6499f46e4d798755ecb15e2ad7df`)
-- `SPEC-103.3` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_5e3a6a169f4347a98240504d89908a9f`, version `mem_ver_69bb953f7b5a4fe7b3914cee7f6ee983`)
-- `CODE-service-IssueService-list_issues` → `minimax/demo_project/issuehub/service.py` (memory entry `mem_ent_45a0d006f5eb487991b0607409c39858`, version `mem_ver_c7a5b228d50c428e806442ea50c1768b`)
-- `CODE-api-make_handler` → `minimax/demo_project/issuehub/api.py` (memory entry `mem_ent_e8853089134140e98c79e39801c530e0`, version `mem_ver_795774774b4a4ae9a81ed93ab5e05483`)
-- `CODE-models-Issue` → `minimax/demo_project/issuehub/models.py` (memory entry `mem_ent_3a89e1379f1e4de3917a447e7941df08`, version `mem_ver_1c9fa52d554046c294d23487576ed297`)
-- `CODE-service-InvalidPriority` → `minimax/demo_project/issuehub/service.py` (memory entry `mem_ent_97c41752eabf433297e5c00084a45190`, version `mem_ver_5e833bfb38f54a51990662a4d6c95f82`)
-- `TEST-test_invalid_priority_returns_400` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_135b01c63b714682844411f657a13e02`, version `mem_ver_bd65e07c47dc4bd2a56536fa7f9a993a`)
-- `TEST-test_priority_combines_with_status` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_7dda10d7217448cb98071d607f456fcc`, version `mem_ver_399ae580d3cb428689af82bb83caac79`)
-- `TEST-test_filter_by_assignee_and_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_a2a3b52c59aa4cb896417cd3d4cfdcae`, version `mem_ver_1cf84a17de1c4b5a914bf85b25acbbea`)
-- `TEST-test_filter_by_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_1e0d0ee8c96845529dd06acd5407c005`, version `mem_ver_26d384ac81a24dd8bfbfab536c925600`)
-- `TEST-test_no_filters_returns_all_sorted` → `minimax/demo_project/tests/test_regressions.py` (memory entry `mem_ent_d428b1848a4144f0982c923ab5eeae4e`, version `mem_ver_301d2aea6e054d559f7ba6f019265eb6`)
-- `TEST-test_status_filter_still_works` → `minimax/demo_project/tests/test_regressions.py` (memory entry `mem_ent_4b40c919bf524124b783bcffb8bb018b`, version `mem_ver_06431b380fc948e4a572785a0ba93073`)
+- `SPEC-101.1` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_dc539d9cfc9a41e79c5a9ddc54e46380`, version `mem_ver_a98f6ef771da4b55a1a81d4cae59a49e`)
+- `SPEC-101.2` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_21d1f4e3808b416aabd01bc1fea567c1`, version `mem_ver_91fe8ff1aa6c4aea94d6459da2d9c047`)
+- `SPEC-101.3` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_fadaa90fe4e94ba1852b8c4cc319183f`, version `mem_ver_94eb0dba76c4481bb8ea35ad85365192`)
+- `SPEC-102.1` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `mem_ent_c36b33b61d364489a7369ed57d79d469`, version `mem_ver_27abeb574d7049ae8a12c5635e8987c7`)
+- `SPEC-102.2` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `mem_ent_5f60bab600dd48a1895351ad20962974`, version `mem_ver_533cfe5ef2744b1592d8d6efc399b4da`)
+- `SPEC-103.1` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_f8781826dc24478b9c8ccd38072a6c7a`, version `mem_ver_f65ca54eb6344d13bc6dab66505c39ea`)
+- `SPEC-103.2` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_910e08f815434030a9bbb42ab24e8b8d`, version `mem_ver_e290a0cefd444027b8571372d905e87c`)
+- `SPEC-103.3` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_c75af3bb1e8e4bd6bab6090723b81f96`, version `mem_ver_d0bd7ff9671e4eb89c44765b85c17a41`)
+- `SPEC-103.4` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_302a10c5730c422da73ca873f2ab897c`, version `mem_ver_774b31db0c424c138d6d19d06dfba601`)
+- `CODE-service-IssueService-list_issues` → `minimax/demo_project/issuehub/service.py` (memory entry `mem_ent_2d60e859923a4e0bb220d8306ce0ff65`, version `mem_ver_2a668e2fdb864008a9aa226829265194`)
+- `CODE-models-Issue` → `minimax/demo_project/issuehub/models.py` (memory entry `mem_ent_a1cdb45c64004200b836f688d584a702`, version `mem_ver_782de1a388614f479d1a568fcf8802e5`)
+- `CODE-service-InvalidPriority` → `minimax/demo_project/issuehub/service.py` (memory entry `mem_ent_8eacf1d263274d0fb29b775d9ba8ed68`, version `mem_ver_eeb1bc2884a148cba1b80481a1a8b0fe`)
+- `CODE-api-make_handler` → `minimax/demo_project/issuehub/api.py` (memory entry `mem_ent_db29811615314324bfd887c40ec90199`, version `mem_ver_5d7766ee9a7b4c40b8c112736ba6676a`)
+- `TEST-test_invalid_priority_returns_400` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_583111a6f96f45109fd02feed93fa9da`, version `mem_ver_3dac6d37a50e446f99b56fc81ebe8fb9`)
+- `TEST-test_priority_combines_with_status` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_a90256d14c2e43b7b8394a450b6f5630`, version `mem_ver_4e108963bfda472886dbce9bcfa53ae6`)
+- `TEST-test_filter_by_assignee_and_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_2a028789be904be196b3bf9e36ec49a8`, version `mem_ver_53942553ce3a46bf9d860e1f892a9db2`)
+- `TEST-test_filter_by_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_6c4b65c439ab481cb355e322ae06076f`, version `mem_ver_c335c00ce17e418582d60ef26acffd80`)
+- `TEST-test_no_filters_returns_all_sorted` → `minimax/demo_project/tests/test_regressions.py` (memory entry `mem_ent_6a34e1a615a2470cb5e786e79f093e65`, version `mem_ver_6c1c08e7d5ac49c08f8426169b92c86b`)
+- `TEST-test_status_filter_still_works` → `minimax/demo_project/tests/test_regressions.py` (memory entry `mem_ent_4c189aa0b9664cd5847f074e0b1bada7`, version `mem_ver_dc7d3f50c2c548118296db1be6ffb4f9`)

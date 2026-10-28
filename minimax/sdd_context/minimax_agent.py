@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import time
 import urllib.error
@@ -24,7 +25,14 @@ Rules:
 """
 
 
-def build_messages(context: dict[str, object]) -> list[dict[str, str]]:
+def build_messages(context: dict[str, object], target_files: list[str] | None = None) -> list[dict[str, str]]:
+    target_note = ""
+    if target_files:
+        target_note = (
+            "\nReturn only this file in `files`: "
+            + ", ".join(target_files)
+            + ". The other file will be requested in a separate call; keep the interface consistent.\n"
+        )
     user = f"""Task {context['task']['id']}: {context['task']['title']}
 
 {context['task']['text']}
@@ -33,7 +41,7 @@ The following context was selected from the engineering material database. Use i
 
 {context['markdown']}
 
-Return the complete updated files needed to implement this task.
+Return the complete updated file needed to implement this task.{target_note}
 """
     return [
         {"role": "system", "content": SYSTEM_PROMPT},
@@ -52,7 +60,7 @@ def call_minimax(messages: list[dict[str, str]]) -> dict[str, object]:
         "model": config.minimax_model(),
         "messages": messages,
         "temperature": 0,
-        "max_tokens": 8192,
+        "max_tokens": int(os.environ.get("MINIMAX_MAX_TOKENS", "16384")),
     }
     request = urllib.request.Request(
         config.minimax_base_url(),
@@ -63,12 +71,21 @@ def call_minimax(messages: list[dict[str, str]]) -> dict[str, object]:
         },
         method="POST",
     )
-    try:
-        with urllib.request.urlopen(request, timeout=180) as response:  # noqa: S310 - configured provider URL
-            body = json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as error:
-        detail = error.read().decode("utf-8", errors="replace")[:1000]
-        raise RuntimeError(f"MiniMax HTTP {error.code}: {detail}") from error
+    timeout = int(os.environ.get("MINIMAX_TIMEOUT", "300"))
+    body = None
+    for attempt in range(2):
+        try:
+            with urllib.request.urlopen(request, timeout=timeout) as response:  # noqa: S310 - configured provider URL
+                body = json.loads(response.read().decode("utf-8"))
+            break
+        except urllib.error.HTTPError as error:
+            detail = error.read().decode("utf-8", errors="replace")[:1000]
+            raise RuntimeError(f"MiniMax HTTP {error.code}: {detail}") from error
+        except TimeoutError:
+            if attempt == 1:
+                raise
+    if body is None:
+        raise RuntimeError("MiniMax returned no response body")
     content = _content_from_response(body)
     return {
         "provider": "MiniMax",
@@ -118,12 +135,15 @@ def parse_files(content: str) -> dict[str, object]:
         content_text = item.get("content")
         if not isinstance(content_text, str):
             continue
-        target = (config.REPO_ROOT / raw_path).resolve()
+        normalized = raw_path
+        if normalized.startswith("demo_project/"):
+            normalized = "minimax/" + normalized
+        target = (config.REPO_ROOT / normalized).resolve()
         if allowed.resolve() not in target.parents:
             raise RuntimeError(f"MiniMax tried to write outside demo_project/issuehub: {raw_path}")
         if target.suffix != ".py":
             raise RuntimeError(f"MiniMax can only write Python files: {raw_path}")
-        validated.append({"path": raw_path, "content": content_text})
+        validated.append({"path": normalized, "content": content_text})
     if not validated:
         raise RuntimeError("MiniMax returned no usable files")
     return {"summary": str(payload.get("summary", "")), "files": validated}
@@ -137,6 +157,34 @@ def apply_files(record: dict[str, object]) -> list[str]:
         target.write_text(item["content"], encoding="utf-8")
         written.append(item["path"])
     return written
+
+
+def generate_files(context: dict[str, object]) -> dict[str, object]:
+    """Ask MiniMax once per changed file to keep each JSON response bounded."""
+
+    calls: list[dict[str, object]] = []
+    by_path: dict[str, dict[str, str]] = {}
+    for target in ("demo_project/issuehub/service.py", "demo_project/issuehub/api.py"):
+        messages = build_messages(context, [target])
+        raw = call_minimax(messages)
+        try:
+            parsed = parse_files(str(raw["response"]))
+        except Exception:
+            config.ensure_dirs()
+            (config.RECORDS_DIR / "minimax_failed_response.txt").write_text(
+                str(raw["response"]), encoding="utf-8"
+            )
+            raise
+        calls.append({**raw, "summary": parsed["summary"], "files": parsed["files"]})
+        for item in parsed["files"]:
+            by_path[item["path"]] = item
+    return {
+        "provider": "MiniMax",
+        "model": config.minimax_model(),
+        "calls": calls,
+        "files": list(by_path.values()),
+        "summary": " ".join(str(call.get("summary", "")) for call in calls).strip(),
+    }
 
 
 def load_recorded() -> dict[str, object]:

@@ -2,7 +2,7 @@ FFFF                                                                     [100%]
 ================================== FAILURES ===================================
 ___________________________ test_filter_by_priority ___________________________
 
-api_base = 'http://127.0.0.1:10609'
+api_base = 'http://127.0.0.1:4159'
 
     def test_filter_by_priority(api_base: str) -> None:
         status, payload = get_json(api_base, "/issues?priority=high")
@@ -18,7 +18,7 @@ E         Use -v to get more diff
 tests\test_issue_filters.py:12: AssertionError
 ____________________ test_filter_by_assignee_and_priority _____________________
 
-api_base = 'http://127.0.0.1:10613'
+api_base = 'http://127.0.0.1:4166'
 
     def test_filter_by_assignee_and_priority(api_base: str) -> None:
         status, payload = get_json(api_base, "/issues?assignee=alice&priority=high")
@@ -33,7 +33,7 @@ E         Use -v to get more diff
 tests\test_issue_filters.py:20: AssertionError
 _____________________ test_priority_combines_with_status ______________________
 
-api_base = 'http://127.0.0.1:10615'
+api_base = 'http://127.0.0.1:4168'
 
     def test_priority_combines_with_status(api_base: str) -> None:
         status, payload = get_json(api_base, "/issues?status=open&priority=low")
@@ -49,7 +49,7 @@ E         Use -v to get more diff
 tests\test_issue_filters.py:27: AssertionError
 ______________________ test_invalid_priority_returns_400 ______________________
 
-api_base = 'http://127.0.0.1:10617'
+api_base = 'http://127.0.0.1:4171'
 
     def test_invalid_priority_returns_400(api_base: str) -> None:
         status, payload = get_json(api_base, "/issues?priority=urgent")

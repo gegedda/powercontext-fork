@@ -25,7 +25,7 @@
 
 ## 上下文必须包含
 
-- 规格：`SPEC-101.1`、`SPEC-101.2`、`SPEC-101.3`、`SPEC-102.1`、`SPEC-102.2`、`SPEC-103.1`、`SPEC-103.2`、`SPEC-103.3`。
+- 规格：`SPEC-101.1`、`SPEC-101.2`、`SPEC-101.3`、`SPEC-102.1`、`SPEC-102.2`、`SPEC-103.1`、`SPEC-103.2`、`SPEC-103.3`、`SPEC-103.4`。
 - 不得包含：`SPEC-090`（`status: superseded`）。
 - 代码：`IssueService.list_issues`、`make_handler`、`Issue`、`InvalidPriority`。
 - 测试：`test_filter_by_priority`、`test_filter_by_assignee_and_priority`、`test_priority_combines_with_status`、`test_invalid_priority_returns_400`、`test_no_filters_returns_all_sorted`、`test_status_filter_still_works`。

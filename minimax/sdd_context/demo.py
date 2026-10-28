@@ -3,16 +3,17 @@
 from __future__ import annotations
 
 import json
+import shutil
 import time
 from pathlib import Path
 
 from . import config
 from .context import build_context
 from .materials import collect_materials
-from .minimax_agent import apply_files, build_messages, call_minimax, load_recorded, parse_files, write_record
+from .minimax_agent import apply_files, generate_files, load_recorded, write_record
 from .powercontext_runtime import PowerContextRuntime
 from .store import MaterialStore
-from .verify import verify_modification
+from .verify import restore_after, restore_before, run_current
 
 
 def _write(path: Path, text: str) -> None:
@@ -22,6 +23,9 @@ def _write(path: Path, text: str) -> None:
 
 async def run_demo(*, offline: bool = False, skip_minimax: bool = False) -> dict[str, object]:
     config.ensure_dirs()
+    # The context must describe the code before the change, otherwise the model
+    # would only be echoing an already-finished implementation.
+    restore_before()
     runtime = PowerContextRuntime()
     runtime.start()
     try:
@@ -33,29 +37,48 @@ async def run_demo(*, offline: bool = False, skip_minimax: bool = False) -> dict
         _write(config.RECORDS_DIR / "context.json", json.dumps(context, ensure_ascii=False, indent=2))
         _write(config.RECORDS_DIR / "context.md", str(context["markdown"]))
 
-        baseline = verify_modification()
-        if not baseline["passed"]:
-            raise RuntimeError("baseline verification failed; inspect records/before_*.log and records/after_*.log")
+        baseline = run_current("before")
+        if baseline["target"]["exit_code"] == 0 or baseline["regression"]["exit_code"] != 0:
+            restore_after()
+            raise RuntimeError("baseline verification failed; inspect records/before_*.log")
 
-        if skip_minimax:
-            record = None
-            applied: list[str] = []
-            minimax_record = None
-        elif offline:
-            record = load_recorded()
-            applied = apply_files(record)
-            minimax_record = config.RECORDS_DIR / "minimax_recorded.json"
-        else:
-            messages = build_messages(context)
-            raw = call_minimax(messages)
-            parsed = parse_files(str(raw["response"]))
-            record = {**raw, **parsed}
-            minimax_record = write_record(record)
-            applied = apply_files(record)
+        applied: list[str] = []
+        minimax_record: Path | None = None
+        try:
+            if skip_minimax:
+                restore_after()
+            else:
+                if offline:
+                    record = load_recorded()
+                else:
+                    record = generate_files(context)
+                    minimax_record = write_record(record)
+                    shutil.copy2(minimax_record, config.RECORDS_DIR / "minimax_recorded.json")
+                applied = apply_files(record)
 
-        after = verify_modification()
-        if not after["passed"]:
-            raise RuntimeError("verification failed after applying the change; inspect records/after_*.log")
+            # The final code becomes the current material set; the next context
+            # (after restart) must show the model's implementation.
+            await store.upsert(collect_materials())
+            after = run_current("after")
+            if not after["passed"]:
+                raise RuntimeError("verification failed after applying the change; inspect records/after_*.log")
+            if applied:
+                # Keep the reviewed after snapshot in sync with the actual
+                # MiniMax output, so the recorded diff is the delivered code.
+                for source in sorted((config.DEMO_DIR / "issuehub").glob("*.py")):
+                    shutil.copy2(source, config.DEMO_DIR / "snapshots" / "after" / "issuehub" / source.name)
+            test_results = {
+                "before": baseline,
+                "after": after,
+                "passed": baseline["target"]["exit_code"] != 0
+                and baseline["regression"]["exit_code"] == 0
+                and after["passed"],
+            }
+            _write(config.RECORDS_DIR / "test_results.json", json.dumps(test_results, ensure_ascii=False, indent=2))
+        except BaseException:
+            restore_after()
+            await store.upsert(collect_materials())
+            raise
 
         state = {
             "task_id": "TASK-001",

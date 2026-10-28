@@ -51,6 +51,40 @@ def _log(name: str, result: subprocess.CompletedProcess[str]) -> dict[str, objec
     }
 
 
+def restore_before() -> None:
+    """Put the frozen baseline into the live demo project."""
+
+    for source in sorted((config.DEMO_DIR / "snapshots" / "before" / "issuehub").glob("*.py")):
+        shutil.copy2(source, config.DEMO_DIR / "issuehub" / source.name)
+    _clean_pycache()
+
+
+def restore_after() -> None:
+    """Restore the reviewed after snapshot (used when a live model run fails)."""
+
+    for source in sorted((config.DEMO_DIR / "snapshots" / "after" / "issuehub").glob("*.py")):
+        shutil.copy2(source, config.DEMO_DIR / "issuehub" / source.name)
+    _clean_pycache()
+
+
+def _clean_pycache() -> None:
+    for cache in config.DEMO_DIR.rglob("__pycache__"):
+        shutil.rmtree(cache, ignore_errors=True)
+    shutil.rmtree(config.DEMO_DIR / ".pytest_cache", ignore_errors=True)
+
+
+def run_current(phase: str) -> dict[str, object]:
+    """Run the two suites against the live demo tree and log them under ``phase``."""
+
+    target = _run(config.DEMO_DIR, [TARGET])
+    regression = _run(config.DEMO_DIR, [REGRESSION])
+    return {
+        "target": _log(f"{phase}_target.log", target),
+        "regression": _log(f"{phase}_regression.log", regression),
+        "passed": target.returncode == 0 and regression.returncode == 0,
+    }
+
+
 def verify_modification() -> dict[str, object]:
     """Run target + regression tests against the frozen before snapshot and the current tree."""
 

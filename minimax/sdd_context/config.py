@@ -74,7 +74,7 @@ def scope_key() -> str:
 
 
 def minimax_model() -> str:
-    return os.environ.get("MINIMAX_MODEL", "MiniMax-M2.1")
+    return os.environ.get("MINIMAX_MODEL", "MiniMax-M3.1-Flash")
 
 
 def minimax_base_url() -> str:

@@ -32,7 +32,7 @@ PowerContext Memory: TASK-001-STATE ── 重启后 load_state
 | 技术 | 实际承担的作用 | 入口 |
 | --- | --- | --- |
 | MiniMax | 根据上下文生成 `service.py` / `api.py` 的完整替换文件 | `sdd_context/minimax_agent.py` |
-| seekdb / OceanBase | 保存 30 个工程资料条目、检索结果和任务状态；嵌入式 seekdb 由 PowerContext 管理 | `PowerContextRuntime` + `SDD_DB=seekdb` |
+| seekdb / OceanBase | 保存 31 个工程资料条目、检索结果和任务状态；嵌入式 seekdb 由 PowerContext 管理 | `PowerContextRuntime` + `SDD_DB=seekdb` |
 | PowerContext | Server + `PowerContextClient` 提供 Memory 写入、查询、重启复用 | `sdd_context/store.py` |
 
 ## 3. 目录
@@ -97,7 +97,7 @@ cp .env.example .env
 ```dotenv
 SDD_DB=seekdb
 MINIMAX_API_KEY=<你的 Key>
-MINIMAX_MODEL=MiniMax-M2.1
+MINIMAX_MODEL=MiniMax-M3.1-Flash
 SDD_SQL_ECHO=0
 ```
 
@@ -144,7 +144,7 @@ SDD_DB=seekdb python -m sdd_context demo --skip-minimax
 
 **上下文必须包含的来源**：
 
-- 规格：`SPEC-101.1/2/3`、`SPEC-102.1/2`、`SPEC-103.1/2/3`；`SPEC-090`（已失效）不得出现。
+- 规格：`SPEC-101.1/2/3`、`SPEC-102.1/2`、`SPEC-103.1/2/3/4`；`SPEC-090`（已失效）不得出现。
 - 代码：`IssueService.list_issues`、`make_handler`、`Issue`、`InvalidPriority`。
 - 测试：4 个目标测试 + `test_no_filters_returns_all_sorted`、`test_status_filter_still_works`。
 
@@ -175,7 +175,14 @@ python scripts/spec_update_check.py          # 规格新增章节后，上下文
 
 ## 9. MiniMax 开发记录
 
-`records/minimax_run.json` 记录本次请求的模型、上下文摘要、响应内容、应用的文件；`records/minimax_development.md` 是人工可读的摘要。`--offline` 只回放已经落盘的 `records/minimax_recorded.json`，不会伪造在线调用。
+本次真实运行：
+
+- 模型：`MiniMax-M3.1-Flash`
+- 接口：`POST https://api.minimaxi.com/v1/chat/completions`（OpenAI 兼容）
+- 两次调用，分别生成 `service.py` 和 `api.py`；合计 15,462 tokens（其中 reasoning 6,354）
+- 应用后 4 个目标测试 + 4 个回归测试全部通过
+
+`records/minimax_run.json` 记录模型、上下文、两次响应、usage 和应用的文件；`records/minimax_development.md` 是人工可读摘要；`records/code.diff` 与提交代码对应。`--offline` 只回放已经落盘的 `records/minimax_recorded.json`，不会伪造在线调用。
 
 ## 10. 数据与状态
 
@@ -197,6 +204,6 @@ python scripts/spec_update_check.py          # 规格新增章节后，上下文
 | 能够运行 | `ingest` / `context` / `demo` / `verify` 均有明确入口，数据可重建 |
 | MiniMax 实际参与 | `minimax_agent.py` 调用 chat completions，记录与 diff 对应 |
 | 上下文正确 | 输出含规定来源；`spec_update_check.py` 证明更新后使用新内容 |
-| 数据库实际参与 | seekdb 通过 PowerContext 持久化 30 个资料条目与状态；`SDD_SQL_ECHO=1` 可出 SQL 日志 |
+| 数据库实际参与 | seekdb 通过 PowerContext 持久化 31 个资料条目与状态；`SDD_SQL_ECHO=1` 可出 SQL 日志 |
 | 状态能够复用 | 重启 Server 后 `state_reuse.json` 显示读取成功并进入上下文 |
 | 代码修改有效 | 同一组测试：before 4 失败、after 8 通过，回归不变 |

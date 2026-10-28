@@ -1,22 +1,28 @@
-"""A tiny stdlib HTTP API around :class:`IssueService`."""
-
 from __future__ import annotations
 
 import json
-from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from typing import Any
+from http.server import BaseHTTPRequestHandler
 from urllib.parse import parse_qs, urlparse
 
 from .service import InvalidPriority, IssueService
 
 
-def _json_response(handler: BaseHTTPRequestHandler, status: int, payload: Any) -> None:
-    body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+def _json_response(
+    handler: BaseHTTPRequestHandler, status: int, payload: dict[str, object]
+) -> None:
+    body = json.dumps(payload).encode("utf-8")
     handler.send_response(status)
-    handler.send_header("Content-Type", "application/json; charset=utf-8")
+    handler.send_header("Content-Type", "application/json")
     handler.send_header("Content-Length", str(len(body)))
     handler.end_headers()
     handler.wfile.write(body)
+
+
+def _first(query: dict[str, list[str]], name: str) -> str | None:
+    values = query.get(name)
+    if values:
+        return values[0]
+    return None
 
 
 def make_handler(service: IssueService) -> type[BaseHTTPRequestHandler]:
@@ -43,30 +49,26 @@ def make_handler(service: IssueService) -> type[BaseHTTPRequestHandler]:
             priority = _first(query, "priority")
             assignee = _first(query, "assignee")
             try:
-                issues = service.list_issues(status=status, priority=priority, assignee=assignee)
+                issues = service.list_issues(
+                    status=status, priority=priority, assignee=assignee
+                )
             except InvalidPriority:
                 _json_response(
                     self,
                     400,
-                    {"error": "invalid_priority", "allowed": ["low", "medium", "high"]},
+                    {
+                        "error": "invalid_priority",
+                        "allowed": ["low", "medium", "high"],
+                    },
                 )
                 return
-            _json_response(self, 200, {"items": [issue.as_dict() for issue in issues], "total": len(issues)})
+            _json_response(
+                self,
+                200,
+                {"items": [issue.as_dict() for issue in issues], "total": len(issues)},
+            )
 
         def log_message(self, format: str, *args: object) -> None:  # noqa: A002
             return
 
     return Handler
-
-
-def _first(query: dict[str, list[str]], name: str) -> str | None:
-    values = query.get(name)
-    return values[0] if values else None
-
-
-def run_server(host: str = "127.0.0.1", port: int = 8766, service: IssueService | None = None) -> None:
-    server = ThreadingHTTPServer((host, port), make_handler(service or IssueService()))
-    try:
-        server.serve_forever()
-    finally:
-        server.server_close()

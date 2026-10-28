@@ -1,48 +1,35 @@
 {
-  "scope_id": "scp_54hq3qcbmc5m1jzv3cj86xepdh",
+  "scope_id": "scp_45mdmzyvg2mnsf5h0gxn9g2qsw",
   "backend": "sqlite",
-  "materials": 30,
+  "materials": 31,
   "upsert": {
     "inserted": 0,
-    "updated": 0,
-    "unchanged": 30
+    "updated": 7,
+    "unchanged": 24
   },
   "context_counts": {
-    "specs": 8,
+    "specs": 9,
     "code": 4,
     "tests": 6
   },
-  "minimax_record": null,
-  "minimax_skipped": true,
-  "applied_files": [],
+  "minimax_record": "C:\\Users\\DELL\\Desktop\\OB-MiniMax\\powercontext\\minimax\\records\\minimax_run.json",
+  "minimax_skipped": false,
+  "applied_files": [
+    "minimax/demo_project/issuehub/service.py",
+    "minimax/demo_project/issuehub/api.py"
+  ],
   "verification": {
-    "before": {
-      "target": {
-        "command": "python -m pytest tests/test_issue_filters.py -q",
-        "exit_code": 1,
-        "passed": 0,
-        "failed": 4
-      },
-      "regression": {
-        "command": "python -m pytest tests/test_regressions.py -q",
-        "exit_code": 0,
-        "passed": 4,
-        "failed": 0
-      }
+    "target": {
+      "command": "python -m pytest tests/test_issue_filters.py -q",
+      "exit_code": 0,
+      "passed": 4,
+      "failed": 0
     },
-    "after": {
-      "target": {
-        "command": "python -m pytest tests/test_issue_filters.py -q",
-        "exit_code": 0,
-        "passed": 4,
-        "failed": 0
-      },
-      "regression": {
-        "command": "python -m pytest tests/test_regressions.py -q",
-        "exit_code": 0,
-        "passed": 4,
-        "failed": 0
-      }
+    "regression": {
+      "command": "python -m pytest tests/test_regressions.py -q",
+      "exit_code": 0,
+      "passed": 4,
+      "failed": 0
     },
     "passed": true
   },
