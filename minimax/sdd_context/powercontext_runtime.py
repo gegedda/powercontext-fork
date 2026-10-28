@@ -122,14 +122,27 @@ class PowerContextRuntime:
     # -- data ----------------------------------------------------------
     @staticmethod
     def _check_seekdb_driver() -> None:
-        """Fail fast on the pymysql/aiomysql combination that breaks seekdb writes."""
+        """Keep aiomysql working when a newer PyMySQL replaces the helper with a sentinel."""
 
         import pymysql.converters
 
-        if not callable(getattr(pymysql.converters, "escape_bytes_prefixed", None)):
-            raise RuntimeError(
-                "pymysql/aiomysql mismatch: install pymysql==1.2.0, aiomysql==0.3.2 and pyobvector==0.2.28"
-            )
+        if callable(getattr(pymysql.converters, "escape_bytes_prefixed", None)):
+            return
+        import aiomysql.connection
+
+        table = getattr(pymysql.converters, "_escape_table", None)
+
+        def escape_bytes_prefixed(value: bytes, mapping: object | None = None) -> str:
+            if table is None:
+                return "X'%s'" % value.hex()
+            return "_binary'%s'" % value.decode("ascii", "surrogateescape").translate(table)
+
+        pymysql.converters.escape_bytes_prefixed = escape_bytes_prefixed  # type: ignore[attr-defined]
+        aiomysql.connection.escape_bytes_prefixed = escape_bytes_prefixed  # type: ignore[attr-defined]
+        logging.getLogger(__name__).warning(
+            "patched pymysql escape_bytes_prefixed for aiomysql compatibility; "
+            "pin pymysql==1.2.0 for the recorded environment"
+        )
 
     def _database(self):
         echo = os.environ.get("SDD_SQL_ECHO") == "1"
