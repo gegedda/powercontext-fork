@@ -24,7 +24,8 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install uv
-          uv pip install --system "powercontext[server,seekdb]==1.2.0" pytest
+          uv pip install --system "powercontext[server,seekdb]==1.2.0" "pymysql==1.2.0" "aiomysql==0.3.2" "pyobvector==0.2.28" pytest
+          python -c "import pymysql.converters as c; assert callable(c.escape_bytes_prefixed); print('pymysql escape is callable')"
 
       - name: Run the seekdb pipeline
         working-directory: minimax
@@ -33,14 +34,16 @@ jobs:
           SDD_SQL_ECHO: "1"
           PYTHONIOENCODING: utf-8
         run: |
+          set -euo pipefail
           python -m sdd_context reset
           python -m sdd_context demo --skip-minimax > records/linux_demo_stdout.json 2> records/linux_seekdb_sql.log
-          python scripts/spec_update_check.py > records/linux_spec_update.json
+          python scripts/spec_update_check.py > records/linux_spec_update.json 2> records/linux_spec_update_stderr.log
           python -m pytest -q
 
       - name: Assert seekdb backend and state reuse
         working-directory: minimax
         run: |
+          set -euo pipefail
           python -c "import json; d=json.load(open('records/demo_summary.json', encoding='utf-8')); assert d['backend']=='seekdb', d; assert d['state_reused'] is True, d; print('seekdb + state reuse OK')"
           grep -E "aseekdb|seekdb" records/linux_seekdb_sql.log | head -n 5 || true
 
