@@ -1,6 +1,6 @@
 {
-  "scope_id_before": "scp_45mdmzyvg2mnsf5h0gxn9g2qsw",
-  "scope_id_after": "scp_45mdmzyvg2mnsf5h0gxn9g2qsw",
+  "scope_id_before": "scp_12n36wy81y9nd5bf54ksxc7788",
+  "scope_id_after": "scp_12n36wy81y9nd5bf54ksxc7788",
   "state_written": {
     "task_id": "TASK-001",
     "status": "verified",
@@ -13,10 +13,7 @@
     ],
     "todo": [],
     "verification": "target: 4 failed before / 4 passed after; regression: 4 passed before and after",
-    "applied_files": [
-      "minimax/demo_project/issuehub/service.py",
-      "minimax/demo_project/issuehub/api.py"
-    ],
+    "applied_files": [],
     "context_specs": [
       "SPEC-101.1",
       "SPEC-101.2",
@@ -42,7 +39,7 @@
       "test_no_filters_returns_all_sorted",
       "test_status_filter_still_works"
     ],
-    "updated_at": "2026-10-28T11:50:24Z"
+    "updated_at": "2026-10-28T12:00:06Z"
   },
   "state_loaded_after_restart": {
     "task_id": "TASK-001",
@@ -56,10 +53,7 @@
     ],
     "todo": [],
     "verification": "target: 4 failed before / 4 passed after; regression: 4 passed before and after",
-    "applied_files": [
-      "minimax/demo_project/issuehub/service.py",
-      "minimax/demo_project/issuehub/api.py"
-    ],
+    "applied_files": [],
     "context_specs": [
       "SPEC-101.1",
       "SPEC-101.2",
@@ -85,7 +79,7 @@
       "test_no_filters_returns_all_sorted",
       "test_status_filter_still_works"
     ],
-    "updated_at": "2026-10-28T11:50:24Z"
+    "updated_at": "2026-10-28T12:00:06Z"
   },
   "same_task_status": true,
   "context_uses_loaded_state": true,
@@ -96,13 +90,13 @@
       "text": "Add optional `priority` and `assignee` filters to `GET /issues`.\n\nRequirements:\n\n- `priority` accepts `low`, `medium`, `high`; unknown values return HTTP 400\n  with `{\"error\": \"invalid_priority\", \"allowed\": [\"low\", \"medium\", \"high\"]}`.\n- `assignee` matches exactly.\n- Filters combine with each other and with the existing `status` filter using\n  AND.\n- No filters must keep returning all six issues ordered by id.\n- Do not change the response schema or the single-issue endpoint.\n\nThe change must be verified with the target tests for the new filters and the\nregression tests for existing behaviour."
     },
     "runtime": {
-      "backend": "sqlite",
-      "data_dir": "C:\\Users\\DELL\\Desktop\\OB-MiniMax\\powercontext\\minimax\\.sdd",
-      "base_url": "http://127.0.0.1:6466",
+      "backend": "seekdb",
+      "data_dir": "/home/runner/work/powercontext-2026/powercontext-2026/minimax/.sdd",
+      "base_url": "http://127.0.0.1:34201",
       "client": "powercontext.PowerContextClient",
       "server": "powercontext.server.factory.create_server_app"
     },
-    "scope_id": "scp_45mdmzyvg2mnsf5h0gxn9g2qsw",
+    "scope_id": "scp_12n36wy81y9nd5bf54ksxc7788",
     "specs": [
       {
         "material_id": "SPEC-101.1",
@@ -732,10 +726,7 @@
       ],
       "todo": [],
       "verification": "target: 4 failed before / 4 passed after; regression: 4 passed before and after",
-      "applied_files": [
-        "minimax/demo_project/issuehub/service.py",
-        "minimax/demo_project/issuehub/api.py"
-      ],
+      "applied_files": [],
       "context_specs": [
         "SPEC-101.1",
         "SPEC-101.2",
@@ -761,13 +752,13 @@
         "test_no_filters_returns_all_sorted",
         "test_status_filter_still_works"
       ],
-      "updated_at": "2026-10-28T11:50:24Z"
+      "updated_at": "2026-10-28T12:00:06Z"
     },
     "sources": [
       {
         "material_id": "SPEC-101.1",
-        "memory_entry_id": "mem_ent_dc539d9cfc9a41e79c5a9ddc54e46380",
-        "entry_version_id": "mem_ver_a98f6ef771da4b55a1a81d4cae59a49e",
+        "memory_entry_id": "mem_ent_b0472e96440f49aca3dd0037f85854fa",
+        "entry_version_id": "mem_ver_d69d54db01dc433e8e04b558f12bb52a",
         "path": "minimax/materials/specs/SPEC-101-issue-filters.md",
         "symbol": null,
         "lines": [
@@ -777,8 +768,8 @@
       },
       {
         "material_id": "SPEC-101.2",
-        "memory_entry_id": "mem_ent_21d1f4e3808b416aabd01bc1fea567c1",
-        "entry_version_id": "mem_ver_91fe8ff1aa6c4aea94d6459da2d9c047",
+        "memory_entry_id": "mem_ent_abe0dc7abd684d9c85b03899735435e9",
+        "entry_version_id": "mem_ver_9862bef427b24b23b4c814e758874282",
         "path": "minimax/materials/specs/SPEC-101-issue-filters.md",
         "symbol": null,
         "lines": [
@@ -788,8 +779,8 @@
       },
       {
         "material_id": "SPEC-101.3",
-        "memory_entry_id": "mem_ent_fadaa90fe4e94ba1852b8c4cc319183f",
-        "entry_version_id": "mem_ver_94eb0dba76c4481bb8ea35ad85365192",
+        "memory_entry_id": "mem_ent_a1ff95ff99434983bab3bcc978741c83",
+        "entry_version_id": "mem_ver_4b5bc3fd3d2f47009c219a24b5e0edd5",
         "path": "minimax/materials/specs/SPEC-101-issue-filters.md",
         "symbol": null,
         "lines": [
@@ -799,8 +790,8 @@
       },
       {
         "material_id": "SPEC-102.1",
-        "memory_entry_id": "mem_ent_c36b33b61d364489a7369ed57d79d469",
-        "entry_version_id": "mem_ver_27abeb574d7049ae8a12c5635e8987c7",
+        "memory_entry_id": "mem_ent_8c191807552c4a34bae92e4e8f4720b7",
+        "entry_version_id": "mem_ver_a90490b6cb934e078bb2e01eef35c0a9",
         "path": "minimax/materials/specs/SPEC-102-invalid-priority.md",
         "symbol": null,
         "lines": [
@@ -810,8 +801,8 @@
       },
       {
         "material_id": "SPEC-102.2",
-        "memory_entry_id": "mem_ent_5f60bab600dd48a1895351ad20962974",
-        "entry_version_id": "mem_ver_533cfe5ef2744b1592d8d6efc399b4da",
+        "memory_entry_id": "mem_ent_4dcf69bfd8cc456ab5b3240379d9f809",
+        "entry_version_id": "mem_ver_2722951b7f2947cda53a7bfa362eb8ba",
         "path": "minimax/materials/specs/SPEC-102-invalid-priority.md",
         "symbol": null,
         "lines": [
@@ -821,8 +812,8 @@
       },
       {
         "material_id": "SPEC-103.1",
-        "memory_entry_id": "mem_ent_f8781826dc24478b9c8ccd38072a6c7a",
-        "entry_version_id": "mem_ver_f65ca54eb6344d13bc6dab66505c39ea",
+        "memory_entry_id": "mem_ent_1393510e224f408ab7addf03c98d7f04",
+        "entry_version_id": "mem_ver_aff3aa59ba1a4388b6b8802257149060",
         "path": "minimax/materials/specs/SPEC-103-compatibility.md",
         "symbol": null,
         "lines": [
@@ -832,8 +823,8 @@
       },
       {
         "material_id": "SPEC-103.2",
-        "memory_entry_id": "mem_ent_910e08f815434030a9bbb42ab24e8b8d",
-        "entry_version_id": "mem_ver_e290a0cefd444027b8571372d905e87c",
+        "memory_entry_id": "mem_ent_ebf37dd6b84b43d58a8c18693555d89d",
+        "entry_version_id": "mem_ver_bbb5acdb65bc42a4ac2192758a457068",
         "path": "minimax/materials/specs/SPEC-103-compatibility.md",
         "symbol": null,
         "lines": [
@@ -843,8 +834,8 @@
       },
       {
         "material_id": "SPEC-103.3",
-        "memory_entry_id": "mem_ent_c75af3bb1e8e4bd6bab6090723b81f96",
-        "entry_version_id": "mem_ver_d0bd7ff9671e4eb89c44765b85c17a41",
+        "memory_entry_id": "mem_ent_4a1c16d1d0e74015ad5f909a175f555f",
+        "entry_version_id": "mem_ver_46f30bf7e32d4f87b111da0c1739154f",
         "path": "minimax/materials/specs/SPEC-103-compatibility.md",
         "symbol": null,
         "lines": [
@@ -854,8 +845,8 @@
       },
       {
         "material_id": "SPEC-103.4",
-        "memory_entry_id": "mem_ent_302a10c5730c422da73ca873f2ab897c",
-        "entry_version_id": "mem_ver_774b31db0c424c138d6d19d06dfba601",
+        "memory_entry_id": "mem_ent_e0d5c6b252564f699187e28d3bbda87c",
+        "entry_version_id": "mem_ver_96860adfcb9040cba867a7173df27a5e",
         "path": "minimax/materials/specs/SPEC-103-compatibility.md",
         "symbol": null,
         "lines": [
@@ -865,8 +856,8 @@
       },
       {
         "material_id": "CODE-service-IssueService-list_issues",
-        "memory_entry_id": "mem_ent_2d60e859923a4e0bb220d8306ce0ff65",
-        "entry_version_id": "mem_ver_172609da3646429b9fe1c9fbdbe0ebfb",
+        "memory_entry_id": "mem_ent_ee44142a71a240f5b2c87f86e6ebd02b",
+        "entry_version_id": "mem_ver_f3573a284f6c4cba9bef5a71169c1b9a",
         "path": "minimax/demo_project/issuehub/service.py",
         "symbol": "IssueService.list_issues",
         "lines": [
@@ -876,8 +867,8 @@
       },
       {
         "material_id": "CODE-api-make_handler",
-        "memory_entry_id": "mem_ent_db29811615314324bfd887c40ec90199",
-        "entry_version_id": "mem_ver_3b85c287861d44e088fb49273cda1944",
+        "memory_entry_id": "mem_ent_9fb5a08298654beead9841943844a9ce",
+        "entry_version_id": "mem_ver_62fa2f28401b4c748c1c433feb71e0bb",
         "path": "minimax/demo_project/issuehub/api.py",
         "symbol": "make_handler",
         "lines": [
@@ -887,8 +878,8 @@
       },
       {
         "material_id": "CODE-service-InvalidPriority",
-        "memory_entry_id": "mem_ent_8eacf1d263274d0fb29b775d9ba8ed68",
-        "entry_version_id": "mem_ver_a1b8644a28ac44608b935f5e7a8e9ea1",
+        "memory_entry_id": "mem_ent_c0caebb2f72f40759515e89996bb33ef",
+        "entry_version_id": "mem_ver_ba4581d3a7db4bce937c95b3b241f630",
         "path": "minimax/demo_project/issuehub/service.py",
         "symbol": "InvalidPriority",
         "lines": [
@@ -898,8 +889,8 @@
       },
       {
         "material_id": "CODE-models-Issue",
-        "memory_entry_id": "mem_ent_a1cdb45c64004200b836f688d584a702",
-        "entry_version_id": "mem_ver_782de1a388614f479d1a568fcf8802e5",
+        "memory_entry_id": "mem_ent_6bcb5cb4b768411b8540196ad7f7ff69",
+        "entry_version_id": "mem_ver_1515e55110b44cb7be7ca8e7f382ce52",
         "path": "minimax/demo_project/issuehub/models.py",
         "symbol": "Issue",
         "lines": [
@@ -909,8 +900,8 @@
       },
       {
         "material_id": "TEST-test_invalid_priority_returns_400",
-        "memory_entry_id": "mem_ent_583111a6f96f45109fd02feed93fa9da",
-        "entry_version_id": "mem_ver_3dac6d37a50e446f99b56fc81ebe8fb9",
+        "memory_entry_id": "mem_ent_437db886865e45639964b21b4ecabd45",
+        "entry_version_id": "mem_ver_9d77f890e5724663b683c44edc560a3e",
         "path": "minimax/demo_project/tests/test_issue_filters.py",
         "symbol": "test_invalid_priority_returns_400",
         "lines": [
@@ -920,8 +911,8 @@
       },
       {
         "material_id": "TEST-test_priority_combines_with_status",
-        "memory_entry_id": "mem_ent_a90256d14c2e43b7b8394a450b6f5630",
-        "entry_version_id": "mem_ver_4e108963bfda472886dbce9bcfa53ae6",
+        "memory_entry_id": "mem_ent_e4cfbcf8c2f94d3dae589ecc0d399e8e",
+        "entry_version_id": "mem_ver_02639d535f2b433c84d5f48a03dccd84",
         "path": "minimax/demo_project/tests/test_issue_filters.py",
         "symbol": "test_priority_combines_with_status",
         "lines": [
@@ -931,8 +922,8 @@
       },
       {
         "material_id": "TEST-test_filter_by_assignee_and_priority",
-        "memory_entry_id": "mem_ent_2a028789be904be196b3bf9e36ec49a8",
-        "entry_version_id": "mem_ver_53942553ce3a46bf9d860e1f892a9db2",
+        "memory_entry_id": "mem_ent_744e786258744f2bbb47b5467912f932",
+        "entry_version_id": "mem_ver_a20e422b12a547eaa77d273deb8d52aa",
         "path": "minimax/demo_project/tests/test_issue_filters.py",
         "symbol": "test_filter_by_assignee_and_priority",
         "lines": [
@@ -942,8 +933,8 @@
       },
       {
         "material_id": "TEST-test_filter_by_priority",
-        "memory_entry_id": "mem_ent_6c4b65c439ab481cb355e322ae06076f",
-        "entry_version_id": "mem_ver_c335c00ce17e418582d60ef26acffd80",
+        "memory_entry_id": "mem_ent_3ac84a6e047d41febec0a86e1ff9ed91",
+        "entry_version_id": "mem_ver_3b2e0c7692984df7838109f98fb4f818",
         "path": "minimax/demo_project/tests/test_issue_filters.py",
         "symbol": "test_filter_by_priority",
         "lines": [
@@ -953,8 +944,8 @@
       },
       {
         "material_id": "TEST-test_no_filters_returns_all_sorted",
-        "memory_entry_id": "mem_ent_6a34e1a615a2470cb5e786e79f093e65",
-        "entry_version_id": "mem_ver_6c1c08e7d5ac49c08f8426169b92c86b",
+        "memory_entry_id": "mem_ent_7b43a8274feb40fbb6b9e6c409ed5f3d",
+        "entry_version_id": "mem_ver_421ecec747b142f48a599b853b970c11",
         "path": "minimax/demo_project/tests/test_regressions.py",
         "symbol": "test_no_filters_returns_all_sorted",
         "lines": [
@@ -964,8 +955,8 @@
       },
       {
         "material_id": "TEST-test_status_filter_still_works",
-        "memory_entry_id": "mem_ent_4c189aa0b9664cd5847f074e0b1bada7",
-        "entry_version_id": "mem_ver_dc7d3f50c2c548118296db1be6ffb4f9",
+        "memory_entry_id": "mem_ent_62e9124e708b42049c4b698d609c9320",
+        "entry_version_id": "mem_ver_203bd7a58ebd48d7ae4c136ae92c9ea2",
         "path": "minimax/demo_project/tests/test_regressions.py",
         "symbol": "test_status_filter_still_works",
         "lines": [
@@ -974,6 +965,6 @@
         ]
       }
     ],
-    "markdown": "# Development context — TASK-001\n\n**Task:** Add priority and assignee filters to the issue list\n\nAdd optional `priority` and `assignee` filters to `GET /issues`.\n\nRequirements:\n\n- `priority` accepts `low`, `medium`, `high`; unknown values return HTTP 400\n  with `{\"error\": \"invalid_priority\", \"allowed\": [\"low\", \"medium\", \"high\"]}`.\n- `assignee` matches exactly.\n- Filters combine with each other and with the existing `status` filter using\n  AND.\n- No filters must keep returning all six issues ordered by id.\n- Do not change the response schema or the single-issue endpoint.\n\nThe change must be verified with the target tests for the new filters and the\nregression tests for existing behaviour.\n\n**Backend:** sqlite  \n**Scope:** `scp_45mdmzyvg2mnsf5h0gxn9g2qsw`\n\n## Applicable specifications\n\n### SPEC-101.1 — SPEC-101.1 Request parameters\nSource: `minimax/materials/specs/SPEC-101-issue-filters.md` lines 9–17  \nStatus: active · score 53.0\n\n## SPEC-101.1 Request parameters\n`GET /issues` accepts two optional query parameters in addition to the existing\n`status` parameter:\n\n- `priority`: one of `low`, `medium`, `high`.\n- `assignee`: an exact assignee name.\n\nAll supplied filters are combined with AND. Omitting a filter must not exclude\nany issue on account of that filter.\n\n### SPEC-101.2 — SPEC-101.2 Ordering and response shape\nSource: `minimax/materials/specs/SPEC-101-issue-filters.md` lines 20–23  \nStatus: active · score 46.0\n\n## SPEC-101.2 Ordering and response shape\nThe response remains `{\"items\": [...], \"total\": N}`. `items` is always ordered\nby ascending `id`. Each item keeps the existing fields `id`, `title`, `status`,\n`priority`, `assignee`.\n\n### SPEC-101.3 — SPEC-101.3 Combination examples\nSource: `minimax/materials/specs/SPEC-101-issue-filters.md` lines 26–29  \nStatus: active · score 38.0\n\n## SPEC-101.3 Combination examples\n- `?priority=high` returns issues 1 and 4.\n- `?assignee=alice&priority=high` returns issue 1.\n- `?status=open&priority=low` returns issue 2.\n\n### SPEC-102.1 — SPEC-102.1 Reject unknown priorities\nSource: `minimax/materials/specs/SPEC-102-invalid-priority.md` lines 9–11  \nStatus: active · score 52.5\n\n## SPEC-102.1 Reject unknown priorities\nA `priority` value outside `low`, `medium`, `high` is a client error. The\nservice must not silently return an unfiltered list.\n\n### SPEC-102.2 — SPEC-102.2 Error contract\nSource: `minimax/materials/specs/SPEC-102-invalid-priority.md` lines 14–22  \nStatus: active · score 45.5\n\n## SPEC-102.2 Error contract\nThe response is HTTP 400 with this JSON body:\n\n```json\n{\"error\": \"invalid_priority\", \"allowed\": [\"low\", \"medium\", \"high\"]}\n```\n\nThe error must be raised before filtering so that an invalid request never\nlooks like a successful empty result.\n\n### SPEC-103.1 — SPEC-103.1 Existing callers keep working\nSource: `minimax/materials/specs/SPEC-103-compatibility.md` lines 9–11  \nStatus: active · score 47.5\n\n## SPEC-103.1 Existing callers keep working\nA request without filters returns every issue, ordered by id. The existing\n`status` filter continues to return only issues with the requested status.\n\n### SPEC-103.2 — SPEC-103.2 No response schema change\nSource: `minimax/materials/specs/SPEC-103-compatibility.md` lines 14–16  \nStatus: active · score 51.0\n\n## SPEC-103.2 No response schema change\nThe JSON field names and value types are unchanged. New filters must not add\nfields, rename fields, or change the meaning of `total`.\n\n### SPEC-103.3 — SPEC-103.3 Single-issue endpoint\nSource: `minimax/materials/specs/SPEC-103-compatibility.md` lines 19–20  \nStatus: active · score 44.5\n\n## SPEC-103.3 Single-issue endpoint\n`GET /issues/{id}` and its 404 behaviour for unknown ids are unaffected.\n\n### SPEC-103.4 — SPEC-103.4 Service construction\nSource: `minimax/materials/specs/SPEC-103-compatibility.md` lines 23–27  \nStatus: active · score 37.0\n\n## SPEC-103.4 Service construction\n`IssueService()` without arguments must keep using `DEFAULT_ISSUES`. The test\nfixture and existing callers construct the service this way; the optional\n`issues` argument remains available for injection in unit tests. A change that\nmakes `issues` required is a regression.\n\n## Code to change\n\n### `IssueService.list_issues` — `minimax/demo_project/issuehub/service.py`\nLines 18–37 · score 36.8\n\n```python\ndef list_issues(\n        self,\n        *,\n        status: str | None = None,\n        priority: str | None = None,\n        assignee: str | None = None,\n    ) -> list[Issue]:\n        \"\"\"Return issues matching all supplied filters, ordered by id.\"\"\"\n\n        if priority is not None and priority not in ALLOWED_PRIORITIES:\n            raise InvalidPriority(priority)\n\n        selected = self._issues\n        if status is not None:\n            selected = tuple(issue for issue in selected if issue.status == status)\n        if priority is not None:\n            selected = tuple(issue for issue in selected if issue.priority == priority)\n        if assignee is not None:\n            selected = tuple(issue for issue in selected if issue.assignee == assignee)\n        return sorted(selected, key=lambda issue: issue.id)\n```\n\n### `make_handler` — `minimax/demo_project/issuehub/api.py`\nLines 28–74 · score 30.7\n\n```python\ndef make_handler(service: IssueService) -> type[BaseHTTPRequestHandler]:\n    class Handler(BaseHTTPRequestHandler):\n        def do_GET(self) -> None:  # noqa: N802 - stdlib callback name\n            parsed = urlparse(self.path)\n            if parsed.path == \"/issues\":\n                self._list_issues(parsed.query)\n                return\n            if parsed.path.startswith(\"/issues/\"):\n                suffix = parsed.path.removeprefix(\"/issues/\")\n                if suffix.isdigit():\n                    issue = service.get_issue(int(suffix))\n                    if issue is None:\n                        _json_response(self, 404, {\"error\": \"not_found\"})\n                    else:\n                        _json_response(self, 200, issue.as_dict())\n                    return\n            _json_response(self, 404, {\"error\": \"not_found\"})\n\n        def _list_issues(self, raw_query: str) -> None:\n            query = parse_qs(raw_query, keep_blank_values=False)\n            status = _first(query, \"status\")\n            priority = _first(query, \"priority\")\n            assignee = _first(query, \"assignee\")\n            try:\n                issues = service.list_issues(\n                    status=status, priority=priority, assignee=assignee\n                )\n            except InvalidPriority:\n                _json_response(\n                    self,\n                    400,\n                    {\n                        \"error\": \"invalid_priority\",\n                        \"allowed\": [\"low\", \"medium\", \"high\"],\n                    },\n                )\n                return\n            _json_response(\n                self,\n                200,\n                {\"items\": [issue.as_dict() for issue in issues], \"total\": len(issues)},\n            )\n\n        def log_message(self, format: str, *args: object) -> None:  # noqa: A002\n            return\n\n    return Handler\n```\n\n### `InvalidPriority` — `minimax/demo_project/issuehub/service.py`\nLines 8–11 · score 25.6\n\n```python\nclass InvalidPriority(ValueError):\n    \"\"\"Raised when a requested priority is not supported.\"\"\"\n\n    allowed = [\"low\", \"medium\", \"high\"]\n```\n\n### `Issue` — `minimax/demo_project/issuehub/models.py`\nLines 12–26 · score 20.4\n\n```python\nclass Issue:\n    id: int\n    title: str\n    status: str = \"open\"\n    priority: str = \"medium\"\n    assignee: str | None = None\n\n    def as_dict(self) -> dict[str, object]:\n        return {\n            \"id\": self.id,\n            \"title\": self.title,\n            \"status\": self.status,\n            \"priority\": self.priority,\n            \"assignee\": self.assignee,\n        }\n```\n\n## Verification tests\n\n- `test_invalid_priority_returns_400` (target, test) — `minimax/demo_project/tests/test_issue_filters.py` lines 30–34\n- `test_priority_combines_with_status` (target, test) — `minimax/demo_project/tests/test_issue_filters.py` lines 23–27\n- `test_filter_by_assignee_and_priority` (target, test) — `minimax/demo_project/tests/test_issue_filters.py` lines 16–20\n- `test_filter_by_priority` (target, test) — `minimax/demo_project/tests/test_issue_filters.py` lines 8–13\n- `test_no_filters_returns_all_sorted` (regression, test) — `minimax/demo_project/tests/test_regressions.py` lines 8–13\n- `test_status_filter_still_works` (regression, test) — `minimax/demo_project/tests/test_regressions.py` lines 16–20\n\nRun: `python -m pytest demo_project/tests -q`\n\n## Persisted task state\n\nStatus: **verified**\n\nCompleted: imported 31 material chunks into PowerContext; selected applicable specs, code symbols and tests; asked MiniMax to modify demo_project/issuehub; target tests pass after the change; regression tests pass after the change\nVerification: `target: 4 failed before / 4 passed after; regression: 4 passed before and after`\n\n## Source citations\n\n- `SPEC-101.1` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_dc539d9cfc9a41e79c5a9ddc54e46380`, version `mem_ver_a98f6ef771da4b55a1a81d4cae59a49e`)\n- `SPEC-101.2` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_21d1f4e3808b416aabd01bc1fea567c1`, version `mem_ver_91fe8ff1aa6c4aea94d6459da2d9c047`)\n- `SPEC-101.3` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_fadaa90fe4e94ba1852b8c4cc319183f`, version `mem_ver_94eb0dba76c4481bb8ea35ad85365192`)\n- `SPEC-102.1` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `mem_ent_c36b33b61d364489a7369ed57d79d469`, version `mem_ver_27abeb574d7049ae8a12c5635e8987c7`)\n- `SPEC-102.2` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `mem_ent_5f60bab600dd48a1895351ad20962974`, version `mem_ver_533cfe5ef2744b1592d8d6efc399b4da`)\n- `SPEC-103.1` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_f8781826dc24478b9c8ccd38072a6c7a`, version `mem_ver_f65ca54eb6344d13bc6dab66505c39ea`)\n- `SPEC-103.2` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_910e08f815434030a9bbb42ab24e8b8d`, version `mem_ver_e290a0cefd444027b8571372d905e87c`)\n- `SPEC-103.3` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_c75af3bb1e8e4bd6bab6090723b81f96`, version `mem_ver_d0bd7ff9671e4eb89c44765b85c17a41`)\n- `SPEC-103.4` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_302a10c5730c422da73ca873f2ab897c`, version `mem_ver_774b31db0c424c138d6d19d06dfba601`)\n- `CODE-service-IssueService-list_issues` → `minimax/demo_project/issuehub/service.py` (memory entry `mem_ent_2d60e859923a4e0bb220d8306ce0ff65`, version `mem_ver_172609da3646429b9fe1c9fbdbe0ebfb`)\n- `CODE-api-make_handler` → `minimax/demo_project/issuehub/api.py` (memory entry `mem_ent_db29811615314324bfd887c40ec90199`, version `mem_ver_3b85c287861d44e088fb49273cda1944`)\n- `CODE-service-InvalidPriority` → `minimax/demo_project/issuehub/service.py` (memory entry `mem_ent_8eacf1d263274d0fb29b775d9ba8ed68`, version `mem_ver_a1b8644a28ac44608b935f5e7a8e9ea1`)\n- `CODE-models-Issue` → `minimax/demo_project/issuehub/models.py` (memory entry `mem_ent_a1cdb45c64004200b836f688d584a702`, version `mem_ver_782de1a388614f479d1a568fcf8802e5`)\n- `TEST-test_invalid_priority_returns_400` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_583111a6f96f45109fd02feed93fa9da`, version `mem_ver_3dac6d37a50e446f99b56fc81ebe8fb9`)\n- `TEST-test_priority_combines_with_status` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_a90256d14c2e43b7b8394a450b6f5630`, version `mem_ver_4e108963bfda472886dbce9bcfa53ae6`)\n- `TEST-test_filter_by_assignee_and_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_2a028789be904be196b3bf9e36ec49a8`, version `mem_ver_53942553ce3a46bf9d860e1f892a9db2`)\n- `TEST-test_filter_by_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_6c4b65c439ab481cb355e322ae06076f`, version `mem_ver_c335c00ce17e418582d60ef26acffd80`)\n- `TEST-test_no_filters_returns_all_sorted` → `minimax/demo_project/tests/test_regressions.py` (memory entry `mem_ent_6a34e1a615a2470cb5e786e79f093e65`, version `mem_ver_6c1c08e7d5ac49c08f8426169b92c86b`)\n- `TEST-test_status_filter_still_works` → `minimax/demo_project/tests/test_regressions.py` (memory entry `mem_ent_4c189aa0b9664cd5847f074e0b1bada7`, version `mem_ver_dc7d3f50c2c548118296db1be6ffb4f9`)\n"
+    "markdown": "# Development context — TASK-001\n\n**Task:** Add priority and assignee filters to the issue list\n\nAdd optional `priority` and `assignee` filters to `GET /issues`.\n\nRequirements:\n\n- `priority` accepts `low`, `medium`, `high`; unknown values return HTTP 400\n  with `{\"error\": \"invalid_priority\", \"allowed\": [\"low\", \"medium\", \"high\"]}`.\n- `assignee` matches exactly.\n- Filters combine with each other and with the existing `status` filter using\n  AND.\n- No filters must keep returning all six issues ordered by id.\n- Do not change the response schema or the single-issue endpoint.\n\nThe change must be verified with the target tests for the new filters and the\nregression tests for existing behaviour.\n\n**Backend:** seekdb  \n**Scope:** `scp_12n36wy81y9nd5bf54ksxc7788`\n\n## Applicable specifications\n\n### SPEC-101.1 — SPEC-101.1 Request parameters\nSource: `minimax/materials/specs/SPEC-101-issue-filters.md` lines 9–17  \nStatus: active · score 53.0\n\n## SPEC-101.1 Request parameters\n`GET /issues` accepts two optional query parameters in addition to the existing\n`status` parameter:\n\n- `priority`: one of `low`, `medium`, `high`.\n- `assignee`: an exact assignee name.\n\nAll supplied filters are combined with AND. Omitting a filter must not exclude\nany issue on account of that filter.\n\n### SPEC-101.2 — SPEC-101.2 Ordering and response shape\nSource: `minimax/materials/specs/SPEC-101-issue-filters.md` lines 20–23  \nStatus: active · score 46.0\n\n## SPEC-101.2 Ordering and response shape\nThe response remains `{\"items\": [...], \"total\": N}`. `items` is always ordered\nby ascending `id`. Each item keeps the existing fields `id`, `title`, `status`,\n`priority`, `assignee`.\n\n### SPEC-101.3 — SPEC-101.3 Combination examples\nSource: `minimax/materials/specs/SPEC-101-issue-filters.md` lines 26–29  \nStatus: active · score 38.0\n\n## SPEC-101.3 Combination examples\n- `?priority=high` returns issues 1 and 4.\n- `?assignee=alice&priority=high` returns issue 1.\n- `?status=open&priority=low` returns issue 2.\n\n### SPEC-102.1 — SPEC-102.1 Reject unknown priorities\nSource: `minimax/materials/specs/SPEC-102-invalid-priority.md` lines 9–11  \nStatus: active · score 52.5\n\n## SPEC-102.1 Reject unknown priorities\nA `priority` value outside `low`, `medium`, `high` is a client error. The\nservice must not silently return an unfiltered list.\n\n### SPEC-102.2 — SPEC-102.2 Error contract\nSource: `minimax/materials/specs/SPEC-102-invalid-priority.md` lines 14–22  \nStatus: active · score 45.5\n\n## SPEC-102.2 Error contract\nThe response is HTTP 400 with this JSON body:\n\n```json\n{\"error\": \"invalid_priority\", \"allowed\": [\"low\", \"medium\", \"high\"]}\n```\n\nThe error must be raised before filtering so that an invalid request never\nlooks like a successful empty result.\n\n### SPEC-103.1 — SPEC-103.1 Existing callers keep working\nSource: `minimax/materials/specs/SPEC-103-compatibility.md` lines 9–11  \nStatus: active · score 47.5\n\n## SPEC-103.1 Existing callers keep working\nA request without filters returns every issue, ordered by id. The existing\n`status` filter continues to return only issues with the requested status.\n\n### SPEC-103.2 — SPEC-103.2 No response schema change\nSource: `minimax/materials/specs/SPEC-103-compatibility.md` lines 14–16  \nStatus: active · score 51.0\n\n## SPEC-103.2 No response schema change\nThe JSON field names and value types are unchanged. New filters must not add\nfields, rename fields, or change the meaning of `total`.\n\n### SPEC-103.3 — SPEC-103.3 Single-issue endpoint\nSource: `minimax/materials/specs/SPEC-103-compatibility.md` lines 19–20  \nStatus: active · score 44.5\n\n## SPEC-103.3 Single-issue endpoint\n`GET /issues/{id}` and its 404 behaviour for unknown ids are unaffected.\n\n### SPEC-103.4 — SPEC-103.4 Service construction\nSource: `minimax/materials/specs/SPEC-103-compatibility.md` lines 23–27  \nStatus: active · score 37.0\n\n## SPEC-103.4 Service construction\n`IssueService()` without arguments must keep using `DEFAULT_ISSUES`. The test\nfixture and existing callers construct the service this way; the optional\n`issues` argument remains available for injection in unit tests. A change that\nmakes `issues` required is a regression.\n\n## Code to change\n\n### `IssueService.list_issues` — `minimax/demo_project/issuehub/service.py`\nLines 18–37 · score 36.8\n\n```python\ndef list_issues(\n        self,\n        *,\n        status: str | None = None,\n        priority: str | None = None,\n        assignee: str | None = None,\n    ) -> list[Issue]:\n        \"\"\"Return issues matching all supplied filters, ordered by id.\"\"\"\n\n        if priority is not None and priority not in ALLOWED_PRIORITIES:\n            raise InvalidPriority(priority)\n\n        selected = self._issues\n        if status is not None:\n            selected = tuple(issue for issue in selected if issue.status == status)\n        if priority is not None:\n            selected = tuple(issue for issue in selected if issue.priority == priority)\n        if assignee is not None:\n            selected = tuple(issue for issue in selected if issue.assignee == assignee)\n        return sorted(selected, key=lambda issue: issue.id)\n```\n\n### `make_handler` — `minimax/demo_project/issuehub/api.py`\nLines 28–74 · score 30.7\n\n```python\ndef make_handler(service: IssueService) -> type[BaseHTTPRequestHandler]:\n    class Handler(BaseHTTPRequestHandler):\n        def do_GET(self) -> None:  # noqa: N802 - stdlib callback name\n            parsed = urlparse(self.path)\n            if parsed.path == \"/issues\":\n                self._list_issues(parsed.query)\n                return\n            if parsed.path.startswith(\"/issues/\"):\n                suffix = parsed.path.removeprefix(\"/issues/\")\n                if suffix.isdigit():\n                    issue = service.get_issue(int(suffix))\n                    if issue is None:\n                        _json_response(self, 404, {\"error\": \"not_found\"})\n                    else:\n                        _json_response(self, 200, issue.as_dict())\n                    return\n            _json_response(self, 404, {\"error\": \"not_found\"})\n\n        def _list_issues(self, raw_query: str) -> None:\n            query = parse_qs(raw_query, keep_blank_values=False)\n            status = _first(query, \"status\")\n            priority = _first(query, \"priority\")\n            assignee = _first(query, \"assignee\")\n            try:\n                issues = service.list_issues(\n                    status=status, priority=priority, assignee=assignee\n                )\n            except InvalidPriority:\n                _json_response(\n                    self,\n                    400,\n                    {\n                        \"error\": \"invalid_priority\",\n                        \"allowed\": [\"low\", \"medium\", \"high\"],\n                    },\n                )\n                return\n            _json_response(\n                self,\n                200,\n                {\"items\": [issue.as_dict() for issue in issues], \"total\": len(issues)},\n            )\n\n        def log_message(self, format: str, *args: object) -> None:  # noqa: A002\n            return\n\n    return Handler\n```\n\n### `InvalidPriority` — `minimax/demo_project/issuehub/service.py`\nLines 8–11 · score 25.6\n\n```python\nclass InvalidPriority(ValueError):\n    \"\"\"Raised when a requested priority is not supported.\"\"\"\n\n    allowed = [\"low\", \"medium\", \"high\"]\n```\n\n### `Issue` — `minimax/demo_project/issuehub/models.py`\nLines 12–26 · score 20.4\n\n```python\nclass Issue:\n    id: int\n    title: str\n    status: str = \"open\"\n    priority: str = \"medium\"\n    assignee: str | None = None\n\n    def as_dict(self) -> dict[str, object]:\n        return {\n            \"id\": self.id,\n            \"title\": self.title,\n            \"status\": self.status,\n            \"priority\": self.priority,\n            \"assignee\": self.assignee,\n        }\n```\n\n## Verification tests\n\n- `test_invalid_priority_returns_400` (target, test) — `minimax/demo_project/tests/test_issue_filters.py` lines 30–34\n- `test_priority_combines_with_status` (target, test) — `minimax/demo_project/tests/test_issue_filters.py` lines 23–27\n- `test_filter_by_assignee_and_priority` (target, test) — `minimax/demo_project/tests/test_issue_filters.py` lines 16–20\n- `test_filter_by_priority` (target, test) — `minimax/demo_project/tests/test_issue_filters.py` lines 8–13\n- `test_no_filters_returns_all_sorted` (regression, test) — `minimax/demo_project/tests/test_regressions.py` lines 8–13\n- `test_status_filter_still_works` (regression, test) — `minimax/demo_project/tests/test_regressions.py` lines 16–20\n\nRun: `python -m pytest demo_project/tests -q`\n\n## Persisted task state\n\nStatus: **verified**\n\nCompleted: imported 31 material chunks into PowerContext; selected applicable specs, code symbols and tests; asked MiniMax to modify demo_project/issuehub; target tests pass after the change; regression tests pass after the change\nVerification: `target: 4 failed before / 4 passed after; regression: 4 passed before and after`\n\n## Source citations\n\n- `SPEC-101.1` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_b0472e96440f49aca3dd0037f85854fa`, version `mem_ver_d69d54db01dc433e8e04b558f12bb52a`)\n- `SPEC-101.2` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_abe0dc7abd684d9c85b03899735435e9`, version `mem_ver_9862bef427b24b23b4c814e758874282`)\n- `SPEC-101.3` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_a1ff95ff99434983bab3bcc978741c83`, version `mem_ver_4b5bc3fd3d2f47009c219a24b5e0edd5`)\n- `SPEC-102.1` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `mem_ent_8c191807552c4a34bae92e4e8f4720b7`, version `mem_ver_a90490b6cb934e078bb2e01eef35c0a9`)\n- `SPEC-102.2` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `mem_ent_4dcf69bfd8cc456ab5b3240379d9f809`, version `mem_ver_2722951b7f2947cda53a7bfa362eb8ba`)\n- `SPEC-103.1` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_1393510e224f408ab7addf03c98d7f04`, version `mem_ver_aff3aa59ba1a4388b6b8802257149060`)\n- `SPEC-103.2` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_ebf37dd6b84b43d58a8c18693555d89d`, version `mem_ver_bbb5acdb65bc42a4ac2192758a457068`)\n- `SPEC-103.3` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_4a1c16d1d0e74015ad5f909a175f555f`, version `mem_ver_46f30bf7e32d4f87b111da0c1739154f`)\n- `SPEC-103.4` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_e0d5c6b252564f699187e28d3bbda87c`, version `mem_ver_96860adfcb9040cba867a7173df27a5e`)\n- `CODE-service-IssueService-list_issues` → `minimax/demo_project/issuehub/service.py` (memory entry `mem_ent_ee44142a71a240f5b2c87f86e6ebd02b`, version `mem_ver_f3573a284f6c4cba9bef5a71169c1b9a`)\n- `CODE-api-make_handler` → `minimax/demo_project/issuehub/api.py` (memory entry `mem_ent_9fb5a08298654beead9841943844a9ce`, version `mem_ver_62fa2f28401b4c748c1c433feb71e0bb`)\n- `CODE-service-InvalidPriority` → `minimax/demo_project/issuehub/service.py` (memory entry `mem_ent_c0caebb2f72f40759515e89996bb33ef`, version `mem_ver_ba4581d3a7db4bce937c95b3b241f630`)\n- `CODE-models-Issue` → `minimax/demo_project/issuehub/models.py` (memory entry `mem_ent_6bcb5cb4b768411b8540196ad7f7ff69`, version `mem_ver_1515e55110b44cb7be7ca8e7f382ce52`)\n- `TEST-test_invalid_priority_returns_400` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_437db886865e45639964b21b4ecabd45`, version `mem_ver_9d77f890e5724663b683c44edc560a3e`)\n- `TEST-test_priority_combines_with_status` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_e4cfbcf8c2f94d3dae589ecc0d399e8e`, version `mem_ver_02639d535f2b433c84d5f48a03dccd84`)\n- `TEST-test_filter_by_assignee_and_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_744e786258744f2bbb47b5467912f932`, version `mem_ver_a20e422b12a547eaa77d273deb8d52aa`)\n- `TEST-test_filter_by_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_3ac84a6e047d41febec0a86e1ff9ed91`, version `mem_ver_3b2e0c7692984df7838109f98fb4f818`)\n- `TEST-test_no_filters_returns_all_sorted` → `minimax/demo_project/tests/test_regressions.py` (memory entry `mem_ent_7b43a8274feb40fbb6b9e6c409ed5f3d`, version `mem_ver_421ecec747b142f48a599b853b970c11`)\n- `TEST-test_status_filter_still_works` → `minimax/demo_project/tests/test_regressions.py` (memory entry `mem_ent_62e9124e708b42049c4b698d609c9320`, version `mem_ver_203bd7a58ebd48d7ae4c136ae92c9ea2`)\n"
   }
 }

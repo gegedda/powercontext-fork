@@ -17,8 +17,8 @@ Requirements:
 The change must be verified with the target tests for the new filters and the
 regression tests for existing behaviour.
 
-**Backend:** sqlite  
-**Scope:** `scp_45mdmzyvg2mnsf5h0gxn9g2qsw`
+**Backend:** seekdb  
+**Scope:** `scp_12n36wy81y9nd5bf54ksxc7788`
 
 ## Applicable specifications
 
@@ -200,29 +200,27 @@ Run: `python -m pytest demo_project/tests -q`
 
 ## Persisted task state
 
-Status: **verified**
+Status: **not_started**
 
-Completed: imported 30 material chunks into PowerContext; selected applicable specs, code symbols and tests; asked MiniMax to modify demo_project/issuehub; target tests pass after the change; regression tests pass after the change
-Verification: `target: 4 failed before / 4 passed after; regression: 4 passed before and after`
 
 ## Source citations
 
-- `SPEC-101.1` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_dc539d9cfc9a41e79c5a9ddc54e46380`, version `mem_ver_a98f6ef771da4b55a1a81d4cae59a49e`)
-- `SPEC-101.2` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_21d1f4e3808b416aabd01bc1fea567c1`, version `mem_ver_91fe8ff1aa6c4aea94d6459da2d9c047`)
-- `SPEC-101.3` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_fadaa90fe4e94ba1852b8c4cc319183f`, version `mem_ver_94eb0dba76c4481bb8ea35ad85365192`)
-- `SPEC-102.1` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `mem_ent_c36b33b61d364489a7369ed57d79d469`, version `mem_ver_27abeb574d7049ae8a12c5635e8987c7`)
-- `SPEC-102.2` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `mem_ent_5f60bab600dd48a1895351ad20962974`, version `mem_ver_533cfe5ef2744b1592d8d6efc399b4da`)
-- `SPEC-103.1` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_f8781826dc24478b9c8ccd38072a6c7a`, version `mem_ver_f65ca54eb6344d13bc6dab66505c39ea`)
-- `SPEC-103.2` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_910e08f815434030a9bbb42ab24e8b8d`, version `mem_ver_e290a0cefd444027b8571372d905e87c`)
-- `SPEC-103.3` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_c75af3bb1e8e4bd6bab6090723b81f96`, version `mem_ver_d0bd7ff9671e4eb89c44765b85c17a41`)
-- `SPEC-103.4` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_302a10c5730c422da73ca873f2ab897c`, version `mem_ver_774b31db0c424c138d6d19d06dfba601`)
-- `CODE-service-IssueService-list_issues` → `minimax/demo_project/issuehub/service.py` (memory entry `mem_ent_2d60e859923a4e0bb220d8306ce0ff65`, version `mem_ver_2a668e2fdb864008a9aa226829265194`)
-- `CODE-models-Issue` → `minimax/demo_project/issuehub/models.py` (memory entry `mem_ent_a1cdb45c64004200b836f688d584a702`, version `mem_ver_782de1a388614f479d1a568fcf8802e5`)
-- `CODE-service-InvalidPriority` → `minimax/demo_project/issuehub/service.py` (memory entry `mem_ent_8eacf1d263274d0fb29b775d9ba8ed68`, version `mem_ver_eeb1bc2884a148cba1b80481a1a8b0fe`)
-- `CODE-api-make_handler` → `minimax/demo_project/issuehub/api.py` (memory entry `mem_ent_db29811615314324bfd887c40ec90199`, version `mem_ver_5d7766ee9a7b4c40b8c112736ba6676a`)
-- `TEST-test_invalid_priority_returns_400` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_583111a6f96f45109fd02feed93fa9da`, version `mem_ver_3dac6d37a50e446f99b56fc81ebe8fb9`)
-- `TEST-test_priority_combines_with_status` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_a90256d14c2e43b7b8394a450b6f5630`, version `mem_ver_4e108963bfda472886dbce9bcfa53ae6`)
-- `TEST-test_filter_by_assignee_and_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_2a028789be904be196b3bf9e36ec49a8`, version `mem_ver_53942553ce3a46bf9d860e1f892a9db2`)
-- `TEST-test_filter_by_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_6c4b65c439ab481cb355e322ae06076f`, version `mem_ver_c335c00ce17e418582d60ef26acffd80`)
-- `TEST-test_no_filters_returns_all_sorted` → `minimax/demo_project/tests/test_regressions.py` (memory entry `mem_ent_6a34e1a615a2470cb5e786e79f093e65`, version `mem_ver_6c1c08e7d5ac49c08f8426169b92c86b`)
-- `TEST-test_status_filter_still_works` → `minimax/demo_project/tests/test_regressions.py` (memory entry `mem_ent_4c189aa0b9664cd5847f074e0b1bada7`, version `mem_ver_dc7d3f50c2c548118296db1be6ffb4f9`)
+- `SPEC-101.1` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_b0472e96440f49aca3dd0037f85854fa`, version `mem_ver_d69d54db01dc433e8e04b558f12bb52a`)
+- `SPEC-101.2` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_abe0dc7abd684d9c85b03899735435e9`, version `mem_ver_9862bef427b24b23b4c814e758874282`)
+- `SPEC-101.3` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `mem_ent_a1ff95ff99434983bab3bcc978741c83`, version `mem_ver_4b5bc3fd3d2f47009c219a24b5e0edd5`)
+- `SPEC-102.1` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `mem_ent_8c191807552c4a34bae92e4e8f4720b7`, version `mem_ver_a90490b6cb934e078bb2e01eef35c0a9`)
+- `SPEC-102.2` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `mem_ent_4dcf69bfd8cc456ab5b3240379d9f809`, version `mem_ver_2722951b7f2947cda53a7bfa362eb8ba`)
+- `SPEC-103.1` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_1393510e224f408ab7addf03c98d7f04`, version `mem_ver_aff3aa59ba1a4388b6b8802257149060`)
+- `SPEC-103.2` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_ebf37dd6b84b43d58a8c18693555d89d`, version `mem_ver_bbb5acdb65bc42a4ac2192758a457068`)
+- `SPEC-103.3` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_4a1c16d1d0e74015ad5f909a175f555f`, version `mem_ver_46f30bf7e32d4f87b111da0c1739154f`)
+- `SPEC-103.4` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `mem_ent_e0d5c6b252564f699187e28d3bbda87c`, version `mem_ver_96860adfcb9040cba867a7173df27a5e`)
+- `CODE-service-IssueService-list_issues` → `minimax/demo_project/issuehub/service.py` (memory entry `mem_ent_ee44142a71a240f5b2c87f86e6ebd02b`, version `mem_ver_28f5d156eed14b12b4355546e0c6155e`)
+- `CODE-models-Issue` → `minimax/demo_project/issuehub/models.py` (memory entry `mem_ent_6bcb5cb4b768411b8540196ad7f7ff69`, version `mem_ver_1515e55110b44cb7be7ca8e7f382ce52`)
+- `CODE-service-InvalidPriority` → `minimax/demo_project/issuehub/service.py` (memory entry `mem_ent_c0caebb2f72f40759515e89996bb33ef`, version `mem_ver_9f990ec96d7749d7a5c69998059f5285`)
+- `CODE-api-make_handler` → `minimax/demo_project/issuehub/api.py` (memory entry `mem_ent_9fb5a08298654beead9841943844a9ce`, version `mem_ver_a837537e8d354e46a4a6b60487f7c5b9`)
+- `TEST-test_invalid_priority_returns_400` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_437db886865e45639964b21b4ecabd45`, version `mem_ver_9d77f890e5724663b683c44edc560a3e`)
+- `TEST-test_priority_combines_with_status` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_e4cfbcf8c2f94d3dae589ecc0d399e8e`, version `mem_ver_02639d535f2b433c84d5f48a03dccd84`)
+- `TEST-test_filter_by_assignee_and_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_744e786258744f2bbb47b5467912f932`, version `mem_ver_a20e422b12a547eaa77d273deb8d52aa`)
+- `TEST-test_filter_by_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `mem_ent_3ac84a6e047d41febec0a86e1ff9ed91`, version `mem_ver_3b2e0c7692984df7838109f98fb4f818`)
+- `TEST-test_no_filters_returns_all_sorted` → `minimax/demo_project/tests/test_regressions.py` (memory entry `mem_ent_7b43a8274feb40fbb6b9e6c409ed5f3d`, version `mem_ver_421ecec747b142f48a599b853b970c11`)
+- `TEST-test_status_filter_still_works` → `minimax/demo_project/tests/test_regressions.py` (memory entry `mem_ent_62e9124e708b42049c4b698d609c9320`, version `mem_ver_203bd7a58ebd48d7ae4c136ae92c9ea2`)

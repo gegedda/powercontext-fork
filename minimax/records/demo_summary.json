@@ -1,23 +1,20 @@
 {
-  "scope_id": "scp_45mdmzyvg2mnsf5h0gxn9g2qsw",
-  "backend": "sqlite",
+  "scope_id": "scp_12n36wy81y9nd5bf54ksxc7788",
+  "backend": "seekdb",
   "materials": 31,
   "upsert": {
-    "inserted": 0,
-    "updated": 7,
-    "unchanged": 24
+    "inserted": 31,
+    "updated": 0,
+    "unchanged": 0
   },
   "context_counts": {
     "specs": 9,
     "code": 4,
     "tests": 6
   },
-  "minimax_record": "C:\\Users\\DELL\\Desktop\\OB-MiniMax\\powercontext\\minimax\\records\\minimax_run.json",
-  "minimax_skipped": false,
-  "applied_files": [
-    "minimax/demo_project/issuehub/service.py",
-    "minimax/demo_project/issuehub/api.py"
-  ],
+  "minimax_record": null,
+  "minimax_skipped": true,
+  "applied_files": [],
   "verification": {
     "target": {
       "command": "python -m pytest tests/test_issue_filters.py -q",

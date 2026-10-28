@@ -11,7 +11,8 @@
       "exit_code": 0,
       "passed": 4,
       "failed": 0
-    }
+    },
+    "passed": false
   },
   "after": {
     "target": {
@@ -25,7 +26,8 @@
       "exit_code": 0,
       "passed": 4,
       "failed": 0
-    }
+    },
+    "passed": true
   },
   "passed": true
 }
