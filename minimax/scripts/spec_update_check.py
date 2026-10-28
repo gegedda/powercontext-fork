@@ -61,7 +61,17 @@ def _run(root: Path) -> dict[str, object]:
 
     invoke("ingest")
     completed = invoke("context", "--format", "json")
-    return json.loads(completed.stdout)
+    text = completed.stdout
+    start = text.find("{")
+    if start < 0:
+        (MINIMAX / "records" / "spec_update_stdout_debug.txt").write_text(text, encoding="utf-8")
+        raise RuntimeError("context command did not print a JSON object")
+    try:
+        value, _ = json.JSONDecoder().raw_decode(text, start)
+        return value
+    except json.JSONDecodeError:
+        (MINIMAX / "records" / "spec_update_stdout_debug.txt").write_text(text, encoding="utf-8")
+        raise
 
 
 def main() -> None:
