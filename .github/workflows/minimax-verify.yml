@@ -1,0 +1,52 @@
+name: minimax-verify
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - minimax/sdd-context
+
+permissions:
+  contents: read
+
+jobs:
+  seekdb:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PowerContext with embedded seekdb
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install uv
+          uv pip install --system "powercontext[server,seekdb]==1.2.0" pytest
+
+      - name: Run the seekdb pipeline
+        working-directory: minimax
+        env:
+          SDD_DB: seekdb
+          SDD_SQL_ECHO: "1"
+          PYTHONIOENCODING: utf-8
+        run: |
+          python -m sdd_context reset
+          python -m sdd_context demo --skip-minimax > records/linux_demo_stdout.json 2> records/linux_seekdb_sql.log
+          python scripts/spec_update_check.py > records/linux_spec_update.json
+          python -m pytest -q
+
+      - name: Assert seekdb backend and state reuse
+        working-directory: minimax
+        run: |
+          python -c "import json; d=json.load(open('records/demo_summary.json', encoding='utf-8')); assert d['backend']=='seekdb', d; assert d['state_reused'] is True, d; print('seekdb + state reuse OK')"
+          grep -E "aseekdb|seekdb" records/linux_seekdb_sql.log | head -n 5 || true
+
+      - name: Upload records
+        uses: actions/upload-artifact@v4
+        with:
+          name: minimax-records
+          path: minimax/records
+          retention-days: 14

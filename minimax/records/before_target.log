@@ -1,0 +1,66 @@
+FFFF                                                                     [100%]
+================================== FAILURES ===================================
+___________________________ test_filter_by_priority ___________________________
+
+api_base = 'http://127.0.0.1:10609'
+
+    def test_filter_by_priority(api_base: str) -> None:
+        status, payload = get_json(api_base, "/issues?priority=high")
+    
+        assert status == 200
+>       assert [item["id"] for item in payload["items"]] == [1, 4]
+E       assert [1, 2, 3, 4, 5, 6] == [1, 4]
+E         
+E         At index 1 diff: 2 != 4
+E         Left contains 4 more items, first extra item: 3
+E         Use -v to get more diff
+
+tests\test_issue_filters.py:12: AssertionError
+____________________ test_filter_by_assignee_and_priority _____________________
+
+api_base = 'http://127.0.0.1:10613'
+
+    def test_filter_by_assignee_and_priority(api_base: str) -> None:
+        status, payload = get_json(api_base, "/issues?assignee=alice&priority=high")
+    
+        assert status == 200
+>       assert [item["id"] for item in payload["items"]] == [1]
+E       assert [1, 2, 3, 4, 5, 6] == [1]
+E         
+E         Left contains 5 more items, first extra item: 2
+E         Use -v to get more diff
+
+tests\test_issue_filters.py:20: AssertionError
+_____________________ test_priority_combines_with_status ______________________
+
+api_base = 'http://127.0.0.1:10615'
+
+    def test_priority_combines_with_status(api_base: str) -> None:
+        status, payload = get_json(api_base, "/issues?status=open&priority=low")
+    
+        assert status == 200
+>       assert [item["id"] for item in payload["items"]] == [2]
+E       assert [1, 2, 5] == [2]
+E         
+E         At index 0 diff: 1 != 2
+E         Left contains 2 more items, first extra item: 2
+E         Use -v to get more diff
+
+tests\test_issue_filters.py:27: AssertionError
+______________________ test_invalid_priority_returns_400 ______________________
+
+api_base = 'http://127.0.0.1:10617'
+
+    def test_invalid_priority_returns_400(api_base: str) -> None:
+        status, payload = get_json(api_base, "/issues?priority=urgent")
+    
+>       assert status == 400
+E       assert 200 == 400
+
+tests\test_issue_filters.py:33: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_issue_filters.py::test_filter_by_priority - assert [1, 2, 3...
+FAILED tests/test_issue_filters.py::test_filter_by_assignee_and_priority - as...
+FAILED tests/test_issue_filters.py::test_priority_combines_with_status - asse...
+FAILED tests/test_issue_filters.py::test_invalid_priority_returns_400 - asser...
+4 failed in 2.08s

@@ -1,0 +1,88 @@
+--- demo_project/snapshots/before/issuehub/service.py
++++ demo_project/issuehub/service.py
+@@ -1,4 +1,8 @@
+-"""Application service for the issue tracker (pre-TASK-001 baseline)."""
++"""Application service for the issue tracker.
++
++The HTTP layer stays thin: query parsing belongs to ``api.py`` and all filtering
++rules live here so that they can be unit tested without a server.
++"""
+ 
+ from __future__ import annotations
+ 
+@@ -8,19 +12,36 @@
+ 
+ 
+ class InvalidPriority(ValueError):
+-    """Reserved for the TASK-001 validation path; unused in this baseline."""
++    """Raised when a caller asks for a priority outside the supported set."""
+ 
+ 
+ class IssueService:
+     def __init__(self, issues: Iterable[Issue] | None = None) -> None:
+         self._issues = tuple(DEFAULT_ISSUES if issues is None else issues)
+ 
+-    def list_issues(self, *, status: str | None = None) -> list[Issue]:
+-        """Return issues matching the status filter, ordered by id."""
++    def list_issues(
++        self,
++        *,
++        status: str | None = None,
++        priority: str | None = None,
++        assignee: str | None = None,
++    ) -> list[Issue]:
++        """Return issues matching the supplied filters.
++
++        Filters are combined with AND. The result is always ordered by id so
++        that callers can rely on a stable response.
++        """
++
++        if priority is not None and priority not in ("low", "medium", "high"):
++            raise InvalidPriority(priority)
+ 
+         selected = self._issues
+         if status is not None:
+             selected = tuple(issue for issue in selected if issue.status == status)
++        if priority is not None:
++            selected = tuple(issue for issue in selected if issue.priority == priority)
++        if assignee is not None:
++            selected = tuple(issue for issue in selected if issue.assignee == assignee)
+         return sorted(selected, key=lambda issue: issue.id)
+ 
+     def get_issue(self, issue_id: int) -> Issue | None:
+--- demo_project/snapshots/before/issuehub/api.py
++++ demo_project/issuehub/api.py
+@@ -1,4 +1,4 @@
+-"""A tiny stdlib HTTP API around :class:`IssueService` (pre-TASK-001 baseline)."""
++"""A tiny stdlib HTTP API around :class:`IssueService`."""
+ 
+ from __future__ import annotations
+ 
+@@ -7,7 +7,7 @@
+ from typing import Any
+ from urllib.parse import parse_qs, urlparse
+ 
+-from .service import IssueService
++from .service import InvalidPriority, IssueService
+ 
+ 
+ def _json_response(handler: BaseHTTPRequestHandler, status: int, payload: Any) -> None:
+@@ -40,7 +40,17 @@
+         def _list_issues(self, raw_query: str) -> None:
+             query = parse_qs(raw_query, keep_blank_values=False)
+             status = _first(query, "status")
+-            issues = service.list_issues(status=status)
++            priority = _first(query, "priority")
++            assignee = _first(query, "assignee")
++            try:
++                issues = service.list_issues(status=status, priority=priority, assignee=assignee)
++            except InvalidPriority:
++                _json_response(
++                    self,
++                    400,
++                    {"error": "invalid_priority", "allowed": ["low", "medium", "high"]},
++                )
++                return
+             _json_response(self, 200, {"items": [issue.as_dict() for issue in issues], "total": len(issues)})
+ 
+         def log_message(self, format: str, *args: object) -> None:  # noqa: A002

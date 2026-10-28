@@ -1,0 +1,27 @@
+{
+  "baseline_has_new_section": false,
+  "updated_has_new_section": true,
+  "updated_text_has_marker": true,
+  "baseline_specs": [
+    "SPEC-101.1",
+    "SPEC-101.2",
+    "SPEC-101.3",
+    "SPEC-102.1",
+    "SPEC-102.2",
+    "SPEC-103.1",
+    "SPEC-103.2",
+    "SPEC-103.3"
+  ],
+  "updated_specs": [
+    "SPEC-101.1",
+    "SPEC-101.2",
+    "SPEC-101.3",
+    "SPEC-102.1",
+    "SPEC-102.2",
+    "SPEC-102.9",
+    "SPEC-103.1",
+    "SPEC-103.2",
+    "SPEC-103.3"
+  ],
+  "passed": true
+}

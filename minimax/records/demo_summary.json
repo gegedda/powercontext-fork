@@ -1,0 +1,50 @@
+{
+  "scope_id": "scp_54hq3qcbmc5m1jzv3cj86xepdh",
+  "backend": "sqlite",
+  "materials": 30,
+  "upsert": {
+    "inserted": 0,
+    "updated": 0,
+    "unchanged": 30
+  },
+  "context_counts": {
+    "specs": 8,
+    "code": 4,
+    "tests": 6
+  },
+  "minimax_record": null,
+  "minimax_skipped": true,
+  "applied_files": [],
+  "verification": {
+    "before": {
+      "target": {
+        "command": "python -m pytest tests/test_issue_filters.py -q",
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 4
+      },
+      "regression": {
+        "command": "python -m pytest tests/test_regressions.py -q",
+        "exit_code": 0,
+        "passed": 4,
+        "failed": 0
+      }
+    },
+    "after": {
+      "target": {
+        "command": "python -m pytest tests/test_issue_filters.py -q",
+        "exit_code": 0,
+        "passed": 4,
+        "failed": 0
+      },
+      "regression": {
+        "command": "python -m pytest tests/test_regressions.py -q",
+        "exit_code": 0,
+        "passed": 4,
+        "failed": 0
+      }
+    },
+    "passed": true
+  },
+  "state_reused": true
+}
