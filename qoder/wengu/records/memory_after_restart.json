@@ -1,0 +1,229 @@
+{
+  "snapshot": {
+    "profile": {
+      "id": "PROFILE-1",
+      "type": "profile",
+      "nickname": "同学",
+      "goal": "把数据库系统笔记真正记住",
+      "style": "要点优先",
+      "daily_quota": 6,
+      "created_at": "2026-10-29T07:21:55+08:00"
+    },
+    "topics": [
+      {
+        "type": "topic",
+        "doc_id": "oceanbase-tpcc-notes",
+        "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+        "strength": 0.0,
+        "attempts": 1,
+        "correct": 0,
+        "interval_days": 1.0,
+        "last_review": "2026-10-29T07:21:53+08:00",
+        "due": "2026-10-30T07:21:53+08:00",
+        "history": [
+          {
+            "at": "2026-10-29T07:21:53+08:00",
+            "grade": "forgot",
+            "strength": 0.0,
+            "question": "补全这一句（原文出自「正文」）：\nshared-nothing 架构，每个分区（partition）是一个 ＿＿＿＿ 组"
+          }
+        ],
+        "weak": true,
+        "reviewed": true,
+        "status": "薄弱",
+        "due_now": false,
+        "revision": 2
+      },
+      {
+        "type": "topic",
+        "doc_id": "raft",
+        "title": "Raft 共识算法",
+        "strength": 0.0,
+        "attempts": 0,
+        "correct": 0,
+        "interval_days": 1.0,
+        "last_review": null,
+        "due": "2026-10-29T07:21:53+08:00",
+        "history": [],
+        "weak": false,
+        "reviewed": false,
+        "status": "未复习",
+        "due_now": true,
+        "revision": 1
+      },
+      {
+        "type": "topic",
+        "doc_id": "lsm-tree",
+        "title": "LSM-Tree：写优化的存储引擎结构",
+        "strength": 0.0,
+        "attempts": 0,
+        "correct": 0,
+        "interval_days": 1.0,
+        "last_review": null,
+        "due": "2026-10-29T07:21:53+08:00",
+        "history": [],
+        "weak": false,
+        "reviewed": false,
+        "status": "未复习",
+        "due_now": true,
+        "revision": 1
+      },
+      {
+        "type": "topic",
+        "doc_id": "wal-aries",
+        "title": "WAL 与 ARIES 恢复",
+        "strength": 0.0,
+        "attempts": 0,
+        "correct": 0,
+        "interval_days": 1.0,
+        "last_review": null,
+        "due": "2026-10-29T07:21:53+08:00",
+        "history": [],
+        "weak": false,
+        "reviewed": false,
+        "status": "未复习",
+        "due_now": true,
+        "revision": 1
+      },
+      {
+        "type": "topic",
+        "doc_id": "vector-index",
+        "title": "向量索引：HNSW 与 IVF-PQ",
+        "strength": 0.0,
+        "attempts": 1,
+        "correct": 0,
+        "interval_days": 1.0,
+        "last_review": "2026-10-29T07:21:53+08:00",
+        "due": "2026-10-30T07:21:53+08:00",
+        "history": [
+          {
+            "at": "2026-10-29T07:21:53+08:00",
+            "grade": "forgot",
+            "strength": 0.0,
+            "question": "HNSW 论文的作者与年份？"
+          }
+        ],
+        "weak": true,
+        "reviewed": true,
+        "status": "薄弱",
+        "due_now": false,
+        "revision": 2
+      },
+      {
+        "type": "topic",
+        "doc_id": "query-optimizer",
+        "title": "查询优化器与代价模型",
+        "strength": 0.12,
+        "attempts": 1,
+        "correct": 0,
+        "interval_days": 1.5,
+        "last_review": "2026-10-29T07:21:53+08:00",
+        "due": "2026-10-30T19:21:53+08:00",
+        "history": [
+          {
+            "at": "2026-10-29T07:21:53+08:00",
+            "grade": "vague",
+            "strength": 0.12,
+            "question": "多列谓词选择性估算常用的假设及其风险？"
+          }
+        ],
+        "weak": true,
+        "reviewed": true,
+        "status": "薄弱",
+        "due_now": false,
+        "revision": 2
+      },
+      {
+        "type": "topic",
+        "doc_id": "mvcc-snapshot-isolation",
+        "title": "MVCC 与快照隔离",
+        "strength": 0.35,
+        "attempts": 1,
+        "correct": 1,
+        "interval_days": 2.2,
+        "last_review": "2026-10-29T07:21:53+08:00",
+        "due": "2026-10-31T12:09:53+08:00",
+        "history": [
+          {
+            "at": "2026-10-29T07:21:53+08:00",
+            "grade": "known",
+            "strength": 0.35,
+            "question": "长事务对 MVCC 的主要副作用是什么？"
+          }
+        ],
+        "weak": false,
+        "reviewed": true,
+        "status": "已掌握",
+        "due_now": false,
+        "revision": 2
+      }
+    ],
+    "weak": [
+      {
+        "doc_id": "oceanbase-tpcc-notes",
+        "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+        "strength": 0.0
+      },
+      {
+        "doc_id": "vector-index",
+        "title": "向量索引：HNSW 与 IVF-PQ",
+        "strength": 0.0
+      },
+      {
+        "doc_id": "query-optimizer",
+        "title": "查询优化器与代价模型",
+        "strength": 0.12
+      }
+    ],
+    "ask_log": [
+      {
+        "at": "2026-10-29T07:21:53+08:00",
+        "question": "HNSW 的 ef 参数控制什么？",
+        "doc_ids": [
+          "vector-index",
+          "vector-index",
+          "vector-index",
+          "vector-index",
+          "mvcc-snapshot-isolation"
+        ],
+        "sources": [
+          "向量索引：HNSW 与 IVF-PQ"
+        ]
+      },
+      {
+        "at": "2026-10-29T07:21:53+08:00",
+        "question": "快照隔离为什么会出现写偏斜？",
+        "doc_ids": [
+          "mvcc-snapshot-isolation",
+          "lsm-tree",
+          "oceanbase-tpcc-notes",
+          "vector-index",
+          "lsm-tree"
+        ],
+        "sources": [
+          "MVCC 与快照隔离",
+          "LSM-Tree：写优化的存储引擎结构",
+          "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库"
+        ]
+      },
+      {
+        "at": "2026-10-29T07:21:53+08:00",
+        "question": "Raft 里一条日志什么时候算已提交？",
+        "doc_ids": [
+          "raft",
+          "raft",
+          "raft",
+          "wal-aries",
+          "wal-aries"
+        ],
+        "sources": [
+          "Raft 共识算法"
+        ]
+      }
+    ],
+    "entries": 8,
+    "reads": 1,
+    "writes": 0,
+    "last_load_ms": 13.39
+  }
+}

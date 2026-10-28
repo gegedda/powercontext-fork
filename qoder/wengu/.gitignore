@@ -1,0 +1,16 @@
+# 数据与本地环境
+data/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# 本地记录（records/ 里的验证输出是提交物，保留）
+!records/
+
+# OS
+.DS_Store
+Thumbs.db

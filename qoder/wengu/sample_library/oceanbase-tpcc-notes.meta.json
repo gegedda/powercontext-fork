@@ -1,0 +1,7 @@
+{
+  "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+  "year": 2022,
+  "tags": ["OceanBase", "分布式数据库", "论文精读"],
+  "source": "PVLDB 2022 论文阅读笔记（非原文）",
+  "abstract": "OceanBase 在 TPC-C 上达到 7.07 亿 tpmC：shared-nothing 分区 + 多副本 Paxos + LSM 存储 + GTS 快照读。"
+}

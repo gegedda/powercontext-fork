@@ -1,0 +1,380 @@
+{
+  "question": "写偏斜和 MVCC 的关系是什么？",
+  "answer": {
+    "mode": "extractive",
+    "summary": "最相关的内容在 「MVCC 与快照隔离」· 关键判断：- 「MVCC 等于无锁」是错的：写写冲突仍需行锁，SELECT ... FOR UPDATE 需要加锁读。- OceanBase 的 MVCC 基于多版本 memtable 与 SSTable，结合全局时间戳服务（GTS）生成快照读版本。",
+    "blocks": [
+      {
+        "title": "MVCC 与快照隔离",
+        "section": "关键判断",
+        "page": null,
+        "doc_id": "mvcc-snapshot-isolation",
+        "chunk_id": "mvcc-snapshot-isolation#003",
+        "quote": "- 「MVCC 等于无锁」是错的：写写冲突仍需行锁，SELECT ... FOR UPDATE 需要加锁读。- OceanBase 的 MVCC 基于多版本 memtable 与 SSTable，结合全局时间戳服务（GTS）生成快照读版本。",
+        "score": 0.032522,
+        "overlap": 1,
+        "matched_by": [
+          "语义第 2 名",
+          "关键词第 1 名"
+        ],
+        "weak_topic": false
+      },
+      {
+        "title": "LSM-Tree：写优化的存储引擎结构",
+        "section": "与 B+Tree 的对比",
+        "page": null,
+        "doc_id": "lsm-tree",
+        "chunk_id": "lsm-tree#005",
+        "quote": "B+Tree 原地更新，写放大低但随机写多；LSM-Tree 顺序写吞吐高，但需要后台合并成本。",
+        "score": 0.031498,
+        "overlap": 0,
+        "matched_by": [
+          "语义第 3 名",
+          "关键词第 4 名"
+        ],
+        "weak_topic": false
+      }
+    ]
+  },
+  "results": [
+    {
+      "chunk_id": "mvcc-snapshot-isolation#003",
+      "doc_id": "mvcc-snapshot-isolation",
+      "title": "MVCC 与快照隔离",
+      "section": "关键判断",
+      "page": null,
+      "score": 0.032522,
+      "vector_rank": 2,
+      "fulltext_rank": 1,
+      "weak_boost": 1.0
+    },
+    {
+      "chunk_id": "lsm-tree#005",
+      "doc_id": "lsm-tree",
+      "title": "LSM-Tree：写优化的存储引擎结构",
+      "section": "与 B+Tree 的对比",
+      "page": null,
+      "score": 0.031498,
+      "vector_rank": 3,
+      "fulltext_rank": 4,
+      "weak_boost": 1.0
+    },
+    {
+      "chunk_id": "lsm-tree#003",
+      "doc_id": "lsm-tree",
+      "title": "LSM-Tree：写优化的存储引擎结构",
+      "section": "写放大、读放大、空间放大",
+      "page": null,
+      "score": 0.03101,
+      "vector_rank": 4,
+      "fulltext_rank": 5,
+      "weak_boost": 1.0
+    },
+    {
+      "chunk_id": "lsm-tree#000",
+      "doc_id": "lsm-tree",
+      "title": "LSM-Tree：写优化的存储引擎结构",
+      "section": "定义",
+      "page": null,
+      "score": 0.030536,
+      "vector_rank": 5,
+      "fulltext_rank": 6,
+      "weak_boost": 1.0
+    },
+    {
+      "chunk_id": "mvcc-snapshot-isolation#000",
+      "doc_id": "mvcc-snapshot-isolation",
+      "title": "MVCC 与快照隔离",
+      "section": "定义",
+      "page": null,
+      "score": 0.030214,
+      "vector_rank": 11,
+      "fulltext_rank": 2,
+      "weak_boost": 1.0
+    }
+  ],
+  "citations": [
+    {
+      "doc_id": "mvcc-snapshot-isolation",
+      "title": "MVCC 与快照隔离",
+      "section": "关键判断",
+      "page": null,
+      "chunk_id": "mvcc-snapshot-isolation#003"
+    },
+    {
+      "doc_id": "lsm-tree",
+      "title": "LSM-Tree：写优化的存储引擎结构",
+      "section": "与 B+Tree 的对比",
+      "page": null,
+      "chunk_id": "lsm-tree#005"
+    }
+  ],
+  "trace": {
+    "query": "写偏斜和 MVCC 的关系是什么？",
+    "filters": {},
+    "backend": "seekdb",
+    "embedder": {
+      "provider": "onnx-bge-small-zh-v1.5",
+      "dim": 512,
+      "model": "bge-small-zh-v1.5",
+      "runtime": "onnxruntime"
+    },
+    "vector_hits": [
+      {
+        "chunk_id": "vector-index#000",
+        "score": 0.473395,
+        "rank": 1
+      },
+      {
+        "chunk_id": "mvcc-snapshot-isolation#003",
+        "score": 0.465031,
+        "rank": 2
+      },
+      {
+        "chunk_id": "lsm-tree#005",
+        "score": 0.452206,
+        "rank": 3
+      },
+      {
+        "chunk_id": "lsm-tree#003",
+        "score": 0.449943,
+        "rank": 4
+      },
+      {
+        "chunk_id": "lsm-tree#000",
+        "score": 0.446719,
+        "rank": 5
+      },
+      {
+        "chunk_id": "lsm-tree#004",
+        "score": 0.444695,
+        "rank": 6
+      },
+      {
+        "chunk_id": "vector-index#003",
+        "score": 0.438789,
+        "rank": 7
+      },
+      {
+        "chunk_id": "vector-index#001",
+        "score": 0.4377,
+        "rank": 8
+      },
+      {
+        "chunk_id": "wal-aries#004",
+        "score": 0.435584,
+        "rank": 9
+      },
+      {
+        "chunk_id": "wal-aries#000",
+        "score": 0.431357,
+        "rank": 10
+      },
+      {
+        "chunk_id": "mvcc-snapshot-isolation#000",
+        "score": 0.428768,
+        "rank": 11
+      },
+      {
+        "chunk_id": "raft#004",
+        "score": 0.424399,
+        "rank": 12
+      },
+      {
+        "chunk_id": "raft#000",
+        "score": 0.418556,
+        "rank": 13
+      },
+      {
+        "chunk_id": "mvcc-snapshot-isolation#002",
+        "score": 0.415236,
+        "rank": 14
+      },
+      {
+        "chunk_id": "wal-aries#002",
+        "score": 0.41121,
+        "rank": 15
+      }
+    ],
+    "fulltext_hits": [
+      {
+        "chunk_id": "mvcc-snapshot-isolation#003",
+        "score": 1.448878,
+        "rank": 1
+      },
+      {
+        "chunk_id": "mvcc-snapshot-isolation#000",
+        "score": 1.394209,
+        "rank": 2
+      },
+      {
+        "chunk_id": "mvcc-snapshot-isolation#002",
+        "score": 1.311472,
+        "rank": 3
+      },
+      {
+        "chunk_id": "lsm-tree#005",
+        "score": 1.08628,
+        "rank": 4
+      },
+      {
+        "chunk_id": "lsm-tree#003",
+        "score": 1.077985,
+        "rank": 5
+      },
+      {
+        "chunk_id": "lsm-tree#000",
+        "score": 0.929096,
+        "rank": 6
+      },
+      {
+        "chunk_id": "lsm-tree#004",
+        "score": 0.886135,
+        "rank": 7
+      },
+      {
+        "chunk_id": "oceanbase-tpcc-notes#000",
+        "score": 0.811373,
+        "rank": 8
+      },
+      {
+        "chunk_id": "oceanbase-tpcc-notes#002",
+        "score": 0.653983,
+        "rank": 9
+      },
+      {
+        "chunk_id": "raft#000",
+        "score": 0.495516,
+        "rank": 10
+      },
+      {
+        "chunk_id": "wal-aries#004",
+        "score": 0.49249,
+        "rank": 11
+      },
+      {
+        "chunk_id": "wal-aries#000",
+        "score": 0.461126,
+        "rank": 12
+      },
+      {
+        "chunk_id": "oceanbase-tpcc-notes#001",
+        "score": 0.438869,
+        "rank": 13
+      },
+      {
+        "chunk_id": "mvcc-snapshot-isolation#001",
+        "score": 0.409571,
+        "rank": 14
+      },
+      {
+        "chunk_id": "vector-index#005",
+        "score": 0.396258,
+        "rank": 15
+      }
+    ],
+    "fused": [
+      {
+        "chunk_id": "mvcc-snapshot-isolation#003",
+        "vector_rank": 2,
+        "fulltext_rank": 1,
+        "vector_score": 0.46503112136947,
+        "fulltext_score": 1.448878080694938,
+        "score": 0.03252247488101534,
+        "weak_boost": 1.0,
+        "doc_id": "mvcc-snapshot-isolation",
+        "native_hybrid_preview": [
+          {
+            "chunk_id": "mvcc-snapshot-isolation#003",
+            "score": 0.0325
+          },
+          {
+            "chunk_id": "lsm-tree#005",
+            "score": 0.0315
+          },
+          {
+            "chunk_id": "lsm-tree#003",
+            "score": 0.031
+          },
+          {
+            "chunk_id": "lsm-tree#000",
+            "score": 0.0305
+          },
+          {
+            "chunk_id": "vector-index#000",
+            "score": 0.0282
+          }
+        ]
+      },
+      {
+        "chunk_id": "lsm-tree#005",
+        "vector_rank": 3,
+        "fulltext_rank": 4,
+        "vector_score": 0.4522057771682739,
+        "fulltext_score": 1.0862801727588798,
+        "score": 0.03149801587301587,
+        "weak_boost": 1.0,
+        "doc_id": "lsm-tree"
+      },
+      {
+        "chunk_id": "lsm-tree#003",
+        "vector_rank": 4,
+        "fulltext_rank": 5,
+        "vector_score": 0.44994271099908967,
+        "fulltext_score": 1.077984907084904,
+        "score": 0.031009615384615385,
+        "weak_boost": 1.0,
+        "doc_id": "lsm-tree"
+      },
+      {
+        "chunk_id": "lsm-tree#000",
+        "vector_rank": 5,
+        "fulltext_rank": 6,
+        "vector_score": 0.44671931862831116,
+        "fulltext_score": 0.9290957808284465,
+        "score": 0.030536130536130537,
+        "weak_boost": 1.0,
+        "doc_id": "lsm-tree"
+      },
+      {
+        "chunk_id": "mvcc-snapshot-isolation#000",
+        "vector_rank": 11,
+        "fulltext_rank": 2,
+        "vector_score": 0.4287677151699243,
+        "fulltext_score": 1.3942091246432167,
+        "score": 0.03021353930031804,
+        "weak_boost": 1.0,
+        "doc_id": "mvcc-snapshot-isolation"
+      }
+    ],
+    "timings_ms": {
+      "embed": 7.02,
+      "vector": 2.48,
+      "fulltext": 2.2,
+      "fetch": 0.64,
+      "total": 12.45,
+      "native_hybrid": 9.0
+    },
+    "weak_topics": [
+      "oceanbase-tpcc-notes"
+    ]
+  },
+  "weak_topics": [
+    {
+      "doc_id": "oceanbase-tpcc-notes",
+      "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+      "strength": 0.0
+    },
+    {
+      "doc_id": "vector-index",
+      "title": "向量索引：HNSW 与 IVF-PQ",
+      "strength": 0.0
+    },
+    {
+      "doc_id": "query-optimizer",
+      "title": "查询优化器与代价模型",
+      "strength": 0.12
+    }
+  ],
+  "timing_ms": 95.71
+}

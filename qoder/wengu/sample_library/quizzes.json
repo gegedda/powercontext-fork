@@ -1,0 +1,44 @@
+{
+  "lsm-tree": [
+    {"q": "LSM-Tree 最早在哪年、由谁提出？", "a": "1996 年由 Patrick O'Neil 等人在《The Log-Structured Merge-Tree (LSM-Tree)》中提出。", "terms": ["1996", "O'Neil", "LSM-Tree"], "section": "定义"},
+    {"q": "MemTable 写满之后的完整写路径是什么？", "a": "MemTable 转成只读的 Immutable MemTable，由后台线程刷盘成有序的 SSTable，之后由 compaction 合并。", "terms": ["Immutable MemTable", "SSTable", "flush"], "section": "核心机制"},
+    {"q": "Leveled Compaction 中每一层大小大致是什么关系？", "a": "第 L 层大小约为第 L-1 层的 10 倍，因此写放大量级与层数相关。", "terms": ["10 倍", "Leveled"], "section": "写放大、读放大、空间放大"},
+    {"q": "LSM-Tree 的读放大怎么缓解？", "a": "用 Bloom Filter 提前排除不存在的键，减少需要检查的 SSTable 数量，配合块缓存降低读放大。", "terms": ["Bloom Filter", "读放大"], "section": "核心机制"},
+    {"q": "为什么说 compaction 与正确性相关，而不只是性能优化？", "a": "墓碑记录（tombstone）只有在合并时才能被清理，否则删除的数据会重新出现；版本回收也依赖合并。", "terms": ["tombstone", "墓碑", "合并"], "section": "常见误区"}
+  ],
+  "mvcc-snapshot-isolation": [
+    {"q": "InnoDB 判断行可见性依赖哪两个隐藏列？", "a": "DB_TRX_ID（最后修改该行的事务 ID）和 DB_ROLL_PTR（指向 undo log 的回滚指针）。", "terms": ["DB_TRX_ID", "DB_ROLL_PTR"], "section": "InnoDB 的实现"},
+    {"q": "可重复读（RR）与读已提交（RC）在读视图上的区别？", "a": "RR 在整个事务里复用同一个 Read View；RC 每条语句新建 Read View。", "terms": ["Read View", "RR", "RC"], "section": "InnoDB 的实现"},
+    {"q": "快照隔离无法避免哪一类异常？举一个例子。", "a": "写偏斜（write skew）。例如「至少一名医生值班」时两个事务各自读到两人在岗，又各自把自己改为离岗，最终无人值班。", "terms": ["写偏斜", "write skew", "医生"], "section": "快照隔离的异常"},
+    {"q": "长事务对 MVCC 的主要副作用是什么？", "a": "阻塞 undo 版本回收（purge），导致 undo 表空间膨胀、版本链变长、查询变慢。", "terms": ["undo", "purge", "长事务"], "section": "关键判断"},
+    {"q": "解决写偏斜的常见手段有哪些？", "a": "使用串行化快照隔离（SSI，PostgreSQL 9.1 起）或显式加锁/串行化隔离级别。", "terms": ["SSI", "串行化", "锁"], "section": "快照隔离的异常"}
+  ],
+  "raft": [
+    {"q": "Raft 论文的作者、年份与会议？", "a": "Diego Ongaro 和 John Ousterhout，2014 年 USENIX ATC 论文《In Search of an Understandable Consensus Algorithm》。", "terms": ["Ongaro", "Ousterhout", "2014", "USENIX ATC"], "section": "定义与出处"},
+    {"q": "Raft 的三种节点角色和 term 的规则是什么？", "a": "Leader、Follower、Candidate 三种角色；term 单调递增，收到更大 term 的消息立即转为 Follower。", "terms": ["Leader", "Follower", "Candidate", "term"], "section": "Leader 选举"},
+    {"q": "Raft 中一条日志什么时候算已提交？", "a": "当日志条目被多数派节点持久化后，Leader 推进 commitIndex 并返回客户端。", "terms": ["多数派", "commitIndex", "提交"], "section": "日志复制"},
+    {"q": "Raft 的选举限制（election restriction）是什么？", "a": "Candidate 的日志必须至少和多数派中任一节点一样新，才能获得选票并当选。", "terms": ["选举限制", "election restriction", "日志"], "section": "安全性约束"},
+    {"q": "Raft 相比 Paxos 的主要差异？", "a": "Raft 显式选举 Leader、日志保持连续；Multi-Paxos 允许日志空洞，更灵活但更难实现和解释。", "terms": ["Paxos", "Leader", "日志连续"], "section": "与 Paxos 的差异"}
+  ],
+  "wal-aries": [
+    {"q": "ARIES 的论文作者、年份与会议？", "a": "C. Mohan 等人，1992 年 SIGMOD 论文《ARIES: A Transaction Recovery Method...》。", "terms": ["Mohan", "1992", "SIGMOD", "ARIES"], "section": "定义"},
+    {"q": "WAL 的核心规则是什么？", "a": "日志必须先于数据页落盘：数据页落盘前，其 pageLSN 之前的日志必须已经持久化。", "terms": ["pageLSN", "WAL", "落盘"], "section": "关键概念"},
+    {"q": "ARIES 恢复分哪三个阶段？各做什么？", "a": "分析阶段重建脏页表和活跃事务表；重做阶段从 RedoStartLSN 重放（repeating history）；撤销阶段回滚未提交事务并写 CLR。", "terms": ["分析", "重做", "撤销"], "section": "三阶段恢复"},
+    {"q": "steal / no-force 分别指什么，为什么需要 undo？", "a": "steal 允许未提交事务的修改页提前刷盘；no-force 表示提交时不强制刷数据页；因此崩溃后既要 redo 也要 undo。", "terms": ["steal", "no-force", "undo"], "section": "关键概念"},
+    {"q": "CLR 的作用是什么？", "a": "补偿日志记录（Compensation Log Record），保证恢复过程本身可重入：恢复期间再次崩溃时不会重复回滚。", "terms": ["CLR", "补偿日志", "可重入"], "section": "三阶段恢复"}
+  ],
+  "vector-index": [
+    {"q": "HNSW 论文的作者与年份？", "a": "Yu. A. Malkov 与 D. A. Yashunin，2018 年论文《Efficient and Robust Approximate Nearest Neighbor Search Using Hierarchical Navigable Small World Graphs》。", "terms": ["Malkov", "Yashunin", "2018"], "section": "HNSW（Hierarchical Navigable Small World）"},
+    {"q": "HNSW 的 M、efConstruction、ef 分别控制什么？", "a": "M 控制每个节点最大出边数；efConstruction 控制建图候选队列长度；ef 控制查询搜索宽度，越大召回越高、延迟越大。", "terms": ["M", "efConstruction", "ef"], "section": "HNSW（Hierarchical Navigable Small World）"},
+    {"q": "PQ 的压缩原理是什么？", "a": "把 d 维向量切成 m 段，每段用 256 个聚类中心编码为 1 字节，压缩比约为 d/m 倍。", "terms": ["PQ", "聚类中心", "压缩"], "section": "IVF 与 PQ"},
+    {"q": "pre-filter 与 post-filter 的区别和风险？", "a": "pre-filter 先按标量条件筛候选再向量检索，准确但可能破坏索引结构、候选过少时性能差；post-filter 先召回再过滤，简单但过滤后可能不足 k 条。", "terms": ["pre-filter", "post-filter"], "section": "过滤检索：pre-filter 与 post-filter"},
+    {"q": "报告 ANN 召回率时为什么必须说明 ground truth？", "a": "召回率是相对精确检索结果定义的；没有 ground truth（精确 top-k）时，数字无法比较也没有意义。", "terms": ["召回率", "ground truth"], "section": "常见误区"}
+  ],
+  "query-optimizer": [
+    {"q": "CBO 与 RBO 的区别？", "a": "RBO 按固定规则改写与选择计划；CBO 估算候选计划代价并取最小，现代数据库以 CBO 为主。", "terms": ["CBO", "RBO", "代价"], "section": "定义"},
+    {"q": "代价公式通常由哪几部分组成？", "a": "cost = rows × 每行 CPU 代价 + 页数 × 每页 I/O 代价，并区分顺序 I/O 与随机 I/O。", "terms": ["cost", "CPU", "I/O"], "section": "代价模型的三要素"},
+    {"q": "多列谓词选择性估算常用的假设及其风险？", "a": "通常假设列间独立、把选择率相乘；实际列常相关，会明显低估或高估基数，导致错误计划。", "terms": ["独立", "选择率", "相关"], "section": "代价模型的三要素"},
+    {"q": "n 表连接顺序的搜索空间与常用算法？", "a": "n! 种顺序；小规模用 System R 风格动态规划枚举左深树，大规模用贪心、GEQO 遗传算法或启发式剪枝。", "terms": ["n!", "动态规划", "GEQO"], "section": "连接顺序"},
+    {"q": "EXPLAIN 的 rows 与 EXPLAIN ANALYZE 的差别？", "a": "EXPLAIN 的 rows 是优化器估算值；EXPLAIN ANALYZE 才真正执行并显示实际行数与耗时。", "terms": ["EXPLAIN", "估算", "实际"], "section": "常见误区"}
+  ]
+}

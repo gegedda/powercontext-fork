@@ -1,0 +1,90 @@
+{
+  "imported": [
+    {
+      "doc_id": "lsm-tree",
+      "title": "LSM-Tree：写优化的存储引擎结构",
+      "kind": "md",
+      "chunks": 6,
+      "tags": [
+        "存储引擎",
+        "写优化",
+        "LSM"
+      ],
+      "year": 1996
+    },
+    {
+      "doc_id": "mvcc-snapshot-isolation",
+      "title": "MVCC 与快照隔离",
+      "kind": "md",
+      "chunks": 4,
+      "tags": [
+        "事务",
+        "并发控制",
+        "MVCC"
+      ],
+      "year": 2020
+    },
+    {
+      "doc_id": "oceanbase-tpcc-notes",
+      "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+      "kind": "pdf",
+      "chunks": 3,
+      "tags": [
+        "OceanBase",
+        "分布式数据库",
+        "论文精读"
+      ],
+      "year": 2022
+    },
+    {
+      "doc_id": "query-optimizer",
+      "title": "查询优化器与代价模型",
+      "kind": "md",
+      "chunks": 5,
+      "tags": [
+        "查询优化",
+        "代价模型",
+        "索引"
+      ],
+      "year": 2021
+    },
+    {
+      "doc_id": "raft",
+      "title": "Raft 共识算法",
+      "kind": "md",
+      "chunks": 5,
+      "tags": [
+        "分布式",
+        "共识",
+        "Raft"
+      ],
+      "year": 2014
+    },
+    {
+      "doc_id": "vector-index",
+      "title": "向量索引：HNSW 与 IVF-PQ",
+      "kind": "md",
+      "chunks": 6,
+      "tags": [
+        "向量检索",
+        "ANN",
+        "索引"
+      ],
+      "year": 2018
+    },
+    {
+      "doc_id": "wal-aries",
+      "title": "WAL 与 ARIES 恢复",
+      "kind": "md",
+      "chunks": 5,
+      "tags": [
+        "存储引擎",
+        "恢复",
+        "WAL"
+      ],
+      "year": 1992
+    }
+  ],
+  "skipped": [],
+  "elapsed_ms": 9046.5
+}

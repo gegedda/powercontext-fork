@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>温故 WenGu · 文献检索与复习教练</title>
+  <link rel="stylesheet" href="/static/style.css?v=0.1.1" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="seal">温故</div>
+      <div class="brand-text">
+        <h1>温故 <span>WenGu</span></h1>
+        <p>把读过的文献变成记得住的知识 · seekdb 混合检索 + PowerContext 长期记忆</p>
+      </div>
+    </div>
+    <div class="status" id="status">
+      <span class="pill" id="pill-store">后端加载中…</span>
+      <span class="pill" id="pill-embed">向量模型加载中…</span>
+      <span class="pill" id="pill-memory">记忆加载中…</span>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button data-tab="library" class="active">文库</button>
+    <button data-tab="ask">带出处提问</button>
+    <button data-tab="review">今日复习</button>
+    <button data-tab="memory">它记住了什么</button>
+    <button data-tab="tech">技术证据</button>
+  </nav>
+
+  <main>
+    <!-- 文库 -->
+    <section class="tab-panel active" id="panel-library">
+      <div class="layout two-col">
+        <div class="card">
+          <h2>导入文献</h2>
+          <p class="hint">支持 PDF / Markdown / TXT。导入后会自动切分小节、抽取向量与关键词，并登记到复习计划。</p>
+          <div class="dropzone" id="dropzone">
+            <input type="file" id="file-input" multiple accept=".pdf,.md,.markdown,.txt" hidden />
+            <p><strong>拖入文件</strong> 或 <button class="link" id="pick-file">选择文件</button></p>
+            <p class="hint tiny">文件会复制到 data/uploads/，原始文件不会被修改</p>
+          </div>
+          <div class="row gap">
+            <button class="primary" id="btn-sample">导入示例文献（7 篇：6 篇笔记 + 1 篇 PDF）</button>
+            <button class="ghost" id="btn-reset">清空知识库</button>
+          </div>
+          <div id="ingest-result" class="result"></div>
+        </div>
+
+        <div class="card">
+          <h2>知识库概览</h2>
+          <div class="stats" id="library-stats"></div>
+          <div class="doc-list" id="doc-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 提问 -->
+    <section class="tab-panel" id="panel-ask">
+      <div class="card">
+        <h2>带着出处提问</h2>
+        <p class="hint">语义检索 + 关键词检索 + 元数据过滤，结果会标出「语义第几名 / 关键词第几名」，以及是否因为你在这一块薄弱而被加权。</p>
+        <div class="ask-row">
+          <input id="ask-input" placeholder="例如：Raft 里一条日志什么时候算提交？" />
+          <button class="primary" id="btn-ask">检索</button>
+        </div>
+        <div class="filters">
+          <label>标签 <input id="filter-tags" placeholder="如 分布式, 存储（逗号分隔）" /></label>
+          <label>类型
+            <select id="filter-kind">
+              <option value="">全部</option>
+              <option value="md">Markdown</option>
+              <option value="pdf">PDF</option>
+              <option value="txt">TXT</option>
+            </select>
+          </label>
+          <label>年份 ≥ <input id="filter-year" type="number" placeholder="如 2018" style="width:110px" /></label>
+          <button class="ghost" id="btn-clear-filters">清空过滤</button>
+        </div>
+        <div class="suggestions" id="suggestions">
+          <span class="hint tiny">试试：</span>
+          <button class="chip" data-q="Raft 里一条日志什么时候算已提交？">Raft 提交时机</button>
+          <button class="chip" data-q="HNSW 的 ef 参数控制什么？">HNSW 参数</button>
+          <button class="chip" data-q="快照隔离为什么会出现写偏斜？">写偏斜</button>
+          <button class="chip" data-q="ARIES 恢复的三个阶段分别做什么？">ARIES 三阶段</button>
+        </div>
+      </div>
+      <div id="ask-output"></div>
+    </section>
+
+    <!-- 复习 -->
+    <section class="tab-panel" id="panel-review">
+      <div class="layout review-layout">
+        <div class="card">
+          <h2>今日复习 <span class="badge" id="review-progress">0 / 0</span></h2>
+          <div id="review-body" class="review-body">
+            <p class="hint">点击「开始今天的复习」，教练会按「到期 + 薄弱」排序出题。</p>
+            <button class="primary" id="btn-start-review">开始今天的复习</button>
+          </div>
+        </div>
+        <div class="card">
+          <h2>薄弱知识点</h2>
+          <div id="weak-list" class="weak-list"></div>
+          <h2 style="margin-top:22px">每日配额</h2>
+          <div class="row gap">
+            <input id="quota-input" type="number" min="1" max="20" style="width:90px" />
+            <button class="ghost" id="btn-save-quota">保存到记忆</button>
+          </div>
+          <p class="hint tiny">配额会写进 PowerContext，下次打开仍然生效。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 记忆 -->
+    <section class="tab-panel" id="panel-memory">
+      <div class="layout two-col">
+        <div class="card">
+          <h2>学习档案（存在 PowerContext）</h2>
+          <div class="form-grid">
+            <label>称呼 <input id="p-nickname" /></label>
+            <label>目标 <input id="p-goal" /></label>
+            <label>讲解风格
+              <select id="p-style">
+                <option value="要点优先">要点优先</option>
+                <option value="先讲原理">先讲原理</option>
+                <option value="多举例子">多举例子</option>
+              </select>
+            </label>
+            <label>每日复习配额 <input id="p-quota" type="number" min="1" max="20" /></label>
+          </div>
+          <button class="primary" id="btn-save-profile">保存到记忆</button>
+          <p class="hint tiny" id="memory-meta"></p>
+        </div>
+        <div class="card">
+          <h2>提问历史（跨会话复用）</h2>
+          <div id="ask-log" class="ask-log"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>知识点掌握度</h2>
+        <div id="topic-table"></div>
+      </div>
+    </section>
+
+    <!-- 技术证据 -->
+    <section class="tab-panel" id="panel-tech">
+      <div class="layout two-col">
+        <div class="card">
+          <h2>存储与检索</h2>
+          <div class="stats" id="tech-stats"></div>
+          <p class="hint tiny" id="tech-where"></p>
+        </div>
+        <div class="card">
+          <h2>记忆写入</h2>
+          <div class="stats" id="tech-memory"></div>
+          <p class="hint tiny" id="tech-memory-where"></p>
+        </div>
+      </div>
+      <div class="card">
+        <h2>最近的技术调用（seekdb 查询 / PowerContext 记忆读写）</h2>
+        <div class="table-wrap"><table class="events" id="tech-events"></table></div>
+      </div>
+      <div class="card">
+        <h2>最近一次检索追踪</h2>
+        <pre class="trace" id="tech-trace">还没有检索记录。</pre>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    温故 WenGu · Qoder × OceanBase 2026 参赛作品 · 知识库：seekdb（向量 + 全文 + 标量过滤）· 记忆：PowerContext（版本化 Memory）
+  </footer>
+
+  <script src="/static/app.js?v=0.1.1"></script>
+</body>
+</html>
