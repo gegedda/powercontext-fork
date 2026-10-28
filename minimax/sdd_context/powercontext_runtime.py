@@ -11,6 +11,7 @@ from __future__ import annotations
 import logging
 import os
 import socket
+import sys
 import threading
 import time
 from pathlib import Path
@@ -51,10 +52,16 @@ class PowerContextRuntime:
     def start(self) -> None:
         if self._thread is not None:
             return
+        if self.backend == "seekdb":
+            self._check_seekdb_driver()
         database = self._database()
         if os.environ.get("SDD_SQL_ECHO") == "1":
-            logging.basicConfig(level=logging.INFO, format="%(name)s %(levelname)s %(message)s")
-            logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
+            logger = logging.getLogger("sqlalchemy.engine")
+            handler = logging.StreamHandler(sys.stderr)
+            handler.setFormatter(logging.Formatter("%(name)s %(levelname)s %(message)s"))
+            logger.handlers = [handler]
+            logger.setLevel(logging.INFO)
+            logger.propagate = False
         settings = ServerSettings(
             workspace=self.directory,
             database=database,
@@ -113,6 +120,17 @@ class PowerContextRuntime:
         self.start()
 
     # -- data ----------------------------------------------------------
+    @staticmethod
+    def _check_seekdb_driver() -> None:
+        """Fail fast on the pymysql/aiomysql combination that breaks seekdb writes."""
+
+        import pymysql.converters
+
+        if not callable(getattr(pymysql.converters, "escape_bytes_prefixed", None)):
+            raise RuntimeError(
+                "pymysql/aiomysql mismatch: install pymysql==1.2.0, aiomysql==0.3.2 and pyobvector==0.2.28"
+            )
+
     def _database(self):
         echo = os.environ.get("SDD_SQL_ECHO") == "1"
         if self.backend == "seekdb":
