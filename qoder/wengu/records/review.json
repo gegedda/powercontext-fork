@@ -15,7 +15,7 @@
         "source": "auto",
         "reason": "新导入的文献，先摸摸底",
         "strength": 0.0,
-        "due_at": "2026-10-29T07:21:52+08:00",
+        "due_at": "2026-10-29T07:52:29+08:00",
         "attempts": 0
       },
       {
@@ -34,7 +34,7 @@
         "source": "curated",
         "reason": "新导入的文献，先摸摸底",
         "strength": 0.0,
-        "due_at": "2026-10-29T07:21:53+08:00",
+        "due_at": "2026-10-29T07:52:30+08:00",
         "attempts": 0
       },
       {
@@ -53,7 +53,7 @@
         "source": "curated",
         "reason": "新导入的文献，先摸摸底",
         "strength": 0.0,
-        "due_at": "2026-10-29T07:21:53+08:00",
+        "due_at": "2026-10-29T07:52:30+08:00",
         "attempts": 0
       },
       {
@@ -72,7 +72,7 @@
         "source": "curated",
         "reason": "新导入的文献，先摸摸底",
         "strength": 0.0,
-        "due_at": "2026-10-29T07:21:53+08:00",
+        "due_at": "2026-10-29T07:52:30+08:00",
         "attempts": 0
       },
       {
@@ -92,7 +92,7 @@
         "source": "curated",
         "reason": "新导入的文献，先摸摸底",
         "strength": 0.0,
-        "due_at": "2026-10-29T07:21:53+08:00",
+        "due_at": "2026-10-29T07:52:30+08:00",
         "attempts": 0
       },
       {
@@ -110,7 +110,7 @@
         "source": "curated",
         "reason": "新导入的文献，先摸摸底",
         "strength": 0.0,
-        "due_at": "2026-10-29T07:21:53+08:00",
+        "due_at": "2026-10-29T07:52:30+08:00",
         "attempts": 0
       }
     ],
@@ -122,26 +122,9 @@
       "goal": "把数据库系统笔记真正记住",
       "style": "要点优先",
       "daily_quota": 6,
-      "created_at": "2026-10-29T07:21:53+08:00"
+      "created_at": "2026-10-29T07:52:30+08:00"
     },
     "topics": [
-      {
-        "type": "topic",
-        "doc_id": "mvcc-snapshot-isolation",
-        "title": "MVCC 与快照隔离",
-        "strength": 0.0,
-        "attempts": 0,
-        "correct": 0,
-        "interval_days": 1.0,
-        "last_review": null,
-        "due": "2026-10-29T07:21:53+08:00",
-        "history": [],
-        "weak": false,
-        "reviewed": false,
-        "status": "未复习",
-        "due_now": true,
-        "revision": 1
-      },
       {
         "type": "topic",
         "doc_id": "oceanbase-tpcc-notes",
@@ -151,58 +134,7 @@
         "correct": 0,
         "interval_days": 1.0,
         "last_review": null,
-        "due": "2026-10-29T07:21:52+08:00",
-        "history": [],
-        "weak": false,
-        "reviewed": false,
-        "status": "未复习",
-        "due_now": true,
-        "revision": 1
-      },
-      {
-        "type": "topic",
-        "doc_id": "raft",
-        "title": "Raft 共识算法",
-        "strength": 0.0,
-        "attempts": 0,
-        "correct": 0,
-        "interval_days": 1.0,
-        "last_review": null,
-        "due": "2026-10-29T07:21:53+08:00",
-        "history": [],
-        "weak": false,
-        "reviewed": false,
-        "status": "未复习",
-        "due_now": true,
-        "revision": 1
-      },
-      {
-        "type": "topic",
-        "doc_id": "query-optimizer",
-        "title": "查询优化器与代价模型",
-        "strength": 0.0,
-        "attempts": 0,
-        "correct": 0,
-        "interval_days": 1.0,
-        "last_review": null,
-        "due": "2026-10-29T07:21:53+08:00",
-        "history": [],
-        "weak": false,
-        "reviewed": false,
-        "status": "未复习",
-        "due_now": true,
-        "revision": 1
-      },
-      {
-        "type": "topic",
-        "doc_id": "lsm-tree",
-        "title": "LSM-Tree：写优化的存储引擎结构",
-        "strength": 0.0,
-        "attempts": 0,
-        "correct": 0,
-        "interval_days": 1.0,
-        "last_review": null,
-        "due": "2026-10-29T07:21:53+08:00",
+        "due": "2026-10-29T07:52:29+08:00",
         "history": [],
         "weak": false,
         "reviewed": false,
@@ -219,7 +151,24 @@
         "correct": 0,
         "interval_days": 1.0,
         "last_review": null,
-        "due": "2026-10-29T07:21:53+08:00",
+        "due": "2026-10-29T07:52:30+08:00",
+        "history": [],
+        "weak": false,
+        "reviewed": false,
+        "status": "未复习",
+        "due_now": true,
+        "revision": 1
+      },
+      {
+        "type": "topic",
+        "doc_id": "query-optimizer",
+        "title": "查询优化器与代价模型",
+        "strength": 0.0,
+        "attempts": 0,
+        "correct": 0,
+        "interval_days": 1.0,
+        "last_review": null,
+        "due": "2026-10-29T07:52:30+08:00",
         "history": [],
         "weak": false,
         "reviewed": false,
@@ -236,7 +185,58 @@
         "correct": 0,
         "interval_days": 1.0,
         "last_review": null,
-        "due": "2026-10-29T07:21:53+08:00",
+        "due": "2026-10-29T07:52:30+08:00",
+        "history": [],
+        "weak": false,
+        "reviewed": false,
+        "status": "未复习",
+        "due_now": true,
+        "revision": 1
+      },
+      {
+        "type": "topic",
+        "doc_id": "raft",
+        "title": "Raft 共识算法",
+        "strength": 0.0,
+        "attempts": 0,
+        "correct": 0,
+        "interval_days": 1.0,
+        "last_review": null,
+        "due": "2026-10-29T07:52:30+08:00",
+        "history": [],
+        "weak": false,
+        "reviewed": false,
+        "status": "未复习",
+        "due_now": true,
+        "revision": 1
+      },
+      {
+        "type": "topic",
+        "doc_id": "mvcc-snapshot-isolation",
+        "title": "MVCC 与快照隔离",
+        "strength": 0.0,
+        "attempts": 0,
+        "correct": 0,
+        "interval_days": 1.0,
+        "last_review": null,
+        "due": "2026-10-29T07:52:30+08:00",
+        "history": [],
+        "weak": false,
+        "reviewed": false,
+        "status": "未复习",
+        "due_now": true,
+        "revision": 1
+      },
+      {
+        "type": "topic",
+        "doc_id": "lsm-tree",
+        "title": "LSM-Tree：写优化的存储引擎结构",
+        "strength": 0.0,
+        "attempts": 0,
+        "correct": 0,
+        "interval_days": 1.0,
+        "last_review": null,
+        "due": "2026-10-29T07:52:30+08:00",
         "history": [],
         "weak": false,
         "reviewed": false,
@@ -260,11 +260,11 @@
         "attempts": 1,
         "correct": 0,
         "interval_days": 1.0,
-        "last_review": "2026-10-29T07:21:53+08:00",
-        "due": "2026-10-30T07:21:53+08:00",
+        "last_review": "2026-10-29T07:52:30+08:00",
+        "due": "2026-10-30T07:52:30+08:00",
         "history": [
           {
-            "at": "2026-10-29T07:21:53+08:00",
+            "at": "2026-10-29T07:52:30+08:00",
             "grade": "forgot",
             "strength": 0.0,
             "question": "补全这一句（原文出自「正文」）：\nshared-nothing 架构，每个分区（partition）是一个 ＿＿＿＿ 组"
@@ -273,7 +273,7 @@
       },
       "label": "忘了",
       "weak": true,
-      "due": "2026-10-30T07:21:53+08:00"
+      "due": "2026-10-30T07:52:30+08:00"
     },
     {
       "item": "query-optimizer:curated:2",
@@ -287,11 +287,11 @@
         "attempts": 1,
         "correct": 0,
         "interval_days": 1.5,
-        "last_review": "2026-10-29T07:21:53+08:00",
-        "due": "2026-10-30T19:21:53+08:00",
+        "last_review": "2026-10-29T07:52:30+08:00",
+        "due": "2026-10-30T19:52:30+08:00",
         "history": [
           {
-            "at": "2026-10-29T07:21:53+08:00",
+            "at": "2026-10-29T07:52:30+08:00",
             "grade": "vague",
             "strength": 0.12,
             "question": "多列谓词选择性估算常用的假设及其风险？"
@@ -300,7 +300,7 @@
       },
       "label": "模糊",
       "weak": true,
-      "due": "2026-10-30T19:21:53+08:00"
+      "due": "2026-10-30T19:52:30+08:00"
     },
     {
       "item": "mvcc-snapshot-isolation:curated:3",
@@ -314,11 +314,11 @@
         "attempts": 1,
         "correct": 1,
         "interval_days": 2.2,
-        "last_review": "2026-10-29T07:21:53+08:00",
-        "due": "2026-10-31T12:09:53+08:00",
+        "last_review": "2026-10-29T07:52:30+08:00",
+        "due": "2026-10-31T12:40:30+08:00",
         "history": [
           {
-            "at": "2026-10-29T07:21:53+08:00",
+            "at": "2026-10-29T07:52:30+08:00",
             "grade": "known",
             "strength": 0.35,
             "question": "长事务对 MVCC 的主要副作用是什么？"
@@ -327,7 +327,7 @@
       },
       "label": "记得",
       "weak": false,
-      "due": "2026-10-31T12:09:53+08:00"
+      "due": "2026-10-31T12:40:30+08:00"
     },
     {
       "item": "vector-index:curated:0",
@@ -341,11 +341,11 @@
         "attempts": 1,
         "correct": 0,
         "interval_days": 1.0,
-        "last_review": "2026-10-29T07:21:53+08:00",
-        "due": "2026-10-30T07:21:53+08:00",
+        "last_review": "2026-10-29T07:52:30+08:00",
+        "due": "2026-10-30T07:52:30+08:00",
         "history": [
           {
-            "at": "2026-10-29T07:21:53+08:00",
+            "at": "2026-10-29T07:52:30+08:00",
             "grade": "forgot",
             "strength": 0.0,
             "question": "HNSW 论文的作者与年份？"
@@ -354,7 +354,70 @@
       },
       "label": "忘了",
       "weak": true,
-      "due": "2026-10-30T07:21:53+08:00"
+      "due": "2026-10-30T07:52:30+08:00"
     }
-  ]
+  ],
+  "after_grade": {
+    "items": [
+      {
+        "item_id": "oceanbase-tpcc-notes:auto:oceanbase-tpcc-notes#001",
+        "doc_id": "oceanbase-tpcc-notes",
+        "source": "auto",
+        "strength": 0.0,
+        "reason": "这里一直薄弱，多练一次"
+      },
+      {
+        "item_id": "vector-index:curated:0",
+        "doc_id": "vector-index",
+        "source": "curated",
+        "strength": 0.0,
+        "reason": "这里一直薄弱，多练一次"
+      },
+      {
+        "item_id": "vector-index:auto:vector-index#004",
+        "doc_id": "vector-index",
+        "source": "auto",
+        "strength": 0.0,
+        "reason": "这里一直薄弱，多练一次"
+      },
+      {
+        "item_id": "query-optimizer:curated:1",
+        "doc_id": "query-optimizer",
+        "source": "curated",
+        "strength": 0.12,
+        "reason": "这里一直薄弱，多练一次"
+      },
+      {
+        "item_id": "query-optimizer:auto:query-optimizer#004",
+        "doc_id": "query-optimizer",
+        "source": "auto",
+        "strength": 0.12,
+        "reason": "这里一直薄弱，多练一次"
+      },
+      {
+        "item_id": "raft:curated:0",
+        "doc_id": "raft",
+        "source": "curated",
+        "strength": 0.0,
+        "reason": "新导入的文献，先摸摸底"
+      }
+    ],
+    "weak": [
+      {
+        "doc_id": "oceanbase-tpcc-notes",
+        "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+        "strength": 0.0
+      },
+      {
+        "doc_id": "vector-index",
+        "title": "向量索引：HNSW 与 IVF-PQ",
+        "strength": 0.0
+      },
+      {
+        "doc_id": "query-optimizer",
+        "title": "查询优化器与代价模型",
+        "strength": 0.12
+      }
+    ]
+  }
 }

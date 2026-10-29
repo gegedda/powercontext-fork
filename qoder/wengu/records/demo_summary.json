@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-10-29 07:21:44",
+  "started_at": "2026-10-29 07:52:20",
   "steps": [
     {
       "step": "ingest_sample",
@@ -90,7 +90,7 @@
         }
       ],
       "skipped": [],
-      "elapsed_ms": 9046.5
+      "elapsed_ms": 9347.3
     },
     {
       "step": "store_stats",
@@ -121,8 +121,54 @@
       "graded": 4
     },
     {
+      "step": "review_after_grade",
+      "items": [
+        {
+          "doc_id": "oceanbase-tpcc-notes",
+          "source": "auto",
+          "strength": 0.0,
+          "reason": "这里一直薄弱，多练一次"
+        },
+        {
+          "doc_id": "vector-index",
+          "source": "curated",
+          "strength": 0.0,
+          "reason": "这里一直薄弱，多练一次"
+        },
+        {
+          "doc_id": "vector-index",
+          "source": "auto",
+          "strength": 0.0,
+          "reason": "这里一直薄弱，多练一次"
+        },
+        {
+          "doc_id": "query-optimizer",
+          "source": "curated",
+          "strength": 0.12,
+          "reason": "这里一直薄弱，多练一次"
+        }
+      ],
+      "weak": [
+        {
+          "doc_id": "oceanbase-tpcc-notes",
+          "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+          "strength": 0.0
+        },
+        {
+          "doc_id": "vector-index",
+          "title": "向量索引：HNSW 与 IVF-PQ",
+          "strength": 0.0
+        },
+        {
+          "doc_id": "query-optimizer",
+          "title": "查询优化器与代价模型",
+          "strength": 0.12
+        }
+      ]
+    },
+    {
       "step": "restart_and_reuse",
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
       "topics_before": 7,
       "topics_after": 7,
       "weak_after": [
@@ -135,27 +181,46 @@
     },
     {
       "step": "ask_after_restart",
-      "question": "写偏斜和 MVCC 的关系是什么？",
-      "weak_boosted": [],
-      "citations": [
+      "question": "OceanBase 的 shared-nothing 架构怎么扩展到 707 万 tpmC？",
+      "weak_topics": [
+        "oceanbase-tpcc-notes",
+        "vector-index",
+        "query-optimizer"
+      ],
+      "weak_boosted": [
+        "oceanbase-tpcc-notes#000",
+        "oceanbase-tpcc-notes#001",
+        "oceanbase-tpcc-notes#002"
+      ],
+      "weak_boosted_details": [
         {
-          "doc_id": "mvcc-snapshot-isolation",
-          "title": "MVCC 与快照隔离",
-          "section": "关键判断",
-          "page": null,
-          "chunk_id": "mvcc-snapshot-isolation#003"
+          "chunk_id": "oceanbase-tpcc-notes#000",
+          "doc_id": "oceanbase-tpcc-notes",
+          "boost": 1.18
         },
         {
-          "doc_id": "lsm-tree",
-          "title": "LSM-Tree：写优化的存储引擎结构",
-          "section": "与 B+Tree 的对比",
-          "page": null,
-          "chunk_id": "lsm-tree#005"
+          "chunk_id": "oceanbase-tpcc-notes#001",
+          "doc_id": "oceanbase-tpcc-notes",
+          "boost": 1.18
+        },
+        {
+          "chunk_id": "oceanbase-tpcc-notes#002",
+          "doc_id": "oceanbase-tpcc-notes",
+          "boost": 1.18
+        }
+      ],
+      "citations": [
+        {
+          "doc_id": "oceanbase-tpcc-notes",
+          "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+          "section": "正文",
+          "page": 1,
+          "chunk_id": "oceanbase-tpcc-notes#000"
         }
       ]
     }
   ],
-  "finished_at": "2026-10-29 07:21:55",
+  "finished_at": "2026-10-29 07:52:32",
   "store": "seekdb",
   "embedder": {
     "provider": "onnx-bge-small-zh-v1.5",

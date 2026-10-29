@@ -163,7 +163,7 @@ class LearningMemory:
                 "powercontext.create_artifact",
                 {
                     "entry_id": entry_id,
-                    "kind": kind,
+                    "memory_kind": kind,
                     "artifact_id": created.artifact_id,
                     "revision": created.revision,
                     "bytes": len(text.encode("utf-8")),
@@ -185,7 +185,7 @@ class LearningMemory:
             "powercontext.replace_artifact",
             {
                 "entry_id": entry_id,
-                "kind": kind,
+                "memory_kind": kind,
                 "artifact_id": existing.artifact_id,
                 "from_revision": existing.revision,
                 "to_revision": revision.revision,

@@ -88,7 +88,7 @@
 
 **验证**：`python -m wengu.cli grade raft forgot`，`doctor` 事件中出现
 `powercontext.replace_artifact from_revision=1 to_revision=2`；`demo` 重启后
-`state_reused = true`。
+`state_reused = true`，并在重启后针对薄弱文献提问，`weak_boosted` 非空。
 
 ---
 
@@ -101,7 +101,8 @@
 
 **产出**：`wengu/coach.py`、`sample_library/quizzes.json`（6 篇 × 5 个考点）。
 
-**验证**：`python -m wengu.cli review` → 6 道题，`reason` 与优先级符合预期；
+**验证**：`python -m wengu.cli review` → 6 道题，`reason` 与优先级符合预期；评分后再组卷，
+判为「忘了 / 模糊」的文献排到最前，`reason` 变为「这里一直薄弱，多练一次」。
 `tests/test_coach.py` 覆盖优先级、人工考点优先、自动出题、评分。
 
 ---
@@ -126,10 +127,10 @@
 > 一条命令完成验证；Windows 无 seekdb 也能跑通；文档写清 Linux/Windows 两种路径与已知限制；
 > 生成 `records/` 作为本次提交的证据。
 
-**产出**：`scripts/verify.sh`、`Makefile`、`tests/`（15 个用例）、`docs/verification-sample.md`、
+**产出**：`scripts/verify.sh`、`Makefile`、`tests/`（16 个用例）、`docs/verification-sample.md`、
 `records/*`。
 
-**验证**：`./scripts/verify.sh`；`pytest -q` → 15 passed；`records/demo_summary.json` 中
+**验证**：`./scripts/verify.sh`；`pytest -q` → 16 passed；`records/demo_summary.json` 中
 `state_reused = true`。
 
 ---
@@ -139,7 +140,7 @@
 | 项 | 做法 | 结果 |
 | --- | --- | --- |
 | 项目能跑 | `pip install -e ".[seekdb]"`（Linux）→ `wengu serve` | 8000 端口界面可用 |
-| seekdb 生效 | `records/tech.json` 的 `store`、`records/ask.json` 的 `trace` | 集合 2 个、31+ 片段、HNSW + IK |
+| seekdb 生效 | `records/tech.json` 的 `store`、`records/ask.json` 的 `trace` | 集合 2 个、34 片段、HNSW + IK |
 | PowerContext 生效 | `records/tech.json` 的 `powercontext.create_artifact / replace_artifact` | revision 递增，重启后读回 |
 | 越用越懂你 | `grade` 后 `review` 的排序/原因变化；提问出现「薄弱点加权」 | 见 `records/review.json`、`ask_after_restart.json` |
-| 单元测试 | `python -m pytest -q` | 15 passed |
+| 单元测试 | `python -m pytest -q` | 16 passed |

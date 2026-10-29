@@ -92,8 +92,8 @@ li{margin:4px 0}
   <div class="wrap">
     <div class="grid g3">
       <div class="card metric"><b>34</b><span>示例语料的可检索片段（7 篇，含 1 篇 PDF）</span></div>
-      <div class="card metric"><b>10–25 ms</b><span>单次混合检索（向量 + 全文 + 回表）</span></div>
-      <div class="card metric"><b>16 s</b><span>端到端验证：导入 → 提问 → 复习 → 重启 → 记忆复用</span></div>
+      <div class="card metric"><b>7–19 ms</b><span>单次混合检索（向量 + 全文 + 回表）</span></div>
+      <div class="card metric"><b>12 s</b><span>端到端验证：导入 → 提问 → 复习 → 重启 → 记忆复用</span></div>
     </div>
   </div>
 </section>
@@ -150,39 +150,39 @@ li{margin:4px 0}
 <section id="features">
   <div class="wrap">
     <div class="kicker">界面</div>
-    <h2>四个页面，一个闭环</h2>
+    <h2>五个页面，一个闭环</h2>
 
     <figure>
       <a href="assets/library.jpeg" target="_blank" rel="noopener">
-        <img src="assets/library-card.jpg" width="1236" height="1910" alt="文库页面：导入文献、知识库统计与掌握度" />
+        <img src="assets/library-card.jpg" width="1000" height="1113" alt="文库页面：导入文献、知识库统计与掌握度" />
       </a>
       <figcaption>文库：拖入 PDF / Markdown 即入库；每篇文献显示片段数、标签、掌握度与复习状态。</figcaption>
     </figure>
 
     <figure>
       <a href="assets/ask.jpeg" target="_blank" rel="noopener">
-        <img src="assets/ask-card.jpg" width="1236" height="1484" alt="带出处提问：混合检索结果与出处" />
+        <img src="assets/ask-card.jpg" width="1000" height="760" alt="带出处提问：混合检索结果与出处" />
       </a>
       <figcaption>带出处提问：向量与全文两路召回，RRF 融合，标出「语义第几名 / 关键词第几名」；展开可看这次查询在 seekdb 里做了什么。</figcaption>
     </figure>
 
     <figure>
       <a href="assets/review.jpeg" target="_blank" rel="noopener">
-        <img src="assets/review-card.jpg" width="1236" height="1301" alt="今日复习：自动出题与自评" />
+        <img src="assets/review-card.jpg" width="1000" height="582" alt="今日复习：自动出题与自评" />
       </a>
       <figcaption>今日复习：按「到期 + 薄弱」组卷；有人工考点就考考点，没有就从句子里挖空自动出题。</figcaption>
     </figure>
 
     <figure>
       <a href="assets/memory.jpeg" target="_blank" rel="noopener">
-        <img src="assets/memory-card.jpg" width="1236" height="1310" alt="它记住了什么：学习档案与知识点掌握度" />
+        <img src="assets/memory-card.jpg" width="1000" height="779" alt="它记住了什么：学习档案与知识点掌握度" />
       </a>
       <figcaption>它记住了什么：学习档案、每个知识点的掌握度与到期时间、跨会话提问历史，以及每条记忆当前的 revision。</figcaption>
     </figure>
 
     <figure>
       <a href="assets/tech.jpeg" target="_blank" rel="noopener">
-        <img src="assets/tech-card.jpg" width="1236" height="2943" alt="技术证据：seekdb 查询与 PowerContext 记忆读写" />
+        <img src="assets/tech-card.jpg" width="1000" height="1249" alt="技术证据：seekdb 查询与 PowerContext 记忆读写" />
       </a>
       <figcaption>技术证据：seekdb 集合/维度/分词器、每次检索与记忆读写的参数和耗时，可直接核对。</figcaption>
     </figure>
@@ -240,7 +240,7 @@ li{margin:4px 0}
         <pre><code>cd qoder/wengu
 pip install -e ".[seekdb]"
 ./scripts/verify.sh</code></pre>
-        <p class="muted small">依次执行：自检 → 导入示例语料 → 带出处提问 → 组卷 → 15 个单测 →
+        <p class="muted small">依次执行：自检 → 导入示例语料 → 带出处提问 → 组卷 → 16 个单测 →
         端到端验证（含重启 Server 与记忆复用），产物写入 <code>records/</code>。</p>
       </div>
       <div class="card">
@@ -248,8 +248,8 @@ pip install -e ".[seekdb]"
         <ul class="muted small">
           <li>存储：<span class="pill">seekdb</span><span class="pill">HNSW(cosine)</span><span class="pill">IK 分词</span>，34 片段 / 512 维</li>
           <li>记忆：<span class="pill">8 条 artifact</span><span class="pill">revision 递增</span>，重启后 <code>state_reused = true</code></li>
-          <li>检索：单次 10–25 ms，首选命中正确小节</li>
-          <li>测试：<span class="pill">15 passed</span></li>
+          <li>检索：单次 7–19 ms，首选命中正确小节，薄弱点加权 <code>1.18×</code></li>
+          <li>测试：<span class="pill">16 passed</span></li>
         </ul>
       </div>
     </div>
@@ -329,8 +329,8 @@ wengu serve</code></pre>
 
 <script>
 // 发布前把下面的地址换成真实仓库地址（可带上分支），例如：
-// https://github.com/<你的账号>/powercontext/tree/qoder/wengu/qoder/wengu
-const REPO_URL = "https://github.com/oceanbase/powercontext/tree/2026-competition-ecosystem/qoder/wengu";
+// https://github.com/<你的账号>/powercontext/tree/main/qoder/wengu
+const REPO_URL = "https://github.com/gegedda/powercontext-fork/tree/qoder/wengu/qoder/wengu";
 const link = document.getElementById("repo-link");
 link.href = REPO_URL;
 </script>

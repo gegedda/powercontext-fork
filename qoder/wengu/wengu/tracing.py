@@ -24,7 +24,8 @@ class Tracer:
     def record(self, kind: str, payload: dict | None = None) -> None:
         with self._lock:
             self._counters[kind] = self._counters.get(kind, 0) + 1
-            self._events.append({"ts": _now(), "kind": kind, "seq": sum(self._counters.values()), **(payload or {})})
+            event = {**(payload or {}), "ts": _now(), "kind": kind, "seq": sum(self._counters.values())}
+            self._events.append(event)
 
     def recent(self, limit: int = 20, kind_prefix: str = "") -> list[dict]:
         with self._lock:

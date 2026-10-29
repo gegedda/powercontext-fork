@@ -23,18 +23,18 @@ PDF/笔记 → 切分小节 → 本地 bge-small-zh 向量 + 元数据 → seekd
 | --- | --- |
 | seekdb | `records/tech.json`：`database=wengu`、`collections=[wengu_chunks, wengu_docs]`、`dimension=512`、`vector_index=HNSW(cosine)`、`fulltext_analyzer=ik`；`records/ask.json`：每次提问的 `vector_hits`（余弦分数）与 `fulltext_hits`（全文相关度）两路原始输出 |
 | PowerContext | `records/tech.json`：`powercontext.create_artifact` / `replace_artifact`（artifact_id、from_revision → to_revision）；`memory_after_restart.json`：重启后 `list_atomic_memories` 读回的同一批知识点 |
-| 应用逻辑 | `records/review.json`：组卷原因与评分；`records/ask_after_restart.json`：`weak_boosted` 片段说明记忆真的反过来影响检索 |
+| 应用逻辑 | `records/review.json`：首次组卷、评分、评分后重新组卷（薄弱项前置）；`records/ask_after_restart.json`：`weak_boosted` 片段说明记忆真的反过来影响检索 |
 
 ## 量化结果（本次 Linux 实测）
 
 | 指标 | 数值 |
 | --- | --- |
-| 示例语料 | 7 篇（6 Markdown + 1 PDF），34 个检索片段，约 6 000 字 |
-| 导入耗时 | 6.4 s（含 34 段文本的 ONNX 向量化与 seekdb 索引刷新） |
-| 单次检索 | 10–25 ms（`embed 3–10 ms + 向量 1–4 ms + 全文 2–12 ms + 回表 <1 ms`） |
-| 端到端 demo | 16 s（导入 + 3 次提问 + 组卷 + 4 次评分 + 重启 Server + 记忆复用 + 再提问） |
-| 记忆规模 | 8 条 artifact（1 档案 + 6 知识点 + 1 提问历史），单条 0.4–1.7 KB |
-| 测试 | 15 个单元测试全部通过 |
+| 示例语料 | 7 篇（6 Markdown + 1 PDF），34 个检索片段，约 7 000 字 |
+| 导入耗时 | 9.3 s（含 34 段文本的 ONNX 向量化与 seekdb 索引刷新） |
+| 单次检索 | 7–19 ms（`embed 3–4 ms + 向量 1–4 ms + 全文 2–9 ms + 回表 0.4–2.2 ms`） |
+| 端到端 demo | 12 s（导入 + 3 次提问 + 组卷 + 4 次评分 + 再组卷 + 重启 Server + 记忆复用 + 薄弱点加权提问） |
+| 记忆规模 | 8 条 artifact（1 档案 + 6 知识点 + 1 提问历史），单条 0.3–1.2 KB |
+| 测试 | 16 个单元测试全部通过 |
 
 ## 与「只用向量库」或「只用聊天记录」的差别
 

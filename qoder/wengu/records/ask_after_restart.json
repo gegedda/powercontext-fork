@@ -1,51 +1,84 @@
 {
-  "question": "写偏斜和 MVCC 的关系是什么？",
+  "question": "OceanBase 的 shared-nothing 架构怎么扩展到 707 万 tpmC？",
   "answer": {
     "mode": "extractive",
-    "summary": "最相关的内容在 「MVCC 与快照隔离」· 关键判断：- 「MVCC 等于无锁」是错的：写写冲突仍需行锁，SELECT ... FOR UPDATE 需要加锁读。- OceanBase 的 MVCC 基于多版本 memtable 与 SSTable，结合全局时间戳服务（GTS）生成快照读版本。",
+    "summary": "最相关的内容在 「OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库」· 正文：论文：OceanBase: A 707 Million tpmC Distributed Relational Database System，PVLDB 2022。OceanBase 采用 shared-nothing 架构，每个分区（partition）是一个 Paxos 组，通常三副本。",
     "blocks": [
       {
-        "title": "MVCC 与快照隔离",
-        "section": "关键判断",
-        "page": null,
-        "doc_id": "mvcc-snapshot-isolation",
-        "chunk_id": "mvcc-snapshot-isolation#003",
-        "quote": "- 「MVCC 等于无锁」是错的：写写冲突仍需行锁，SELECT ... FOR UPDATE 需要加锁读。- OceanBase 的 MVCC 基于多版本 memtable 与 SSTable，结合全局时间戳服务（GTS）生成快照读版本。",
-        "score": 0.032522,
-        "overlap": 1,
+        "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+        "section": "正文",
+        "page": 1,
+        "doc_id": "oceanbase-tpcc-notes",
+        "chunk_id": "oceanbase-tpcc-notes#000",
+        "quote": "论文：OceanBase: A 707 Million tpmC Distributed Relational Database System，PVLDB 2022。OceanBase 采用 shared-nothing 架构，每个分区（partition）是一个 Paxos 组，通常三副本。",
+        "score": 0.038689,
+        "overlap": 7,
         "matched_by": [
-          "语义第 2 名",
+          "语义第 1 名",
           "关键词第 1 名"
         ],
-        "weak_topic": false
+        "weak_topic": true
       },
       {
-        "title": "LSM-Tree：写优化的存储引擎结构",
-        "section": "与 B+Tree 的对比",
-        "page": null,
-        "doc_id": "lsm-tree",
-        "chunk_id": "lsm-tree#005",
-        "quote": "B+Tree 原地更新，写放大低但随机写多；LSM-Tree 顺序写吞吐高，但需要后台合并成本。",
-        "score": 0.031498,
-        "overlap": 0,
+        "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+        "section": "正文",
+        "page": 1,
+        "doc_id": "oceanbase-tpcc-notes",
+        "chunk_id": "oceanbase-tpcc-notes#001",
+        "quote": "shared-nothing 架构，每个分区（partition）是一个 Paxos 组，通常三副本。副本之间用 Paxos 协议同步 redo 日志，多数派持久化即可对外提供服务，保证 RPO=0。",
+        "score": 0.038065,
+        "overlap": 3,
         "matched_by": [
-          "语义第 3 名",
-          "关键词第 4 名"
+          "语义第 2 名",
+          "关键词第 2 名"
         ],
-        "weak_topic": false
+        "weak_topic": true
       }
     ]
   },
   "results": [
+    {
+      "chunk_id": "oceanbase-tpcc-notes#000",
+      "doc_id": "oceanbase-tpcc-notes",
+      "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+      "section": "正文",
+      "page": 1,
+      "score": 0.038689,
+      "vector_rank": 1,
+      "fulltext_rank": 1,
+      "weak_boost": 1.18
+    },
+    {
+      "chunk_id": "oceanbase-tpcc-notes#001",
+      "doc_id": "oceanbase-tpcc-notes",
+      "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+      "section": "正文",
+      "page": 1,
+      "score": 0.038065,
+      "vector_rank": 2,
+      "fulltext_rank": 2,
+      "weak_boost": 1.18
+    },
+    {
+      "chunk_id": "oceanbase-tpcc-notes#002",
+      "doc_id": "oceanbase-tpcc-notes",
+      "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+      "section": "正文",
+      "page": 1,
+      "score": 0.034043,
+      "vector_rank": 13,
+      "fulltext_rank": 6,
+      "weak_boost": 1.18
+    },
     {
       "chunk_id": "mvcc-snapshot-isolation#003",
       "doc_id": "mvcc-snapshot-isolation",
       "title": "MVCC 与快照隔离",
       "section": "关键判断",
       "page": null,
-      "score": 0.032522,
-      "vector_rank": 2,
-      "fulltext_rank": 1,
+      "score": 0.030579,
+      "vector_rank": 3,
+      "fulltext_rank": 8,
       "weak_boost": 1.0
     },
     {
@@ -54,63 +87,23 @@
       "title": "LSM-Tree：写优化的存储引擎结构",
       "section": "与 B+Tree 的对比",
       "page": null,
-      "score": 0.031498,
-      "vector_rank": 3,
+      "score": 0.030118,
+      "vector_rank": 9,
       "fulltext_rank": 4,
-      "weak_boost": 1.0
-    },
-    {
-      "chunk_id": "lsm-tree#003",
-      "doc_id": "lsm-tree",
-      "title": "LSM-Tree：写优化的存储引擎结构",
-      "section": "写放大、读放大、空间放大",
-      "page": null,
-      "score": 0.03101,
-      "vector_rank": 4,
-      "fulltext_rank": 5,
-      "weak_boost": 1.0
-    },
-    {
-      "chunk_id": "lsm-tree#000",
-      "doc_id": "lsm-tree",
-      "title": "LSM-Tree：写优化的存储引擎结构",
-      "section": "定义",
-      "page": null,
-      "score": 0.030536,
-      "vector_rank": 5,
-      "fulltext_rank": 6,
-      "weak_boost": 1.0
-    },
-    {
-      "chunk_id": "mvcc-snapshot-isolation#000",
-      "doc_id": "mvcc-snapshot-isolation",
-      "title": "MVCC 与快照隔离",
-      "section": "定义",
-      "page": null,
-      "score": 0.030214,
-      "vector_rank": 11,
-      "fulltext_rank": 2,
       "weak_boost": 1.0
     }
   ],
   "citations": [
     {
-      "doc_id": "mvcc-snapshot-isolation",
-      "title": "MVCC 与快照隔离",
-      "section": "关键判断",
-      "page": null,
-      "chunk_id": "mvcc-snapshot-isolation#003"
-    },
-    {
-      "doc_id": "lsm-tree",
-      "title": "LSM-Tree：写优化的存储引擎结构",
-      "section": "与 B+Tree 的对比",
-      "page": null,
-      "chunk_id": "lsm-tree#005"
+      "doc_id": "oceanbase-tpcc-notes",
+      "title": "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库",
+      "section": "正文",
+      "page": 1,
+      "chunk_id": "oceanbase-tpcc-notes#000"
     }
   ],
   "trace": {
-    "query": "写偏斜和 MVCC 的关系是什么？",
+    "query": "OceanBase 的 shared-nothing 架构怎么扩展到 707 万 tpmC？",
     "filters": {},
     "backend": "seekdb",
     "embedder": {
@@ -121,239 +114,239 @@
     },
     "vector_hits": [
       {
-        "chunk_id": "vector-index#000",
-        "score": 0.473395,
+        "chunk_id": "oceanbase-tpcc-notes#000",
+        "score": 0.673549,
         "rank": 1
       },
       {
-        "chunk_id": "mvcc-snapshot-isolation#003",
-        "score": 0.465031,
+        "chunk_id": "oceanbase-tpcc-notes#001",
+        "score": 0.613201,
         "rank": 2
       },
       {
-        "chunk_id": "lsm-tree#005",
-        "score": 0.452206,
+        "chunk_id": "mvcc-snapshot-isolation#003",
+        "score": 0.523766,
         "rank": 3
       },
       {
-        "chunk_id": "lsm-tree#003",
-        "score": 0.449943,
+        "chunk_id": "vector-index#003",
+        "score": 0.521818,
         "rank": 4
       },
       {
-        "chunk_id": "lsm-tree#000",
-        "score": 0.446719,
+        "chunk_id": "lsm-tree#004",
+        "score": 0.517593,
         "rank": 5
       },
       {
-        "chunk_id": "lsm-tree#004",
-        "score": 0.444695,
+        "chunk_id": "lsm-tree#003",
+        "score": 0.517538,
         "rank": 6
       },
       {
-        "chunk_id": "vector-index#003",
-        "score": 0.438789,
+        "chunk_id": "vector-index#001",
+        "score": 0.515044,
         "rank": 7
       },
       {
-        "chunk_id": "vector-index#001",
-        "score": 0.4377,
+        "chunk_id": "vector-index#002",
+        "score": 0.511925,
         "rank": 8
       },
       {
-        "chunk_id": "wal-aries#004",
-        "score": 0.435584,
+        "chunk_id": "lsm-tree#005",
+        "score": 0.50938,
         "rank": 9
       },
       {
-        "chunk_id": "wal-aries#000",
-        "score": 0.431357,
+        "chunk_id": "lsm-tree#002",
+        "score": 0.498757,
         "rank": 10
       },
       {
-        "chunk_id": "mvcc-snapshot-isolation#000",
-        "score": 0.428768,
+        "chunk_id": "lsm-tree#001",
+        "score": 0.494104,
         "rank": 11
       },
       {
-        "chunk_id": "raft#004",
-        "score": 0.424399,
+        "chunk_id": "query-optimizer#002",
+        "score": 0.488122,
         "rank": 12
       },
       {
-        "chunk_id": "raft#000",
-        "score": 0.418556,
+        "chunk_id": "oceanbase-tpcc-notes#002",
+        "score": 0.487448,
         "rank": 13
       },
       {
-        "chunk_id": "mvcc-snapshot-isolation#002",
-        "score": 0.415236,
+        "chunk_id": "query-optimizer#004",
+        "score": 0.477984,
         "rank": 14
       },
       {
-        "chunk_id": "wal-aries#002",
-        "score": 0.41121,
+        "chunk_id": "mvcc-snapshot-isolation#001",
+        "score": 0.469641,
         "rank": 15
       }
     ],
     "fulltext_hits": [
       {
-        "chunk_id": "mvcc-snapshot-isolation#003",
-        "score": 1.448878,
+        "chunk_id": "oceanbase-tpcc-notes#000",
+        "score": 6.204767,
         "rank": 1
       },
       {
-        "chunk_id": "mvcc-snapshot-isolation#000",
-        "score": 1.394209,
+        "chunk_id": "oceanbase-tpcc-notes#001",
+        "score": 1.048063,
         "rank": 2
       },
       {
-        "chunk_id": "mvcc-snapshot-isolation#002",
-        "score": 1.311472,
+        "chunk_id": "raft#004",
+        "score": 0.860825,
         "rank": 3
       },
       {
         "chunk_id": "lsm-tree#005",
-        "score": 1.08628,
+        "score": 0.722123,
         "rank": 4
       },
       {
-        "chunk_id": "lsm-tree#003",
-        "score": 1.077985,
+        "chunk_id": "query-optimizer#000",
+        "score": 0.670949,
         "rank": 5
       },
       {
-        "chunk_id": "lsm-tree#000",
-        "score": 0.929096,
+        "chunk_id": "oceanbase-tpcc-notes#002",
+        "score": 0.633769,
         "rank": 6
       },
       {
-        "chunk_id": "lsm-tree#004",
-        "score": 0.886135,
+        "chunk_id": "mvcc-snapshot-isolation#000",
+        "score": 0.625622,
         "rank": 7
       },
       {
-        "chunk_id": "oceanbase-tpcc-notes#000",
-        "score": 0.811373,
+        "chunk_id": "mvcc-snapshot-isolation#003",
+        "score": 0.608689,
         "rank": 8
       },
       {
-        "chunk_id": "oceanbase-tpcc-notes#002",
-        "score": 0.653983,
+        "chunk_id": "query-optimizer#003",
+        "score": 0.457348,
         "rank": 9
       },
       {
-        "chunk_id": "raft#000",
-        "score": 0.495516,
+        "chunk_id": "raft#002",
+        "score": 0.277778,
         "rank": 10
       },
       {
-        "chunk_id": "wal-aries#004",
-        "score": 0.49249,
+        "chunk_id": "query-optimizer#002",
+        "score": 0.252583,
         "rank": 11
       },
       {
-        "chunk_id": "wal-aries#000",
-        "score": 0.461126,
+        "chunk_id": "lsm-tree#000",
+        "score": 0.187713,
         "rank": 12
       },
       {
-        "chunk_id": "oceanbase-tpcc-notes#001",
-        "score": 0.438869,
+        "chunk_id": "mvcc-snapshot-isolation#001",
+        "score": 0.171206,
         "rank": 13
       },
       {
-        "chunk_id": "mvcc-snapshot-isolation#001",
-        "score": 0.409571,
+        "chunk_id": "vector-index#000",
+        "score": 0.168453,
         "rank": 14
       },
       {
-        "chunk_id": "vector-index#005",
-        "score": 0.396258,
+        "chunk_id": "mvcc-snapshot-isolation#002",
+        "score": 0.167173,
         "rank": 15
       }
     ],
     "fused": [
       {
-        "chunk_id": "mvcc-snapshot-isolation#003",
-        "vector_rank": 2,
+        "chunk_id": "oceanbase-tpcc-notes#000",
+        "vector_rank": 1,
         "fulltext_rank": 1,
-        "vector_score": 0.46503112136947,
-        "fulltext_score": 1.448878080694938,
-        "score": 0.03252247488101534,
-        "weak_boost": 1.0,
-        "doc_id": "mvcc-snapshot-isolation",
+        "vector_score": 0.6735491357311424,
+        "fulltext_score": 6.204766921149428,
+        "score": 0.038688524590163934,
+        "weak_boost": 1.18,
+        "doc_id": "oceanbase-tpcc-notes",
         "native_hybrid_preview": [
           {
+            "chunk_id": "oceanbase-tpcc-notes#000",
+            "score": 0.0328
+          },
+          {
+            "chunk_id": "oceanbase-tpcc-notes#001",
+            "score": 0.0323
+          },
+          {
             "chunk_id": "mvcc-snapshot-isolation#003",
-            "score": 0.0325
+            "score": 0.0306
           },
           {
-            "chunk_id": "lsm-tree#005",
-            "score": 0.0315
+            "chunk_id": "vector-index#003",
+            "score": 0.0277
           },
           {
-            "chunk_id": "lsm-tree#003",
-            "score": 0.031
-          },
-          {
-            "chunk_id": "lsm-tree#000",
-            "score": 0.0305
-          },
-          {
-            "chunk_id": "vector-index#000",
-            "score": 0.0282
+            "chunk_id": "lsm-tree#004",
+            "score": 0.0266
           }
         ]
       },
       {
-        "chunk_id": "lsm-tree#005",
-        "vector_rank": 3,
-        "fulltext_rank": 4,
-        "vector_score": 0.4522057771682739,
-        "fulltext_score": 1.0862801727588798,
-        "score": 0.03149801587301587,
-        "weak_boost": 1.0,
-        "doc_id": "lsm-tree"
-      },
-      {
-        "chunk_id": "lsm-tree#003",
-        "vector_rank": 4,
-        "fulltext_rank": 5,
-        "vector_score": 0.44994271099908967,
-        "fulltext_score": 1.077984907084904,
-        "score": 0.031009615384615385,
-        "weak_boost": 1.0,
-        "doc_id": "lsm-tree"
-      },
-      {
-        "chunk_id": "lsm-tree#000",
-        "vector_rank": 5,
-        "fulltext_rank": 6,
-        "vector_score": 0.44671931862831116,
-        "fulltext_score": 0.9290957808284465,
-        "score": 0.030536130536130537,
-        "weak_boost": 1.0,
-        "doc_id": "lsm-tree"
-      },
-      {
-        "chunk_id": "mvcc-snapshot-isolation#000",
-        "vector_rank": 11,
+        "chunk_id": "oceanbase-tpcc-notes#001",
+        "vector_rank": 2,
         "fulltext_rank": 2,
-        "vector_score": 0.4287677151699243,
-        "fulltext_score": 1.3942091246432167,
-        "score": 0.03021353930031804,
+        "vector_score": 0.6132014624356362,
+        "fulltext_score": 1.048063324459557,
+        "score": 0.03806451612903226,
+        "weak_boost": 1.18,
+        "doc_id": "oceanbase-tpcc-notes"
+      },
+      {
+        "chunk_id": "oceanbase-tpcc-notes#002",
+        "vector_rank": 13,
+        "fulltext_rank": 6,
+        "vector_score": 0.4874477095933143,
+        "fulltext_score": 0.6337688874235637,
+        "score": 0.03404317144043171,
+        "weak_boost": 1.18,
+        "doc_id": "oceanbase-tpcc-notes"
+      },
+      {
+        "chunk_id": "mvcc-snapshot-isolation#003",
+        "vector_rank": 3,
+        "fulltext_rank": 8,
+        "vector_score": 0.5237663047731579,
+        "fulltext_score": 0.6086886515355177,
+        "score": 0.03057889822595705,
         "weak_boost": 1.0,
         "doc_id": "mvcc-snapshot-isolation"
+      },
+      {
+        "chunk_id": "lsm-tree#005",
+        "vector_rank": 9,
+        "fulltext_rank": 4,
+        "vector_score": 0.5093803698193815,
+        "fulltext_score": 0.7221234248064777,
+        "score": 0.030117753623188408,
+        "weak_boost": 1.0,
+        "doc_id": "lsm-tree"
       }
     ],
     "timings_ms": {
-      "embed": 7.02,
-      "vector": 2.48,
-      "fulltext": 2.2,
-      "fetch": 0.64,
-      "total": 12.45,
-      "native_hybrid": 9.0
+      "embed": 4.88,
+      "vector": 2.03,
+      "fulltext": 6.38,
+      "fetch": 2.05,
+      "total": 15.45,
+      "native_hybrid": 11.52
     },
     "weak_topics": [
       "oceanbase-tpcc-notes"
@@ -376,5 +369,28 @@
       "strength": 0.12
     }
   ],
-  "timing_ms": 95.71
+  "timing_ms": 88.56,
+  "planned_question": "OceanBase 的 shared-nothing 架构怎么扩展到 707 万 tpmC？",
+  "weak_boosted": [
+    "oceanbase-tpcc-notes#000",
+    "oceanbase-tpcc-notes#001",
+    "oceanbase-tpcc-notes#002"
+  ],
+  "weak_boosted_details": [
+    {
+      "chunk_id": "oceanbase-tpcc-notes#000",
+      "doc_id": "oceanbase-tpcc-notes",
+      "boost": 1.18
+    },
+    {
+      "chunk_id": "oceanbase-tpcc-notes#001",
+      "doc_id": "oceanbase-tpcc-notes",
+      "boost": 1.18
+    },
+    {
+      "chunk_id": "oceanbase-tpcc-notes#002",
+      "doc_id": "oceanbase-tpcc-notes",
+      "boost": 1.18
+    }
+  ]
 }

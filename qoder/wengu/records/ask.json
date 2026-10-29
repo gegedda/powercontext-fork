@@ -321,12 +321,12 @@
         }
       ],
       "timings_ms": {
-        "embed": 6.24,
-        "vector": 5.62,
-        "fulltext": 14.79,
-        "fetch": 2.05,
-        "total": 28.82,
-        "native_hybrid": 14.06
+        "embed": 3.34,
+        "vector": 4.17,
+        "fulltext": 9.2,
+        "fetch": 2.17,
+        "total": 18.98,
+        "native_hybrid": 17.41
       },
       "weak_topics": []
     }
@@ -653,12 +653,12 @@
         }
       ],
       "timings_ms": {
-        "embed": 3.18,
-        "vector": 1.47,
-        "fulltext": 1.5,
-        "fetch": 0.32,
-        "total": 6.57,
-        "native_hybrid": 8.58
+        "embed": 3.92,
+        "vector": 1.44,
+        "fulltext": 3.25,
+        "fetch": 2.08,
+        "total": 10.79,
+        "native_hybrid": 9.95
       },
       "weak_topics": []
     }
@@ -978,12 +978,12 @@
         }
       ],
       "timings_ms": {
-        "embed": 4.01,
-        "vector": 1.33,
-        "fulltext": 2.58,
-        "fetch": 0.41,
-        "total": 8.42,
-        "native_hybrid": 6.84
+        "embed": 3.45,
+        "vector": 1.38,
+        "fulltext": 1.61,
+        "fetch": 0.42,
+        "total": 6.95,
+        "native_hybrid": 7.71
       },
       "weak_topics": []
     }

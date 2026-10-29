@@ -395,8 +395,7 @@ function bindAsk() {
         }),
       });
       renderAsk(data);
-      await refreshMemory();
-      renderTech();
+      await reloadAll();
     } catch (error) {
       $("#ask-output").innerHTML = `<div class="card"><p class="err">检索失败：${esc(error.message)}</p></div>`;
     }

@@ -8,7 +8,8 @@
 上学期记过什么**。它把 PDF / Markdown / TXT 笔记切分入知识库，提问时给出**带出处**的原文片段；
 再把每次复习的结果写进 PowerContext，按掌握度与遗忘间隔安排下一次复习。
 
-本目录是本赛题的完整交付物（项目网站通过 Qoder Sites 发布，见 `website/`）。
+本目录是本赛题的完整交付物。项目网站已通过 Qoder Sites 发布：
+https://wengu-review-coach-8pp3v4ytw4k.qoder.zone （源码见 `website/`）。
 
 ---
 
@@ -174,10 +175,10 @@ python -m pytest -q
 | 0 | `"store": {"backend": "seekdb", "chunks": 34, "dimension": 512, "fulltext_analyzer": "ik"}`，`embedder.provider = onnx-bge-small-zh-v1.5` |
 | 1 | `imported` 7 篇（6 md + 1 pdf），`skipped` 为空 |
 | 2 | 第一条引用是「Raft 共识算法 · 日志复制」，摘录包含「多数派确认持久化后，Leader 提交」；`timings_ms.total` 为几十毫秒 |
-| 3 | 返回 6 道题，`reason` 形如「到期复习，而且上次掌握度偏低」 |
+| 3 | 返回 6 道题；首次组卷的 `reason` 为「新导入的文献，先摸摸底」，答过之后薄弱项变成「这里一直薄弱，多练一次」 |
 | 4 | `strength` 下降、`due` 变成次日，`records`/`doctor` 的事件里出现 `powercontext.replace_artifact`（`from_revision → to_revision`） |
-| 5 | `records/demo_summary.json` 中 `restart_and_reuse.state_reused = true`、`topics_after = 6`；`records/tech.json` 含 `seekdb.*` 与 `powercontext.create_artifact / replace_artifact` 事件 |
-| 6 | `15 passed` |
+| 5 | `records/demo_summary.json` 中 `restart_and_reuse.state_reused = true`、`topics_after = 7`；`ask_after_restart.weak_boosted` 非空（`weak_boost = 1.18`）；`records/tech.json` 含 `seekdb.*` 与 `powercontext.create_artifact / replace_artifact` 事件 |
+| 6 | `16 passed` |
 
 **技术生效的证据在哪里看**
 
@@ -211,7 +212,7 @@ qoder/wengu/
 ├── docs/                  # 架构、验证样例、技术说明、Qoder 开发记录
 ├── website/               # Qoder Sites 站点源码（可直接发布）
 ├── records/               # 本次提交对应的真实验证输出
-├── tests/                 # 15 个单元测试
+├── tests/                 # 16 个单元测试
 ├── .env.example
 └── README.md
 ```

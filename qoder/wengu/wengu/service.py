@@ -24,6 +24,27 @@ from .store import build_store
 from .store.base import Filters
 from .tracing import TRACER
 
+# 重启后的追问优先落在「刚被判为薄弱」的文献上，才能验证薄弱点确实影响检索
+FOLLOWUP_QUESTIONS = {
+    "raft": "Raft 里一条日志什么时候算已提交？",
+    "vector-index": "HNSW 的 ef 参数控制什么？",
+    "mvcc-snapshot-isolation": "快照隔离为什么会出现写偏斜？",
+    "query-optimizer": "查询优化器的选择性估计为什么容易出错？",
+    "lsm-tree": "LSM-Tree 为什么会有写放大？",
+    "wal-aries": "ARIES 恢复的三个阶段分别做什么？",
+    "oceanbase-tpcc-notes": "OceanBase 的 shared-nothing 架构怎么扩展到 707 万 tpmC？",
+}
+
+
+def followup_question(weak: list[dict]) -> str:
+    for item in weak:
+        question = FOLLOWUP_QUESTIONS.get(str(item.get("doc_id")))
+        if question:
+            return question
+    if weak:
+        return str(weak[0].get("title") or weak[0].get("doc_id"))
+    return "快照隔离为什么会出现写偏斜？"
+
 
 @dataclass(slots=True)
 class IngestResult:
@@ -366,13 +387,52 @@ class WenGuService:
         assert self.memory is not None
         grades = ["forgot", "vague", "known", "forgot"]
         graded = []
-        for index, item in enumerate(session["items"][: len(grades)]):
-            result = await self.grade(item["doc_id"], grades[index], item["question"])
-            graded.append({"item": item["item_id"], "doc_id": item["doc_id"], "grade": grades[index], **result})
+        graded_docs: set[str] = set()
+        for item in session["items"]:
+            if len(graded) >= len(grades):
+                break
+            if item["doc_id"] in graded_docs:
+                continue
+            grade = grades[len(graded)]
+            result = await self.grade(item["doc_id"], grade, item["question"])
+            graded.append({"item": item["item_id"], "doc_id": item["doc_id"], "grade": grade, **result})
+            graded_docs.add(item["doc_id"])
+        after_grade = await self.review_session()
         (out_dir / "review.json").write_text(
-            json.dumps({"session": session, "graded": graded}, ensure_ascii=False, indent=2), encoding="utf-8"
+            json.dumps(
+                {
+                    "session": session,
+                    "graded": graded,
+                    "after_grade": {
+                        "items": [
+                            {
+                                "item_id": item["item_id"],
+                                "doc_id": item["doc_id"],
+                                "source": item["source"],
+                                "strength": item["strength"],
+                                "reason": item["reason"],
+                            }
+                            for item in after_grade["items"]
+                        ],
+                        "weak": after_grade["weak"],
+                    },
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+            encoding="utf-8",
         )
         record["steps"].append({"step": "review", "items": len(session["items"]), "graded": len(graded)})
+        record["steps"].append(
+            {
+                "step": "review_after_grade",
+                "items": [
+                    {"doc_id": item["doc_id"], "source": item["source"], "strength": item["strength"], "reason": item["reason"]}
+                    for item in after_grade["items"][:4]
+                ],
+                "weak": after_grade["weak"],
+            }
+        )
 
         before = self.memory.snapshot()
         history = await self.memory.revision_history(f"TOPIC-{graded[0]['doc_id']}") if graded else []
@@ -390,7 +450,18 @@ class WenGuService:
         await self.memory.refresh()
         after = self.memory.snapshot()
         same_scope = self.runtime.scope_id == scope_before
-        state_reused = len(after["topics"]) >= len(before["topics"]) and bool(after["weak"] or after["topics"])
+        before_state = {
+            topic["doc_id"]: (topic["attempts"], round(topic["strength"], 3), topic["revision"])
+            for topic in before["topics"]
+        }
+        after_state = {
+            topic["doc_id"]: (topic["attempts"], round(topic["strength"], 3), topic["revision"])
+            for topic in after["topics"]
+        }
+        # 重启后读回的状态必须与重启前逐条一致，而不只是「有数据」
+        state_reused = same_scope and bool(after_state) and all(
+            before_state.get(doc_id) == value for doc_id, value in after_state.items()
+        )
         record["steps"].append(
             {
                 "step": "restart_and_reuse",
@@ -406,18 +477,43 @@ class WenGuService:
             json.dumps({"snapshot": after}, ensure_ascii=False, indent=2), encoding="utf-8"
         )
 
-        # 重启后再问一次，并用薄弱点加权影响检索
-        followup = await self.ask("写偏斜和 MVCC 的关系是什么？", top_k=5)
+        # 重启后针对刚被判为薄弱的文献再问一次，验证薄弱点加权确实生效
+        weak_after = after["weak"]
+        planned_question = followup_question(weak_after)
+        followup = await self.ask(planned_question, top_k=5)
+        boosted = [item for item in followup["results"] if item.get("weak_boost", 1.0) > 1.0]
+        if not boosted and weak_after:
+            planned_question = str(weak_after[0].get("title") or weak_after[0]["doc_id"])
+            followup = await self.ask(planned_question, top_k=5)
+            boosted = [item for item in followup["results"] if item.get("weak_boost", 1.0) > 1.0]
         record["steps"].append(
             {
                 "step": "ask_after_restart",
                 "question": followup["question"],
-                "weak_boosted": [item["chunk_id"] for item in followup["results"] if item.get("weak_boost", 1.0) > 1.0],
+                "weak_topics": [item["doc_id"] for item in weak_after],
+                "weak_boosted": [item["chunk_id"] for item in boosted],
+                "weak_boosted_details": [
+                    {
+                        "chunk_id": item["chunk_id"],
+                        "doc_id": item["doc_id"],
+                        "boost": item["weak_boost"],
+                    }
+                    for item in boosted
+                ],
                 "citations": followup["citations"][:3],
             }
         )
+        followup_payload = {
+            **followup,
+            "planned_question": planned_question,
+            "weak_boosted": [item["chunk_id"] for item in boosted],
+            "weak_boosted_details": [
+                {"chunk_id": item["chunk_id"], "doc_id": item["doc_id"], "boost": item["weak_boost"]}
+                for item in boosted
+            ],
+        }
         (out_dir / "ask_after_restart.json").write_text(
-            json.dumps(followup, ensure_ascii=False, indent=2), encoding="utf-8"
+            json.dumps(followup_payload, ensure_ascii=False, indent=2), encoding="utf-8"
         )
 
         tech = self.tech_snapshot()

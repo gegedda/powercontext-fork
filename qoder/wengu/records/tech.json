@@ -16,7 +16,7 @@
     "fulltext_analyzer": "ik",
     "collection_mode": "existing",
     "pyseekdb": "1.4.0.post1",
-    "checked_at": "2026-10-29T07:21:55+08:00"
+    "checked_at": "2026-10-29T07:52:32+08:00"
   },
   "embedder": {
     "provider": "onnx-bge-small-zh-v1.5",
@@ -33,7 +33,7 @@
       "goal": "把数据库系统笔记真正记住",
       "style": "要点优先",
       "daily_quota": 6,
-      "created_at": "2026-10-29T07:21:55+08:00"
+      "created_at": "2026-10-29T07:52:32+08:00"
     },
     "topics": [
       {
@@ -44,14 +44,55 @@
         "attempts": 1,
         "correct": 0,
         "interval_days": 1.0,
-        "last_review": "2026-10-29T07:21:53+08:00",
-        "due": "2026-10-30T07:21:53+08:00",
+        "last_review": "2026-10-29T07:52:30+08:00",
+        "due": "2026-10-30T07:52:30+08:00",
         "history": [
           {
-            "at": "2026-10-29T07:21:53+08:00",
+            "at": "2026-10-29T07:52:30+08:00",
             "grade": "forgot",
             "strength": 0.0,
             "question": "补全这一句（原文出自「正文」）：\nshared-nothing 架构，每个分区（partition）是一个 ＿＿＿＿ 组"
+          }
+        ],
+        "weak": true,
+        "reviewed": true,
+        "status": "薄弱",
+        "due_now": false,
+        "revision": 2
+      },
+      {
+        "type": "topic",
+        "doc_id": "wal-aries",
+        "title": "WAL 与 ARIES 恢复",
+        "strength": 0.0,
+        "attempts": 0,
+        "correct": 0,
+        "interval_days": 1.0,
+        "last_review": null,
+        "due": "2026-10-29T07:52:30+08:00",
+        "history": [],
+        "weak": false,
+        "reviewed": false,
+        "status": "未复习",
+        "due_now": true,
+        "revision": 1
+      },
+      {
+        "type": "topic",
+        "doc_id": "vector-index",
+        "title": "向量索引：HNSW 与 IVF-PQ",
+        "strength": 0.0,
+        "attempts": 1,
+        "correct": 0,
+        "interval_days": 1.0,
+        "last_review": "2026-10-29T07:52:30+08:00",
+        "due": "2026-10-30T07:52:30+08:00",
+        "history": [
+          {
+            "at": "2026-10-29T07:52:30+08:00",
+            "grade": "forgot",
+            "strength": 0.0,
+            "question": "HNSW 论文的作者与年份？"
           }
         ],
         "weak": true,
@@ -69,7 +110,7 @@
         "correct": 0,
         "interval_days": 1.0,
         "last_review": null,
-        "due": "2026-10-29T07:21:53+08:00",
+        "due": "2026-10-29T07:52:30+08:00",
         "history": [],
         "weak": false,
         "reviewed": false,
@@ -86,54 +127,13 @@
         "correct": 0,
         "interval_days": 1.0,
         "last_review": null,
-        "due": "2026-10-29T07:21:53+08:00",
+        "due": "2026-10-29T07:52:30+08:00",
         "history": [],
         "weak": false,
         "reviewed": false,
         "status": "未复习",
         "due_now": true,
         "revision": 1
-      },
-      {
-        "type": "topic",
-        "doc_id": "wal-aries",
-        "title": "WAL 与 ARIES 恢复",
-        "strength": 0.0,
-        "attempts": 0,
-        "correct": 0,
-        "interval_days": 1.0,
-        "last_review": null,
-        "due": "2026-10-29T07:21:53+08:00",
-        "history": [],
-        "weak": false,
-        "reviewed": false,
-        "status": "未复习",
-        "due_now": true,
-        "revision": 1
-      },
-      {
-        "type": "topic",
-        "doc_id": "vector-index",
-        "title": "向量索引：HNSW 与 IVF-PQ",
-        "strength": 0.0,
-        "attempts": 1,
-        "correct": 0,
-        "interval_days": 1.0,
-        "last_review": "2026-10-29T07:21:53+08:00",
-        "due": "2026-10-30T07:21:53+08:00",
-        "history": [
-          {
-            "at": "2026-10-29T07:21:53+08:00",
-            "grade": "forgot",
-            "strength": 0.0,
-            "question": "HNSW 论文的作者与年份？"
-          }
-        ],
-        "weak": true,
-        "reviewed": true,
-        "status": "薄弱",
-        "due_now": false,
-        "revision": 2
       },
       {
         "type": "topic",
@@ -143,11 +143,11 @@
         "attempts": 1,
         "correct": 0,
         "interval_days": 1.5,
-        "last_review": "2026-10-29T07:21:53+08:00",
-        "due": "2026-10-30T19:21:53+08:00",
+        "last_review": "2026-10-29T07:52:30+08:00",
+        "due": "2026-10-30T19:52:30+08:00",
         "history": [
           {
-            "at": "2026-10-29T07:21:53+08:00",
+            "at": "2026-10-29T07:52:30+08:00",
             "grade": "vague",
             "strength": 0.12,
             "question": "多列谓词选择性估算常用的假设及其风险？"
@@ -167,11 +167,11 @@
         "attempts": 1,
         "correct": 1,
         "interval_days": 2.2,
-        "last_review": "2026-10-29T07:21:53+08:00",
-        "due": "2026-10-31T12:09:53+08:00",
+        "last_review": "2026-10-29T07:52:30+08:00",
+        "due": "2026-10-31T12:40:30+08:00",
         "history": [
           {
-            "at": "2026-10-29T07:21:53+08:00",
+            "at": "2026-10-29T07:52:30+08:00",
             "grade": "known",
             "strength": 0.35,
             "question": "长事务对 MVCC 的主要副作用是什么？"
@@ -203,22 +203,21 @@
     ],
     "ask_log": [
       {
-        "at": "2026-10-29T07:21:55+08:00",
-        "question": "写偏斜和 MVCC 的关系是什么？",
+        "at": "2026-10-29T07:52:32+08:00",
+        "question": "OceanBase 的 shared-nothing 架构怎么扩展到 707 万 tpmC？",
         "doc_ids": [
+          "oceanbase-tpcc-notes",
+          "oceanbase-tpcc-notes",
+          "oceanbase-tpcc-notes",
           "mvcc-snapshot-isolation",
-          "lsm-tree",
-          "lsm-tree",
-          "lsm-tree",
-          "mvcc-snapshot-isolation"
+          "lsm-tree"
         ],
         "sources": [
-          "MVCC 与快照隔离",
-          "LSM-Tree：写优化的存储引擎结构"
+          "OceanBase 论文精读笔记：707 万 tpmC 的分布式关系数据库"
         ]
       },
       {
-        "at": "2026-10-29T07:21:53+08:00",
+        "at": "2026-10-29T07:52:30+08:00",
         "question": "HNSW 的 ef 参数控制什么？",
         "doc_ids": [
           "vector-index",
@@ -232,7 +231,7 @@
         ]
       },
       {
-        "at": "2026-10-29T07:21:53+08:00",
+        "at": "2026-10-29T07:52:30+08:00",
         "question": "快照隔离为什么会出现写偏斜？",
         "doc_ids": [
           "mvcc-snapshot-isolation",
@@ -248,7 +247,7 @@
         ]
       },
       {
-        "at": "2026-10-29T07:21:53+08:00",
+        "at": "2026-10-29T07:52:30+08:00",
         "question": "Raft 里一条日志什么时候算已提交？",
         "doc_ids": [
           "raft",
@@ -265,473 +264,505 @@
     "entries": 8,
     "reads": 2,
     "writes": 1,
-    "last_load_ms": 14.02,
-    "base_url": "http://127.0.0.1:49725",
+    "last_load_ms": 10.66,
+    "base_url": "http://127.0.0.1:57971",
     "mode": "in-process",
     "storage": "sqlite",
-    "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+    "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
     "data_dir": "/root/wengu-data/powercontext",
     "server": "powercontext.server.factory.create_server_app",
     "client": "powercontext.client.PowerContextClient"
   },
   "counters": {
     "seekdb.open": 1,
-    "powercontext.list_atomic_memories": 12,
+    "powercontext.list_atomic_memories": 13,
     "wengu.ready": 1,
     "seekdb.upsert_document": 7,
     "powercontext.create_artifact": 8,
     "retrieval.hybrid": 4,
     "powercontext.replace_artifact": 7,
-    "coach.build_session": 1,
+    "coach.build_session": 2,
     "coach.grade": 4,
     "powercontext.list_artifact_revisions": 1
   },
   "events": [
     {
-      "ts": "2026-10-29T07:21:55.138+08:00",
-      "kind": "retrieval.hybrid",
-      "seq": 46,
-      "query": "写偏斜和 MVCC 的关系是什么？",
+      "query": "OceanBase 的 shared-nothing 架构怎么扩展到 707 万 tpmC？",
       "backend": "seekdb",
       "filters": {},
       "hits": 5,
-      "latency_ms": 95.68,
-      "vector_ms": 2.48,
-      "fulltext_ms": 2.2
+      "latency_ms": 88.53,
+      "vector_ms": 2.03,
+      "fulltext_ms": 6.38,
+      "ts": "2026-10-29T07:52:32.259+08:00",
+      "kind": "retrieval.hybrid",
+      "seq": 48
     },
     {
-      "ts": "2026-10-29T07:21:55.138+08:00",
-      "kind": "powercontext.list_atomic_memories",
-      "seq": 45,
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
       "entries": 8,
       "topics": 7,
-      "latency_ms": 14.02
+      "latency_ms": 10.66,
+      "ts": "2026-10-29T07:52:32.259+08:00",
+      "kind": "powercontext.list_atomic_memories",
+      "seq": 47
     },
     {
-      "ts": "2026-10-29T07:21:55.124+08:00",
-      "kind": "wengu-ask-log",
-      "seq": 44,
       "entry_id": "ASKLOG-1",
-      "artifact_id": "art_4f15e2032ae542d192f10c85dbdbe5de",
+      "memory_kind": "wengu-ask-log",
+      "artifact_id": "art_a01fb9c0d2ed4b01803e96174c5ec3b3",
       "from_revision": 3,
       "to_revision": 4,
-      "bytes": 1158,
-      "reason": "记录提问历史"
+      "bytes": 1212,
+      "reason": "记录提问历史",
+      "ts": "2026-10-29T07:52:32.249+08:00",
+      "kind": "powercontext.replace_artifact",
+      "seq": 46
     },
     {
-      "ts": "2026-10-29T07:21:55.042+08:00",
-      "kind": "powercontext.list_atomic_memories",
-      "seq": 43,
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
       "entries": 8,
       "topics": 7,
-      "latency_ms": 13.39
+      "latency_ms": 14.44,
+      "ts": "2026-10-29T07:52:32.169+08:00",
+      "kind": "powercontext.list_atomic_memories",
+      "seq": 45
     },
     {
-      "ts": "2026-10-29T07:21:53.749+08:00",
-      "kind": "powercontext.list_artifact_revisions",
-      "seq": 42,
       "entry_id": "TOPIC-oceanbase-tpcc-notes",
-      "revisions": 2
+      "revisions": 2,
+      "ts": "2026-10-29T07:52:30.932+08:00",
+      "kind": "powercontext.list_artifact_revisions",
+      "seq": 44
     },
     {
-      "ts": "2026-10-29T07:21:53.735+08:00",
-      "kind": "coach.grade",
-      "seq": 41,
+      "items": 6,
+      "quota": 6,
+      "weak_topics": 3,
+      "ts": "2026-10-29T07:52:30.918+08:00",
+      "kind": "coach.build_session",
+      "seq": 43
+    },
+    {
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
+      "entries": 8,
+      "topics": 7,
+      "latency_ms": 14.35,
+      "ts": "2026-10-29T07:52:30.914+08:00",
+      "kind": "powercontext.list_atomic_memories",
+      "seq": 42
+    },
+    {
       "doc_id": "vector-index",
       "grade": "forgot",
       "strength": 0.0,
-      "due": "2026-10-30T07:21:53+08:00"
+      "due": "2026-10-30T07:52:30+08:00",
+      "ts": "2026-10-29T07:52:30.900+08:00",
+      "kind": "coach.grade",
+      "seq": 41
     },
     {
-      "ts": "2026-10-29T07:21:53.735+08:00",
-      "kind": "powercontext.list_atomic_memories",
-      "seq": 40,
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
       "entries": 8,
       "topics": 7,
-      "latency_ms": 14.07
+      "latency_ms": 15.73,
+      "ts": "2026-10-29T07:52:30.900+08:00",
+      "kind": "powercontext.list_atomic_memories",
+      "seq": 40
     },
     {
-      "ts": "2026-10-29T07:21:53.721+08:00",
-      "kind": "wengu-topic",
-      "seq": 39,
       "entry_id": "TOPIC-vector-index",
-      "artifact_id": "art_b1944bd8e0bb4bfdac8f539aa6902630",
+      "memory_kind": "wengu-topic",
+      "artifact_id": "art_a377082164614dd686064bb77d80e9d3",
       "from_revision": 1,
       "to_revision": 2,
       "bytes": 439,
-      "reason": "复习结果 forgot"
+      "reason": "复习结果 forgot",
+      "ts": "2026-10-29T07:52:30.884+08:00",
+      "kind": "powercontext.replace_artifact",
+      "seq": 39
     },
     {
-      "ts": "2026-10-29T07:21:53.674+08:00",
-      "kind": "coach.grade",
-      "seq": 38,
       "doc_id": "mvcc-snapshot-isolation",
       "grade": "known",
       "strength": 0.35,
-      "due": "2026-10-31T12:09:53+08:00"
+      "due": "2026-10-31T12:40:30+08:00",
+      "ts": "2026-10-29T07:52:30.829+08:00",
+      "kind": "coach.grade",
+      "seq": 38
     },
     {
-      "ts": "2026-10-29T07:21:53.673+08:00",
-      "kind": "powercontext.list_atomic_memories",
-      "seq": 37,
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
       "entries": 8,
       "topics": 7,
-      "latency_ms": 10.46
+      "latency_ms": 13.48,
+      "ts": "2026-10-29T07:52:30.829+08:00",
+      "kind": "powercontext.list_atomic_memories",
+      "seq": 37
     },
     {
-      "ts": "2026-10-29T07:21:53.663+08:00",
-      "kind": "wengu-topic",
-      "seq": 36,
       "entry_id": "TOPIC-mvcc-snapshot-isolation",
-      "artifact_id": "art_1ac0d42d95354ffbbbbf23aa08f2a914",
+      "memory_kind": "wengu-topic",
+      "artifact_id": "art_d3e6ddd6eb5d45c59901c97ca94c3e14",
       "from_revision": 1,
       "to_revision": 2,
       "bytes": 468,
-      "reason": "复习结果 known"
+      "reason": "复习结果 known",
+      "ts": "2026-10-29T07:52:30.815+08:00",
+      "kind": "powercontext.replace_artifact",
+      "seq": 36
     },
     {
-      "ts": "2026-10-29T07:21:53.618+08:00",
-      "kind": "coach.grade",
-      "seq": 35,
       "doc_id": "query-optimizer",
       "grade": "vague",
       "strength": 0.12,
-      "due": "2026-10-30T19:21:53+08:00"
+      "due": "2026-10-30T19:52:30+08:00",
+      "ts": "2026-10-29T07:52:30.760+08:00",
+      "kind": "coach.grade",
+      "seq": 35
     },
     {
-      "ts": "2026-10-29T07:21:53.618+08:00",
-      "kind": "powercontext.list_atomic_memories",
-      "seq": 34,
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
       "entries": 8,
       "topics": 7,
-      "latency_ms": 15.98
+      "latency_ms": 15.83,
+      "ts": "2026-10-29T07:52:30.760+08:00",
+      "kind": "powercontext.list_atomic_memories",
+      "seq": 34
     },
     {
-      "ts": "2026-10-29T07:21:53.602+08:00",
-      "kind": "wengu-topic",
-      "seq": 33,
       "entry_id": "TOPIC-query-optimizer",
-      "artifact_id": "art_8ddbad4115b44721923d394ec49e71d6",
+      "memory_kind": "wengu-topic",
+      "artifact_id": "art_35a0df8205814c55a4f4e8435cff69cc",
       "from_revision": 1,
       "to_revision": 2,
       "bytes": 471,
-      "reason": "复习结果 vague"
+      "reason": "复习结果 vague",
+      "ts": "2026-10-29T07:52:30.744+08:00",
+      "kind": "powercontext.replace_artifact",
+      "seq": 33
     },
     {
-      "ts": "2026-10-29T07:21:53.560+08:00",
-      "kind": "coach.grade",
-      "seq": 32,
       "doc_id": "oceanbase-tpcc-notes",
       "grade": "forgot",
       "strength": 0.0,
-      "due": "2026-10-30T07:21:53+08:00"
+      "due": "2026-10-30T07:52:30+08:00",
+      "ts": "2026-10-29T07:52:30.697+08:00",
+      "kind": "coach.grade",
+      "seq": 32
     },
     {
-      "ts": "2026-10-29T07:21:53.560+08:00",
-      "kind": "powercontext.list_atomic_memories",
-      "seq": 31,
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
       "entries": 8,
       "topics": 7,
-      "latency_ms": 12.49
+      "latency_ms": 12.72,
+      "ts": "2026-10-29T07:52:30.697+08:00",
+      "kind": "powercontext.list_atomic_memories",
+      "seq": 31
     },
     {
-      "ts": "2026-10-29T07:21:53.547+08:00",
-      "kind": "wengu-topic",
-      "seq": 30,
       "entry_id": "TOPIC-oceanbase-tpcc-notes",
-      "artifact_id": "art_5b107e7f59414424b51f2531963d822b",
+      "memory_kind": "wengu-topic",
+      "artifact_id": "art_16994ba464be48d1816f65372751bae1",
       "from_revision": 1,
       "to_revision": 2,
       "bytes": 591,
-      "reason": "复习结果 forgot"
+      "reason": "复习结果 forgot",
+      "ts": "2026-10-29T07:52:30.684+08:00",
+      "kind": "powercontext.replace_artifact",
+      "seq": 30
     },
     {
-      "ts": "2026-10-29T07:21:53.505+08:00",
-      "kind": "coach.build_session",
-      "seq": 29,
       "items": 6,
       "quota": 6,
-      "weak_topics": 0
+      "weak_topics": 0,
+      "ts": "2026-10-29T07:52:30.631+08:00",
+      "kind": "coach.build_session",
+      "seq": 29
     },
     {
-      "ts": "2026-10-29T07:21:53.501+08:00",
-      "kind": "powercontext.list_atomic_memories",
-      "seq": 28,
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
       "entries": 8,
       "topics": 7,
-      "latency_ms": 11.86
+      "latency_ms": 14.25,
+      "ts": "2026-10-29T07:52:30.625+08:00",
+      "kind": "powercontext.list_atomic_memories",
+      "seq": 28
     },
     {
-      "ts": "2026-10-29T07:21:53.488+08:00",
-      "kind": "retrieval.hybrid",
-      "seq": 27,
       "query": "HNSW 的 ef 参数控制什么？",
       "backend": "seekdb",
       "filters": {},
       "hits": 5,
-      "latency_ms": 76.49,
-      "vector_ms": 1.33,
-      "fulltext_ms": 2.58
+      "latency_ms": 153.51,
+      "vector_ms": 1.38,
+      "fulltext_ms": 1.61,
+      "ts": "2026-10-29T07:52:30.610+08:00",
+      "kind": "retrieval.hybrid",
+      "seq": 27
     },
     {
-      "ts": "2026-10-29T07:21:53.488+08:00",
-      "kind": "powercontext.list_atomic_memories",
-      "seq": 26,
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
       "entries": 8,
       "topics": 7,
-      "latency_ms": 11.08
+      "latency_ms": 13.72,
+      "ts": "2026-10-29T07:52:30.610+08:00",
+      "kind": "powercontext.list_atomic_memories",
+      "seq": 26
     },
     {
-      "ts": "2026-10-29T07:21:53.477+08:00",
-      "kind": "wengu-ask-log",
-      "seq": 25,
       "entry_id": "ASKLOG-1",
-      "artifact_id": "art_4f15e2032ae542d192f10c85dbdbe5de",
+      "memory_kind": "wengu-ask-log",
+      "artifact_id": "art_a01fb9c0d2ed4b01803e96174c5ec3b3",
       "from_revision": 2,
       "to_revision": 3,
       "bytes": 881,
-      "reason": "记录提问历史"
+      "reason": "记录提问历史",
+      "ts": "2026-10-29T07:52:30.596+08:00",
+      "kind": "powercontext.replace_artifact",
+      "seq": 25
     },
     {
-      "ts": "2026-10-29T07:21:53.411+08:00",
-      "kind": "retrieval.hybrid",
-      "seq": 24,
       "query": "快照隔离为什么会出现写偏斜？",
       "backend": "seekdb",
       "filters": {},
       "hits": 5,
-      "latency_ms": 80.38,
-      "vector_ms": 1.47,
-      "fulltext_ms": 1.5
+      "latency_ms": 155.18,
+      "vector_ms": 1.44,
+      "fulltext_ms": 3.25,
+      "ts": "2026-10-29T07:52:30.456+08:00",
+      "kind": "retrieval.hybrid",
+      "seq": 24
     },
     {
-      "ts": "2026-10-29T07:21:53.411+08:00",
-      "kind": "powercontext.list_atomic_memories",
-      "seq": 23,
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
       "entries": 8,
       "topics": 7,
-      "latency_ms": 12.21
+      "latency_ms": 14.03,
+      "ts": "2026-10-29T07:52:30.456+08:00",
+      "kind": "powercontext.list_atomic_memories",
+      "seq": 23
     },
     {
-      "ts": "2026-10-29T07:21:53.399+08:00",
-      "kind": "wengu-ask-log",
-      "seq": 22,
       "entry_id": "ASKLOG-1",
-      "artifact_id": "art_4f15e2032ae542d192f10c85dbdbe5de",
+      "memory_kind": "wengu-ask-log",
+      "artifact_id": "art_a01fb9c0d2ed4b01803e96174c5ec3b3",
       "from_revision": 1,
       "to_revision": 2,
       "bytes": 644,
-      "reason": "记录提问历史"
+      "reason": "记录提问历史",
+      "ts": "2026-10-29T07:52:30.442+08:00",
+      "kind": "powercontext.replace_artifact",
+      "seq": 22
     },
     {
-      "ts": "2026-10-29T07:21:53.331+08:00",
-      "kind": "retrieval.hybrid",
-      "seq": 21,
       "query": "Raft 里一条日志什么时候算已提交？",
       "backend": "seekdb",
       "filters": {},
       "hits": 5,
-      "latency_ms": 79.77,
-      "vector_ms": 5.62,
-      "fulltext_ms": 14.79
+      "latency_ms": 120.33,
+      "vector_ms": 4.17,
+      "fulltext_ms": 9.2,
+      "ts": "2026-10-29T07:52:30.301+08:00",
+      "kind": "retrieval.hybrid",
+      "seq": 21
     },
     {
-      "ts": "2026-10-29T07:21:53.331+08:00",
-      "kind": "powercontext.list_atomic_memories",
-      "seq": 20,
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
       "entries": 8,
       "topics": 7,
-      "latency_ms": 15.82
+      "latency_ms": 34.46,
+      "ts": "2026-10-29T07:52:30.301+08:00",
+      "kind": "powercontext.list_atomic_memories",
+      "seq": 20
     },
     {
-      "ts": "2026-10-29T07:21:53.315+08:00",
-      "kind": "wengu-ask-log",
-      "seq": 19,
       "entry_id": "ASKLOG-1",
-      "artifact_id": "art_4f15e2032ae542d192f10c85dbdbe5de",
+      "memory_kind": "wengu-ask-log",
+      "artifact_id": "art_a01fb9c0d2ed4b01803e96174c5ec3b3",
       "revision": 1,
       "bytes": 288,
-      "reason": "记录提问历史"
+      "reason": "记录提问历史",
+      "ts": "2026-10-29T07:52:30.266+08:00",
+      "kind": "powercontext.create_artifact",
+      "seq": 19
     },
     {
-      "ts": "2026-10-29T07:21:53.248+08:00",
-      "kind": "powercontext.list_atomic_memories",
-      "seq": 18,
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
       "entries": 7,
       "topics": 7,
-      "latency_ms": 14.93
+      "latency_ms": 12.61,
+      "ts": "2026-10-29T07:52:30.179+08:00",
+      "kind": "powercontext.list_atomic_memories",
+      "seq": 18
     },
     {
-      "ts": "2026-10-29T07:21:53.233+08:00",
-      "kind": "wengu-topic",
-      "seq": 17,
       "entry_id": "TOPIC-wal-aries",
-      "artifact_id": "art_aff27ad89539449ca40381ba4508590c",
+      "memory_kind": "wengu-topic",
+      "artifact_id": "art_256dc8c62b904bad989360a86f188c78",
       "revision": 1,
       "bytes": 281,
-      "reason": "登记新文献到复习计划"
+      "reason": "登记新文献到复习计划",
+      "ts": "2026-10-29T07:52:30.166+08:00",
+      "kind": "powercontext.create_artifact",
+      "seq": 17
     },
     {
-      "ts": "2026-10-29T07:21:53.217+08:00",
-      "kind": "wengu-topic",
-      "seq": 16,
       "entry_id": "TOPIC-lsm-tree",
-      "artifact_id": "art_ad80ee7ac13a42d786598b277e19bd6e",
+      "memory_kind": "wengu-topic",
+      "artifact_id": "art_ea44b811d7194b859dd5d98bc64954d8",
       "revision": 1,
       "bytes": 300,
-      "reason": "登记新文献到复习计划"
+      "reason": "登记新文献到复习计划",
+      "ts": "2026-10-29T07:52:30.152+08:00",
+      "kind": "powercontext.create_artifact",
+      "seq": 16
     },
     {
-      "ts": "2026-10-29T07:21:53.199+08:00",
-      "kind": "wengu-topic",
-      "seq": 15,
       "entry_id": "TOPIC-raft",
-      "artifact_id": "art_86e2c26dd82f48db958973d08af18f23",
+      "memory_kind": "wengu-topic",
+      "artifact_id": "art_d091eb9a681e4e7a8eaaf146df1cde50",
       "revision": 1,
       "bytes": 268,
-      "reason": "登记新文献到复习计划"
+      "reason": "登记新文献到复习计划",
+      "ts": "2026-10-29T07:52:30.139+08:00",
+      "kind": "powercontext.create_artifact",
+      "seq": 15
     },
     {
-      "ts": "2026-10-29T07:21:53.181+08:00",
-      "kind": "wengu-topic",
-      "seq": 14,
       "entry_id": "TOPIC-vector-index",
-      "artifact_id": "art_b1944bd8e0bb4bfdac8f539aa6902630",
+      "memory_kind": "wengu-topic",
+      "artifact_id": "art_a377082164614dd686064bb77d80e9d3",
       "revision": 1,
       "bytes": 297,
-      "reason": "登记新文献到复习计划"
+      "reason": "登记新文献到复习计划",
+      "ts": "2026-10-29T07:52:30.126+08:00",
+      "kind": "powercontext.create_artifact",
+      "seq": 14
     },
     {
-      "ts": "2026-10-29T07:21:53.163+08:00",
-      "kind": "wengu-topic",
-      "seq": 13,
       "entry_id": "TOPIC-mvcc-snapshot-isolation",
-      "artifact_id": "art_1ac0d42d95354ffbbbbf23aa08f2a914",
+      "memory_kind": "wengu-topic",
+      "artifact_id": "art_d3e6ddd6eb5d45c59901c97ca94c3e14",
       "revision": 1,
       "bytes": 309,
-      "reason": "登记新文献到复习计划"
+      "reason": "登记新文献到复习计划",
+      "ts": "2026-10-29T07:52:30.111+08:00",
+      "kind": "powercontext.create_artifact",
+      "seq": 13
     },
     {
-      "ts": "2026-10-29T07:21:53.143+08:00",
-      "kind": "wengu-topic",
-      "seq": 12,
       "entry_id": "TOPIC-query-optimizer",
-      "artifact_id": "art_8ddbad4115b44721923d394ec49e71d6",
+      "memory_kind": "wengu-topic",
+      "artifact_id": "art_35a0df8205814c55a4f4e8435cff69cc",
       "revision": 1,
       "bytes": 303,
-      "reason": "登记新文献到复习计划"
+      "reason": "登记新文献到复习计划",
+      "ts": "2026-10-29T07:52:30.095+08:00",
+      "kind": "powercontext.create_artifact",
+      "seq": 12
     },
     {
-      "ts": "2026-10-29T07:21:53.126+08:00",
-      "kind": "wengu-topic",
-      "seq": 11,
       "entry_id": "TOPIC-oceanbase-tpcc-notes",
-      "artifact_id": "art_5b107e7f59414424b51f2531963d822b",
+      "memory_kind": "wengu-topic",
+      "artifact_id": "art_16994ba464be48d1816f65372751bae1",
       "revision": 1,
       "bytes": 354,
-      "reason": "登记新文献到复习计划"
+      "reason": "登记新文献到复习计划",
+      "ts": "2026-10-29T07:52:30.080+08:00",
+      "kind": "powercontext.create_artifact",
+      "seq": 11
     },
     {
-      "ts": "2026-10-29T07:21:52.438+08:00",
-      "kind": "seekdb.upsert_document",
-      "seq": 10,
       "doc_id": "wal-aries",
       "chunks": 5,
       "chars": 1079,
-      "vector_dim": 512
+      "vector_dim": 512,
+      "ts": "2026-10-29T07:52:29.457+08:00",
+      "kind": "seekdb.upsert_document",
+      "seq": 10
     },
     {
-      "ts": "2026-10-29T07:21:51.357+08:00",
-      "kind": "seekdb.upsert_document",
-      "seq": 9,
       "doc_id": "vector-index",
       "chunks": 6,
       "chars": 1127,
-      "vector_dim": 512
+      "vector_dim": 512,
+      "ts": "2026-10-29T07:52:28.489+08:00",
+      "kind": "seekdb.upsert_document",
+      "seq": 9
     },
     {
-      "ts": "2026-10-29T07:21:50.165+08:00",
-      "kind": "seekdb.upsert_document",
-      "seq": 8,
       "doc_id": "raft",
       "chunks": 5,
       "chars": 873,
-      "vector_dim": 512
+      "vector_dim": 512,
+      "ts": "2026-10-29T07:52:27.308+08:00",
+      "kind": "seekdb.upsert_document",
+      "seq": 8
     },
     {
-      "ts": "2026-10-29T07:21:49.002+08:00",
-      "kind": "seekdb.upsert_document",
-      "seq": 7,
       "doc_id": "query-optimizer",
       "chunks": 5,
       "chars": 789,
-      "vector_dim": 512
+      "vector_dim": 512,
+      "ts": "2026-10-29T07:52:26.049+08:00",
+      "kind": "seekdb.upsert_document",
+      "seq": 7
     },
     {
-      "ts": "2026-10-29T07:21:47.627+08:00",
-      "kind": "seekdb.upsert_document",
-      "seq": 6,
       "doc_id": "oceanbase-tpcc-notes",
       "chunks": 3,
       "chars": 1001,
-      "vector_dim": 512
+      "vector_dim": 512,
+      "ts": "2026-10-29T07:52:24.886+08:00",
+      "kind": "seekdb.upsert_document",
+      "seq": 6
     },
     {
-      "ts": "2026-10-29T07:21:46.760+08:00",
-      "kind": "seekdb.upsert_document",
-      "seq": 5,
       "doc_id": "mvcc-snapshot-isolation",
       "chunks": 4,
       "chars": 892,
-      "vector_dim": 512
+      "vector_dim": 512,
+      "ts": "2026-10-29T07:52:23.641+08:00",
+      "kind": "seekdb.upsert_document",
+      "seq": 5
     },
     {
-      "ts": "2026-10-29T07:21:45.781+08:00",
-      "kind": "seekdb.upsert_document",
-      "seq": 4,
       "doc_id": "lsm-tree",
       "chunks": 6,
       "chars": 1249,
-      "vector_dim": 512
+      "vector_dim": 512,
+      "ts": "2026-10-29T07:52:22.283+08:00",
+      "kind": "seekdb.upsert_document",
+      "seq": 4
     },
     {
-      "ts": "2026-10-29T07:21:44.201+08:00",
-      "kind": "wengu.ready",
-      "seq": 3,
       "store": "seekdb",
       "embedder": "onnx-bge-small-zh-v1.5",
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
-      "documents": 0
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
+      "documents": 0,
+      "ts": "2026-10-29T07:52:20.831+08:00",
+      "kind": "wengu.ready",
+      "seq": 3
     },
     {
-      "ts": "2026-10-29T07:21:44.194+08:00",
-      "kind": "powercontext.list_atomic_memories",
-      "seq": 2,
-      "scope_id": "scp_74njpssvh485rame8tehjkrcr0",
+      "scope_id": "scp_2hxna3jsywdbhv955s5ynzt1e9",
       "entries": 0,
       "topics": 0,
-      "latency_ms": 31.12
+      "latency_ms": 14.3,
+      "ts": "2026-10-29T07:52:20.827+08:00",
+      "kind": "powercontext.list_atomic_memories",
+      "seq": 2
     },
     {
-      "ts": "2026-10-29T07:21:40.703+08:00",
-      "kind": "seekdb.open",
-      "seq": 1,
       "path": "/root/wengu-data/seekdb",
       "collections": [
         "wengu_chunks",
         "wengu_docs"
-      ]
+      ],
+      "ts": "2026-10-29T07:52:18.067+08:00",
+      "kind": "seekdb.open",
+      "seq": 1
     }
   ]
 }

@@ -23,8 +23,8 @@ pyseekdb.Schema(
 )
 ```
 
-写入流程：先按 `max(旧 n_chunks, 新 n_chunks)` 删除旧片段 ID（避免残留），再 `upsert` 文档与片段，
-最后 `refresh_index()` 让新数据立即可检索。
+写入流程：先按 `max(旧 n_chunks, 新 n_chunks)` 删除旧片段 ID（避免文档变短后残留），
+再用新片段的 ID `upsert` 文档与片段，最后 `refresh_index()` 让新数据立即可检索。
 
 ### PowerContext（记忆）
 

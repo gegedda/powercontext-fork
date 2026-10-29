@@ -9,14 +9,14 @@
 
 from __future__ import annotations
 
-import datetime as _dt
+import hashlib
 import time
 from pathlib import Path
 
 import numpy as np
 
-from ..library import Chunk, Document
-from .base import Filters, RawHit, StoredChunk, _chunk_metadata, doc_row, now_iso
+from ..library import Document
+from .base import Filters, RawHit, StoredChunk, _chunk_metadata, now_iso
 
 DB_NAME = "wengu"
 CHUNKS = "wengu_chunks"
@@ -139,14 +139,15 @@ class SeekDBStore:
                 }
             ],
         )
-        if chunk_ids:
+        new_ids = [chunk.chunk_id for chunk in document.chunks]
+        if new_ids:
             metadatas = []
             for chunk in document.chunks:
                 meta = _chunk_metadata(document, chunk)
                 meta["chunk_id"] = chunk.chunk_id
                 metadatas.append(meta)
             self._chunks.upsert(
-                ids=chunk_ids,
+                ids=new_ids,
                 embeddings=[np.asarray(vector, dtype=np.float32).tolist() for vector in vectors],
                 documents=[chunk.text for chunk in document.chunks],
                 metadatas=metadatas,
@@ -158,7 +159,8 @@ class SeekDBStore:
     def _doc_vector(self, document: Document) -> list[float]:
         """文档级向量只用于占位（文档表不做相似度检索），用标题哈希填充。"""
 
-        seed = abs(hash(document.doc_id)) % (2**32)
+        digest = hashlib.blake2b(document.doc_id.encode("utf-8"), digest_size=8).digest()
+        seed = int.from_bytes(digest, "little") % (2**32)
         rng = np.random.default_rng(seed)
         vector = rng.random(self.dimension, dtype=np.float32)
         return (vector / np.linalg.norm(vector)).tolist()

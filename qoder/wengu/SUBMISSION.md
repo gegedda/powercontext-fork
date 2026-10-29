@@ -5,8 +5,8 @@
 
 | 赛题要求 | 对应内容 | 状态 |
 | --- | --- | --- |
-| 项目网站网址（Qoder Sites，公开可访问） | `website/` 是站点源码；发布后把访问地址填到提交表单 | ⬜ 需在 Qoder 中发布 |
-| 代码仓库 | 本目录位于比赛仓库 `qoder/wengu/`；提交到你的 fork 分支即可 | ⬜ 需 push 到你的仓库 |
+| 项目网站网址（Qoder Sites，公开可访问） | https://wengu-review-coach-8pp3v4ytw4k.qoder.zone （`website/` 是站点源码） | ✅ 已发布（公开） |
+| 代码仓库 | https://github.com/gegedda/powercontext-fork/tree/qoder/wengu/qoder/wengu | ✅ 已推送 `qoder/wengu` 分支 |
 | 运行说明 | `README.md` 第 4 节（Linux/Windows 两条路径、依赖、启动命令、配置项） | ✅ |
 | 验证样例 | `docs/verification-sample.md`（6 步 + 预期输出）；`records/` 是对应的真实产物 | ✅ |
 | Qoder 开发记录 | `docs/qoder-development-record.md`（每阶段的需求描述、关键问题、验证）；需补 Qoder 对话截图与账号 UID | ⬜ 需补截图 + UID |
@@ -15,9 +15,9 @@
 
 ## 提交平台需要填的三项
 
-1. **项目网站网址**：Qoder Sites 发布后的完整地址（无痕窗口能打开）。
-2. **代码仓库地址**：包含 `qoder/wengu/` 的分支或目录地址。
-3. **Qoder 账号 UID**：Qoder 客户端「设置 → 账号」里可见。
+1. **项目网站网址**：https://wengu-review-coach-8pp3v4ytw4k.qoder.zone （已公开，无痕窗口可打开）。
+2. **代码仓库地址**：https://github.com/gegedda/powercontext-fork/tree/qoder/wengu/qoder/wengu
+3. **Qoder 账号 UID**：Qoder 客户端左下角头像 →「设置」→「账号」，账号信息中的 UID（一串数字/字符 ID）。
 
 ## 建议的提交前自检
 
