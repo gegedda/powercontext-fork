@@ -17,7 +17,8 @@
 
 1. **项目网站网址**：https://wengu-review-coach-8pp3v4ytw4k.qoder.zone （已公开，无痕窗口可打开）。
 2. **代码仓库地址**：https://github.com/gegedda/powercontext-fork/tree/qoder/wengu/qoder/wengu
-3. **Qoder 账号 UID**：Qoder 客户端左下角头像 →「设置」→「账号」，账号信息中的 UID（一串数字/字符 ID）。
+3. **Qoder 账号 UID**：打开 Qoder Desktop 左下角头像（用户菜单）→「设置」→「个人资料」（Profile），
+   在账号资料区域查看 UID；若该页未直接显示，可点同一菜单里的账号/用户中心入口查看。
 
 ## 建议的提交前自检
 
