@@ -144,3 +144,26 @@
 | PowerContext 生效 | `records/tech.json` 的 `powercontext.create_artifact / replace_artifact` | revision 递增，重启后读回 |
 | 越用越懂你 | `grade` 后 `review` 的排序/原因变化；提问出现「薄弱点加权」 | 见 `records/review.json`、`ask_after_restart.json` |
 | 单元测试 | `python -m pytest -q` | 16 passed |
+
+---
+
+## 附：Qoder 对话截图
+
+以下截图取自 2026-10-29 的实际 Qoder 会话「阅读记录并完成项目」，按时间顺序排列。
+截图中的账号 UID 已打码；完整会话可在提交账号的 Qoder 历史记录中核对。
+
+### 1. 说明 Qoder CN 账号 UID 与阿里云账号的关系
+
+![Qoder 对话：UID 说明（已打码）](screenshots/01-uid-qa.png)
+
+### 2. 发布 Qoder Site 并确认代码仓库
+
+![Qoder 对话：发布会话](screenshots/02-publish-site.png)
+
+站点已公开发布，仓库推送到 `qoder/wengu` 分支，`SUBMISSION.md` 同步更新。
+
+### 3. 读取开发记录并完成收尾
+
+![Qoder 对话：收尾与验证](screenshots/03-development-summary.png)
+
+本轮修复了重复导入的片段 ID 错位、重拍五张界面截图、对齐 `records/` 证据，并在 Linux 评测机跑通 16 项测试。

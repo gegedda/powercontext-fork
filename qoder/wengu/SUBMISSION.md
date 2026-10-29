@@ -9,7 +9,7 @@
 | 代码仓库 | https://github.com/gegedda/powercontext-fork/tree/qoder/wengu/qoder/wengu | ✅ 已推送 `qoder/wengu` 分支 |
 | 运行说明 | `README.md` 第 4 节（Linux/Windows 两条路径、依赖、启动命令、配置项） | ✅ |
 | 验证样例 | `docs/verification-sample.md`（6 步 + 预期输出）；`records/` 是对应的真实产物 | ✅ |
-| Qoder 开发记录 | `docs/qoder-development-record.md`（每阶段的需求描述、关键问题、验证）；需补 Qoder 对话截图与账号 UID | ⬜ 需补截图 + UID |
+| Qoder 开发记录 | `docs/qoder-development-record.md`（每阶段的需求描述、关键问题、验证）；对话截图见文末附录 `docs/screenshots/`（UID 已打码） | ✅ 截图已补；UID 填提交表单 |
 | 技术结合有效 | seekdb：`records/tech.json` + `records/ask.json` 的召回明细；PowerContext：`create_artifact / replace_artifact` 事件与 revision 递增 | ✅ |
 | 使用效果材料（鼓励） | 暂无真实外部用户数据；有 3 位同学试用后的反馈可补在此处（不要编造） | ⬜ 可选 |
 
