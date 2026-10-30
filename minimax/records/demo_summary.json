@@ -1,6 +1,6 @@
 {
-  "scope_id": "scp_43amt0e8z1etnsygv0xnw17p5c",
-  "backend": "sqlite",
+  "scope_id": "scp_376mvwhs4rw8nxtfg5m2bjwg8g",
+  "backend": "seekdb",
   "materials": 31,
   "upsert": {
     "inserted": 31,
@@ -13,11 +13,8 @@
     "tests": 6
   },
   "minimax_record": null,
-  "minimax_skipped": false,
-  "applied_files": [
-    "minimax/demo_project/issuehub/service.py",
-    "minimax/demo_project/issuehub/api.py"
-  ],
+  "minimax_skipped": true,
+  "applied_files": [],
   "verification": {
     "target": {
       "command": "python -m pytest tests/test_issue_filters.py -q",

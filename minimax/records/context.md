@@ -17,8 +17,8 @@ Requirements:
 The change must be verified with the target tests for the new filters and the
 regression tests for existing behaviour.
 
-**Backend:** sqlite  
-**Scope:** `scp_43amt0e8z1etnsygv0xnw17p5c`
+**Backend:** seekdb  
+**Scope:** `scp_376mvwhs4rw8nxtfg5m2bjwg8g`
 
 ## Applicable specifications
 
@@ -205,22 +205,22 @@ Status: **not_started**
 
 ## Source citations
 
-- `SPEC-101.1` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `art_43b5eaf679dd4d65b99fcd9a7599d489`, version `art_43b5eaf679dd4d65b99fcd9a7599d489@1`)
-- `SPEC-101.2` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `art_b90094b9fa744714a212d5e34cc9c17c`, version `art_b90094b9fa744714a212d5e34cc9c17c@1`)
-- `SPEC-101.3` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `art_6b55eba1a9e54630b34482a4b46287b5`, version `art_6b55eba1a9e54630b34482a4b46287b5@1`)
-- `SPEC-102.1` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `art_bc6240e98c9043d4bd7915508a0c5cbc`, version `art_bc6240e98c9043d4bd7915508a0c5cbc@1`)
-- `SPEC-102.2` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `art_6edec3a01f2c4bf8af5318ca74795fee`, version `art_6edec3a01f2c4bf8af5318ca74795fee@1`)
-- `SPEC-103.1` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `art_ac42432ab6694cff8ed0d2796366c7c2`, version `art_ac42432ab6694cff8ed0d2796366c7c2@1`)
-- `SPEC-103.2` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `art_3d8f569789aa4189aeca4e5d046664a8`, version `art_3d8f569789aa4189aeca4e5d046664a8@1`)
-- `SPEC-103.3` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `art_1d5871489d564beaacd22b1524aac950`, version `art_1d5871489d564beaacd22b1524aac950@1`)
-- `SPEC-103.4` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `art_cd78731e42bc405b89ac3287feed0f61`, version `art_cd78731e42bc405b89ac3287feed0f61@1`)
-- `CODE-service-IssueService-list_issues` → `minimax/demo_project/issuehub/service.py` (memory entry `art_68046eabfb204cd78886a40c38eedec8`, version `art_68046eabfb204cd78886a40c38eedec8@1`)
-- `CODE-models-Issue` → `minimax/demo_project/issuehub/models.py` (memory entry `art_4717d19a8a484fd2a25b4b65b1a53d33`, version `art_4717d19a8a484fd2a25b4b65b1a53d33@1`)
-- `CODE-service-InvalidPriority` → `minimax/demo_project/issuehub/service.py` (memory entry `art_4921ec78917747db95d7f5dc2d9cdda5`, version `art_4921ec78917747db95d7f5dc2d9cdda5@1`)
-- `CODE-api-make_handler` → `minimax/demo_project/issuehub/api.py` (memory entry `art_b5ab826ed23948d3b967fb5d73a962c9`, version `art_b5ab826ed23948d3b967fb5d73a962c9@1`)
-- `TEST-test_invalid_priority_returns_400` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `art_c8f0ecf4084145d4819e48205c23abca`, version `art_c8f0ecf4084145d4819e48205c23abca@1`)
-- `TEST-test_priority_combines_with_status` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `art_86fa634c3ac94b1994f7fe9378959088`, version `art_86fa634c3ac94b1994f7fe9378959088@1`)
-- `TEST-test_filter_by_assignee_and_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `art_a4e10bf84d81437798a952346558be24`, version `art_a4e10bf84d81437798a952346558be24@1`)
-- `TEST-test_filter_by_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `art_63cc2ab78fe64959b12f6b4c0d31690e`, version `art_63cc2ab78fe64959b12f6b4c0d31690e@1`)
-- `TEST-test_no_filters_returns_all_sorted` → `minimax/demo_project/tests/test_regressions.py` (memory entry `art_b1a46528dc214999847d03c5dec63bee`, version `art_b1a46528dc214999847d03c5dec63bee@1`)
-- `TEST-test_status_filter_still_works` → `minimax/demo_project/tests/test_regressions.py` (memory entry `art_1e33a18aa59c4cf8b7ae8bd614dcd228`, version `art_1e33a18aa59c4cf8b7ae8bd614dcd228@1`)
+- `SPEC-101.1` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `art_85ff973eebfe477cbb75264bb7d626c2`, version `art_85ff973eebfe477cbb75264bb7d626c2@1`)
+- `SPEC-101.2` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `art_0376780a887f41f7affda67e22ff098e`, version `art_0376780a887f41f7affda67e22ff098e@1`)
+- `SPEC-101.3` → `minimax/materials/specs/SPEC-101-issue-filters.md` (memory entry `art_3bd2a9a955464dcfa1903c4c6283741a`, version `art_3bd2a9a955464dcfa1903c4c6283741a@1`)
+- `SPEC-102.1` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `art_0503e9ad167b41ec9b00ba0e18d6288d`, version `art_0503e9ad167b41ec9b00ba0e18d6288d@1`)
+- `SPEC-102.2` → `minimax/materials/specs/SPEC-102-invalid-priority.md` (memory entry `art_86ec49910e374c1ea1fa8ee719788376`, version `art_86ec49910e374c1ea1fa8ee719788376@1`)
+- `SPEC-103.1` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `art_56818d836d0141e58815fe2291431395`, version `art_56818d836d0141e58815fe2291431395@1`)
+- `SPEC-103.2` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `art_f295eae1f8cd47129e653cdada71695c`, version `art_f295eae1f8cd47129e653cdada71695c@1`)
+- `SPEC-103.3` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `art_61c2b8eb1b5b4ce28398f009e255f951`, version `art_61c2b8eb1b5b4ce28398f009e255f951@1`)
+- `SPEC-103.4` → `minimax/materials/specs/SPEC-103-compatibility.md` (memory entry `art_aa92ee1a0a3e44f6b2bc7f3b5a9acc4a`, version `art_aa92ee1a0a3e44f6b2bc7f3b5a9acc4a@1`)
+- `CODE-service-IssueService-list_issues` → `minimax/demo_project/issuehub/service.py` (memory entry `art_959723305bb44b95a3e73a00be6f4c10`, version `art_959723305bb44b95a3e73a00be6f4c10@1`)
+- `CODE-models-Issue` → `minimax/demo_project/issuehub/models.py` (memory entry `art_c9380f957cae480b8e2e5570292f28fc`, version `art_c9380f957cae480b8e2e5570292f28fc@1`)
+- `CODE-service-InvalidPriority` → `minimax/demo_project/issuehub/service.py` (memory entry `art_ea59dc71c81546cdbbecaeddcb527aa1`, version `art_ea59dc71c81546cdbbecaeddcb527aa1@1`)
+- `CODE-api-make_handler` → `minimax/demo_project/issuehub/api.py` (memory entry `art_06d914e584ca407686991fed45c92b9b`, version `art_06d914e584ca407686991fed45c92b9b@1`)
+- `TEST-test_invalid_priority_returns_400` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `art_65899ef44adc4a00a69e6ba5cb372bad`, version `art_65899ef44adc4a00a69e6ba5cb372bad@1`)
+- `TEST-test_priority_combines_with_status` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `art_69cc2ea4d6dc44e7b63847aa5f9f7722`, version `art_69cc2ea4d6dc44e7b63847aa5f9f7722@1`)
+- `TEST-test_filter_by_assignee_and_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `art_2ceb379f4a8e44c693d8be1a1078caae`, version `art_2ceb379f4a8e44c693d8be1a1078caae@1`)
+- `TEST-test_filter_by_priority` → `minimax/demo_project/tests/test_issue_filters.py` (memory entry `art_4fe0a4eb45974aca80f9b063ac1c709f`, version `art_4fe0a4eb45974aca80f9b063ac1c709f@1`)
+- `TEST-test_no_filters_returns_all_sorted` → `minimax/demo_project/tests/test_regressions.py` (memory entry `art_43e0370859294b77885e80edca0b4b03`, version `art_43e0370859294b77885e80edca0b4b03@1`)
+- `TEST-test_status_filter_still_works` → `minimax/demo_project/tests/test_regressions.py` (memory entry `art_16a99db011a64310a9e759c8dd7210d5`, version `art_16a99db011a64310a9e759c8dd7210d5@1`)
