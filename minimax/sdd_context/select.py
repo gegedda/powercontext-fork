@@ -133,14 +133,14 @@ def _score(candidate: Candidate, terms: list[str], task: str) -> None:
 
 def select(entries, hits, task: str) -> dict[str, object]:
     terms = tokenize(task)
-    hit_ids = {hit.citation.entry_id for hit in hits}
+    hit_ids = {hit.material_id for hit in hits if hit.material_id}
     candidates: list[Candidate] = []
     for entry in entries:
         candidate = _candidate(entry)
         if candidate is None:
             continue
         _score(candidate, terms, task)
-        if candidate.entry.citation.entry_id in hit_ids:
+        if str(candidate.meta.get("material", "")) in hit_ids:
             candidate.score += 1.5
             candidate.matched.append("retrieval_hit")
         candidate.score = round(candidate.score, 3)
@@ -223,21 +223,20 @@ def _test_view(candidate: Candidate) -> dict[str, object]:
 
 
 def sources(context: dict[str, object], entries) -> list[dict[str, object]]:
-    by_id = {entry.citation.entry_id: entry for entry in entries}
     seen: set[str] = set()
     rows: list[dict[str, object]] = []
     for section in ("specs", "code", "tests"):
         for item in context.get(section, []):
             material_id = str(item.get("material_id", ""))
-            entry = next((e for e in by_id.values() if f"MATERIAL {material_id}" in e.text.splitlines()[0]), None)
-            if entry is None or entry.citation.entry_id in seen:
+            entry = next((e for e in entries if e.text.startswith(f"MATERIAL {material_id}\n")), None)
+            if entry is None or entry.ref in seen:
                 continue
-            seen.add(entry.citation.entry_id)
+            seen.add(entry.ref)
             rows.append(
                 {
                     "material_id": material_id,
-                    "memory_entry_id": entry.citation.entry_id,
-                    "entry_version_id": entry.citation.entry_version_id,
+                    "memory_entry_id": entry.ref,
+                    "entry_version_id": entry.version,
                     "path": item.get("path"),
                     "symbol": item.get("symbol") or item.get("test"),
                     "lines": item.get("lines"),

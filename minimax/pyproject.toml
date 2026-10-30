@@ -12,12 +12,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-seekdb = [
-    "powercontext[seekdb]>=1.2.0,<2",
-    "pymysql==1.2.0",
-    "aiomysql==0.3.2",
-    "pyobvector==0.2.28",
-]
+seekdb = ["powercontext[seekdb]>=1.2.0,<2"]
 test = ["pytest>=8"]
 
 [project.scripts]

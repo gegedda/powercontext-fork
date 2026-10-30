@@ -35,6 +35,15 @@ PowerContext Memory: TASK-001-STATE ── 重启后 load_state
 | seekdb / OceanBase | 保存 31 个工程资料条目、检索结果和任务状态；嵌入式 seekdb 由 PowerContext 管理 | `PowerContextRuntime` + `SDD_DB=seekdb` |
 | PowerContext | Server + `PowerContextClient` 提供 Memory 写入、查询、重启复用 | `sdd_context/store.py` |
 
+### PowerContext 版本兼容
+
+`store.py` 不直接假定某一版的 Memory 返回结构：
+
+- **1.2**：`MemoryEntry.citation` 可用，更新走 `revise_memory_entry`。
+- **1.4**：`search_memory` 返回 `AtomicMemorySearchHit`（字段 `memory`、`score`），`list_memory_entries` 返回 `AtomicMemoryRecord`（字段 `artifact`、`kind`、`text`、`state_version`），没有 `citation`；更新是追加新原子记录，读取时按 `material_id` 取最新 revision。
+
+上下文输出中的 `memory_entry_id` 在 1.2 是 `mem_ent_...`，在 1.4 是 `art_...`；两种都是真实持久化标识。
+
 ## 3. 目录
 
 ```
@@ -84,7 +93,7 @@ pip install -e "..[server,seekdb]"
 pip install -e . --no-deps
 ```
 
-依赖版本：`powercontext[server,seekdb]>=1.2.0,<2`；本次记录使用 `powercontext 1.2.0`、`pylibseekdb 1.4.x`、`pytest 9.x`。
+依赖版本：`powercontext[server,seekdb]>=1.2.0,<2`；本次记录在 `powercontext 1.2.0` 与 `1.4.0` 上验证，1.4.0 使用原子 Memory API（`AtomicMemoryRecord` / `AtomicMemorySearchHit`），`store.py` 同时兼容两套返回结构。`pylibseekdb 1.4.x`、`pytest 9.x`。
 
 ## 5. 配置
 
