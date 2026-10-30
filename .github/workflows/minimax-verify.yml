@@ -25,7 +25,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install uv
           uv pip install --system "powercontext[server,seekdb]==1.4.0" pytest
-          python -c "import powercontext; print('powercontext', powercontext.__version__)"
+          python -c "import importlib.metadata; print('powercontext', importlib.metadata.version('powercontext'))"
 
       - name: Run the seekdb pipeline
         working-directory: minimax
